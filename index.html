@@ -1031,6 +1031,8 @@ body.cookie-lock { overflow:hidden; }
 .site-header .nav-cart .cart-dot{position:static;flex:0 0 auto;}
 .site-header .af-theme-control{position:relative;z-index:1;flex:0 0 var(--header-control-size);width:var(--header-control-size);height:var(--header-control-size);min-width:var(--header-control-size);min-height:var(--header-control-size);}
 .site-header .af-theme-control>summary{display:grid;place-items:center;box-sizing:border-box;width:var(--header-control-size);height:var(--header-control-size);min-width:var(--header-control-size);min-height:var(--header-control-size);padding:0;border:1px solid var(--border);border-radius:var(--control-radius);background:var(--surface);color:var(--text);font-size:19px;list-style:none;cursor:pointer;user-select:none;transition:border-color var(--motion),background-color var(--motion);}
+.site-header .af-theme-control>summary .theme-icon-svg{display:none;width:24px;height:24px;flex:0 0 24px;overflow:visible;color:currentColor;}
+.site-header .af-theme-control>summary .theme-icon-glyph{display:inline-block;font-size:19px;line-height:1;}
 .site-header .af-theme-control>summary::-webkit-details-marker{display:none;}
 .site-header .af-theme-control>summary:hover{border-color:var(--border-strong);}
 /* Theme picker — visual language aligned to the user-provided B-02 source. */
@@ -1166,9 +1168,14 @@ body.menu-escape-focus-restored :is(.site-header .mobile-toggle,.site-header #th
   .site-header .nav{display:none;}
   .site-header .mobile-toggle{display:grid;}
   .site-header .nav-cart{width:var(--header-control-size);min-width:var(--header-control-size);padding:0;}
-  .site-header .nav-cart .cart-icon{display:block;}
+  /* Mobile/tablet only: size the visible cart drawing, not the button. */
+  .site-header .nav-cart .cart-icon{display:block;width:24px;height:24px;stroke-width:1.8;flex:0 0 24px;}
   .site-header .nav-cart-label{display:none;}
   .site-header .nav-cart .cart-dot{position:absolute;top:-5px;right:-5px;min-width:17px;height:17px;padding:0 3px;border:1px solid var(--surface);font-size:10px;}
+  /* Use a vector theme mark on mobile/tablet; retain the old glyph on desktop. */
+  .site-header .af-theme-control>summary{font-size:0;}
+  .site-header .af-theme-control>summary .theme-icon-glyph{display:none;}
+  .site-header .af-theme-control>summary .theme-icon-svg{display:block;}
 }
 @media (max-width:520px){
   :root{--mobile-nav-gap:8px;}
@@ -1577,6 +1584,7 @@ html.artify-keyboard-navigation .site-header a.brand:focus-visible {
 }
 </style>
 
+<!-- Artify B02.58: keep desktop header icon sizing unchanged; optical icon normalization applies only at the mobile/tablet breakpoint (max-width: 1150px). -->
 </head>
 <body data-artify-iteration="B-02.56 · integer type system; card 1 spacing aligned for 1440 desktop review" data-artify-baseline="restored-working-prototype-v1">
   <header class="site-header">
@@ -1597,7 +1605,7 @@ html.artify-keyboard-navigation .site-header a.brand:focus-visible {
       <div class="header-actions">
         <a class="nav-cart" href="#cart" data-route="cart" aria-label="Корзина"><svg class="cart-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h2l2.1 10.1a2 2 0 0 0 2 1.6h6.8a2 2 0 0 0 1.9-1.4L21 9H7"/><circle cx="10" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg><span class="nav-cart-label">Корзина</span><span class="cart-dot" id="cart-count">0</span></a>
         <details class="af-theme-control" id="theme-control">
-          <summary id="theme-trigger" aria-label="Цветовая тема" title="Цветовая тема"><span aria-hidden="true">◐</span><span class="sr-only">Цветовая тема</span></summary>
+          <summary id="theme-trigger" aria-label="Цветовая тема" title="Цветовая тема"><span class="theme-icon-glyph" aria-hidden="true">◐</span><svg class="theme-icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 3a9 9 0 0 0 0 18Z" fill="currentColor"/><path d="M12 3v18" fill="none" stroke="currentColor" stroke-width="1.2"/></svg><span class="sr-only">Цветовая тема</span></summary>
           <div class="af-theme-menu" role="group" aria-labelledby="theme-menu-title">
             <h2 class="af-theme-menu-title" id="theme-menu-title">Цветовая схема</h2>
             <p class="af-theme-menu-intro">Выберите режим отображения сайта.</p>
