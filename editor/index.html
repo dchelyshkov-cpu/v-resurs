@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Artify Factory — Landing Builder · MVP 01 · v3.6.7 clean responsive gate</title>
+<style>
+  *{box-sizing:border-box}html,body{height:100%;margin:0;overflow:hidden}body{font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:#f5f0e8;color:#1c1a17;-webkit-font-smoothing:antialiased}
+  .aurora{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;animation:drift 22s ease-in-out infinite alternate}.b1{width:520px;height:520px;background:#f0a26b;top:-170px;left:-130px}.b2{width:620px;height:620px;background:#f7c98b;bottom:-240px;right:-170px;animation-delay:-7s}.b3{width:440px;height:440px;background:#c2410c;opacity:.2;top:34%;left:44%;animation-delay:-14s}@keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(60px,-40px) scale(1.12)}100%{transform:translate(-40px,50px) scale(.95)}}
+  .app{position:relative;z-index:1;display:grid;grid-template-columns:260px 1fr 1.15fr;gap:14px;height:100vh;padding:14px}.panel{background:rgba(255,252,245,.78);-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);border:1px solid rgba(255,255,255,.7);box-shadow:0 10px 40px rgba(28,26,23,.07);border-radius:20px;min-height:0;min-width:0}
+  .sidebar{display:flex;flex-direction:column;gap:12px;padding:16px;overflow:hidden}.logo{display:flex;align-items:center;gap:10px}.logo svg{width:36px;height:36px;flex:none}.logo .lg-t{display:block;font-size:15px;letter-spacing:-.02em;line-height:1.15;font-weight:800;color:#1c1a17}.logo .lg-s{display:block;font-size:11px;color:#9a9188;letter-spacing:.02em;margin-top:1px}
+  .quality{display:flex;align-items:center;gap:12px;padding:10px;border-radius:14px;background:rgba(255,255,255,.6);border:1px solid rgba(28,26,23,.06)}.ring-wrap{position:relative;width:64px;height:64px;flex:none}.ring{width:64px;height:64px;transform:rotate(-90deg)}.ring circle{fill:none;stroke-width:6;stroke-linecap:round}.ring-bg{stroke:rgba(28,26,23,.09)}.ring-fg{stroke:#c2410c;transition:stroke-dashoffset .35s ease}.ring-num{position:absolute;inset:0;display:grid;place-items:center;font-size:13px;font-weight:800;letter-spacing:-.03em}.q-right{min-width:0;flex:1}.q-title{font-size:11px;font-weight:700;color:#9a9188;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}.q-row{display:flex;gap:5px}.q-dot{width:22px;height:22px;border-radius:7px;flex:none;display:grid;place-items:center;font-size:9px;font-weight:800;background:rgba(28,26,23,.07);color:#a9a199;transition:.2s;cursor:default}.q-dot.on{background:#65a30d;color:#fff;box-shadow:0 3px 10px rgba(101,163,13,.35)}
+  .tree{flex:1;overflow-y:auto;min-height:0;margin:0 -4px;padding:0 4px}.tg-title{font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#a9a199;margin:12px 0 6px 8px}.tg-title:first-child{margin-top:2px}.tree-item{display:flex;align-items:center;gap:9px;padding:8px 9px;border-radius:11px;cursor:pointer;transition:.15s;user-select:none}.tree-item:hover{background:rgba(255,255,255,.75)}.tree-item.active{background:#fff;box-shadow:0 4px 14px rgba(28,26,23,.08)}.ti-ico{width:17px;height:17px;flex:none;color:#8f867d}.ti-ico svg{width:17px;height:17px;display:block}.tree-item.active .ti-ico{color:#c2410c}.ti-lbl{font-size:13.5px;font-weight:600;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ti-ok{width:16px;height:16px;border-radius:50%;background:#65a30d;color:#fff;font-size:10px;display:grid;place-items:center;flex:none;font-weight:800}
+  .sw{width:38px;height:22px;border-radius:999px;background:rgba(28,26,23,.16);position:relative;cursor:pointer;transition:.2s;flex:none;border:0;padding:0}.sw::after{content:'';position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.25)}.sw.on{background:#65a30d}.sw.on::after{transform:translateX(16px)}.sw-mini{width:30px;height:18px}.sw-mini::after{width:12px;height:12px;top:3px;left:3px}.sw-mini.on::after{transform:translateX(12px)}
+  .btn-pro{width:100%;padding:12px;border-radius:13px;border:0;cursor:pointer;background:linear-gradient(135deg,#c2410c,#d97706);color:#fff;font:inherit;font-weight:700;font-size:13.5px;box-shadow:0 8px 22px rgba(194,65,12,.32);transition:.18s}.btn-pro:hover{transform:translateY(-1px);box-shadow:0 12px 28px rgba(194,65,12,.4)}
+  .center{display:flex;flex-direction:column;overflow:hidden}.ch-head{display:flex;gap:13px;align-items:flex-start;padding:20px 22px 16px;border-bottom:1px solid rgba(28,26,23,.07)}.ch-ico{width:38px;height:38px;border-radius:12px;flex:none;background:linear-gradient(135deg,rgba(194,65,12,.12),rgba(217,119,6,.14));color:#c2410c;display:grid;place-items:center}.ch-ico svg{width:20px;height:20px}.ch-head h2{margin:0;font-size:17px;letter-spacing:-.02em}.ch-head p{margin:4px 0 0;font-size:12.5px;color:#8f867d;line-height:1.5;max-width:46ch}.ch-body{flex:1;min-height:0;overflow-y:auto;padding:18px 22px 44px}
+  .field{margin-bottom:17px}.field>label{display:block;font-size:12.5px;font-weight:700;color:#6b635b;margin-bottom:7px}.req{color:#c2410c}.inp{width:100%;padding:11px 13px;border:1px solid rgba(28,26,23,.13);border-radius:10px;background:rgba(255,255,255,.85);font:inherit;font-size:14px;color:#141210;outline:none;transition:.15s}.inp:focus{border-color:#c2410c;box-shadow:0 0 0 3px rgba(194,65,12,.12);background:#fff}.inp::placeholder,textarea.inp::placeholder{color:#d9d3cb;opacity:1;font-weight:400;font-style:normal}textarea.inp{resize:vertical;min-height:72px;line-height:1.5}select.inp{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#8f867d 50%),linear-gradient(135deg,#8f867d 50%,transparent 50%);background-position:calc(100% - 17px) 18px,calc(100% - 12px) 18px;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:34px}.hint{font-size:11.5px;color:#141210;margin-top:6px;line-height:1.45;opacity:.75}.fld-row{display:flex;align-items:center;gap:14px;justify-content:space-between}.fld-row .txt{min-width:0}.fld-row label{margin-bottom:4px}
+  .chips{display:flex;flex-wrap:wrap;gap:7px}.chip{padding:7px 12px;border-radius:999px;border:1px solid rgba(28,26,23,.13);background:rgba(255,255,255,.7);font:inherit;font-size:12.5px;cursor:pointer;color:#4a443d;transition:.15s}.chip:hover{border-color:rgba(194,65,12,.4)}.chip.on{background:#c2410c;border-color:#c2410c;color:#fff}.chip-extra{padding:12px 12px 12px 14px;border-left:3px solid rgba(194,65,12,.35);background:linear-gradient(90deg,rgba(194,65,12,.045),transparent 70%);border-radius:0 10px 10px 0;margin-bottom:17px}.chip-extra>label{display:block;font-size:12.5px;font-weight:700;color:#a8360a;margin-bottom:7px}.col-row{display:flex;gap:10px;align-items:center}.col-row input[type=color]{width:46px;height:42px;padding:3px;border-radius:10px;border:1px solid rgba(28,26,23,.13);background:rgba(255,255,255,.85);cursor:pointer;flex:none}.col-row .hex{flex:1;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px}
+  .preview{display:flex;flex-direction:column;overflow:hidden;padding:12px;position:relative}.pv-top{display:flex;align-items:center;gap:8px;padding:2px 4px 12px;flex-wrap:wrap}.seg{display:flex;background:rgba(28,26,23,.06);border-radius:11px;padding:3px;gap:2px}.seg button{border:0;background:transparent;font:inherit;font-size:12px;font-weight:600;padding:6px 11px;border-radius:8px;cursor:pointer;color:#6b635b;transition:.15s}.seg button.on{background:#fff;color:#1c1a17;box-shadow:0 2px 8px rgba(28,26,23,.1)}.pv-chips{display:flex;gap:6px;margin-left:auto}.pv-chip{font-size:11px;font-weight:700;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.8);border:1px solid rgba(28,26,23,.08);color:#6b635b;letter-spacing:.02em}.zoom-group{display:flex;gap:2px;align-items:center;background:rgba(28,26,23,.06);border-radius:11px;padding:3px}.zoom-group button{border:0;background:transparent;font:inherit;font-size:11.5px;font-weight:700;padding:5px 9px;border-radius:8px;cursor:pointer;color:#6b635b;transition:.15s;min-width:32px}.zoom-group button.on{background:#fff;color:#c2410c;box-shadow:0 2px 8px rgba(28,26,23,.1)}.pv-btn{width:30px;height:30px;border-radius:9px;border:1px solid rgba(28,26,23,.08);background:rgba(255,255,255,.8);cursor:pointer;display:grid;place-items:center;color:#6b635b;transition:.15s;font-size:15px;font-weight:700;font-family:inherit}.pv-btn:hover{background:#fff;color:#c2410c}.pv-btn svg{width:15px;height:15px}
+  .stage{position:relative;flex:1;min-height:0;overflow:auto;display:flex;border-radius:14px;background:radial-gradient(600px 300px at 50% 0%,rgba(255,255,255,.6),transparent 70%),rgba(255,255,255,.35);transition:opacity .16s ease;padding:13px;scrollbar-width:thin;scrollbar-color:rgba(28,26,23,.22) transparent}.stage.fade{opacity:0}.stage::-webkit-scrollbar{width:8px;height:8px}.stage::-webkit-scrollbar-track{background:transparent}.stage::-webkit-scrollbar-thumb{background:rgba(28,26,23,.22);border-radius:4px}.stage::-webkit-scrollbar-thumb:hover{background:rgba(28,26,23,.35)}.frame-wrap{position:relative;margin:auto;flex:none}.device{position:absolute;top:0;left:0;transform-origin:top left;background:transparent}.device-body{position:relative;width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden;background:#fff}.side-btn{position:absolute;display:none;background:#141210;box-shadow:inset 0 0 0 1px #2b2825;pointer-events:none}.device[data-device="desktop"] .device-body{border-radius:12px;border:1px solid rgba(28,26,23,.14);box-shadow:0 24px 70px rgba(28,26,23,.22)}.d-chrome{display:flex;align-items:center;gap:10px;height:44px;background:#f1ece4;border-bottom:1px solid rgba(28,26,23,.08);padding:0 14px;flex:none}.dots{display:flex;gap:6px;flex:none}.dots i{width:10px;height:10px;border-radius:50%;display:block}.url{flex:1;height:24px;border-radius:12px;background:#fff;border:1px solid rgba(28,26,23,.07);font-size:11px;color:#a9a199;display:flex;align-items:center;padding:0 12px;white-space:nowrap;overflow:hidden}.d-spacer{width:52px;flex:none}.device[data-device="tablet"] .device-body{border:16px solid #141210;border-radius:34px;background:#141210;box-shadow:0 30px 80px rgba(28,26,23,.32),inset 0 0 0 1px #2b2825,inset 0 0 0 3px #0a0907}.device[data-device="tablet"] .d-chrome{display:flex;align-items:center;justify-content:center;height:42px;background:#141210;border:0;flex:none}.device[data-device="tablet"] .cam{width:7px;height:7px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#4d4d59 0%,#1a1a22 70%);box-shadow:inset 0 0 2px rgba(120,160,255,.45),0 0 1px rgba(0,0,0,.9);display:block}.device[data-device="tablet"] .side-btn{display:block}.device[data-device="tablet"] .sb-power{right:0;top:120px;width:3px;height:62px;border-radius:0 2px 2px 0;transform:translateX(2px)}.device[data-device="tablet"] .sb-vup{right:0;top:52px;width:3px;height:36px;border-radius:0 2px 2px 0;transform:translateX(2px)}.device[data-device="tablet"] .sb-vdn{right:0;top:96px;width:3px;height:36px;border-radius:0 2px 2px 0;transform:translateX(2px)}.device[data-device="tablet"] .sb-mute,.device[data-device="tablet"] .home-ind{display:none}.device[data-device="mobile"] .device-body{border:12px solid #141210;border-radius:46px;background:#141210;box-shadow:0 30px 80px rgba(28,26,23,.32),inset 0 0 0 1px #2b2825,inset 0 0 0 3px #0a0907}.device[data-device="mobile"] .d-chrome{position:absolute;top:0;left:0;right:0;height:54px;background:transparent;border:0;z-index:10;display:flex;align-items:flex-start;justify-content:center;padding-top:11px;pointer-events:none}.device[data-device="mobile"] .island{width:96px;height:28px;border-radius:16px;background:#000;box-shadow:inset 0 0 0 1px #1a1a1e;display:block}.device[data-device="mobile"] .home-ind{position:absolute;bottom:0;left:0;right:0;height:34px;background:transparent;z-index:10;display:flex;justify-content:center;align-items:flex-end;padding-bottom:8px;pointer-events:none}.device[data-device="mobile"] .home-ind i{width:128px;height:5px;border-radius:3px;background:rgba(255,255,255,.85);box-shadow:0 0 2px rgba(0,0,0,.55);display:block}.device[data-device="mobile"] .side-btn{display:block}.device[data-device="mobile"] .sb-power{right:0;top:170px;width:3px;height:76px;border-radius:0 2px 2px 0;transform:translateX(2px)}.device[data-device="mobile"] .sb-vup{left:0;top:120px;width:3px;height:44px;border-radius:2px 0 0 2px;transform:translateX(-2px)}.device[data-device="mobile"] .sb-vdn{left:0;top:172px;width:3px;height:44px;border-radius:2px 0 0 2px;transform:translateX(-2px)}.device[data-device="mobile"] .sb-mute{left:0;top:76px;width:3px;height:28px;border-radius:2px 0 0 2px;transform:translateX(-2px)}.screen{flex:1;min-height:0;position:relative;overflow:hidden;background:#fff}.screen iframe{display:block;border:0;width:100%;height:100%;background:#fff}.home-ind{display:none}
+  .overlay{position:fixed;inset:0;z-index:50;background:rgba(28,26,23,.42);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:none;place-items:center;padding:24px}.overlay.on{display:grid}.modal{width:min(760px,100%);max-height:88vh;overflow:auto;background:#fffdf9;border-radius:22px;padding:28px;box-shadow:0 40px 100px rgba(28,26,23,.4);position:relative}.modal h2{margin:0 0 6px;font-size:22px;letter-spacing:-.02em}.modal>.sub{margin:0 0 22px;color:#8f867d;font-size:13.5px}.modal-x{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:10px;border:0;background:rgba(28,26,23,.06);cursor:pointer;font-size:17px;color:#6b635b;display:grid;place-items:center;line-height:1}.modal-x:hover{background:rgba(28,26,23,.12)}.plans{display:grid;grid-template-columns:1fr 1fr;gap:14px}.plan{border-radius:16px;padding:20px;border:1px solid rgba(28,26,23,.09);background:#fff}.plan.pro{border-color:rgba(194,65,12,.35);background:linear-gradient(160deg,#fff7f0,#fffdf9);box-shadow:0 12px 34px rgba(194,65,12,.12)}.plan h3{margin:0 0 4px;font-size:16px}.plan .tag{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#a9a199}.plan.pro .tag{color:#c2410c}.plan ul{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-direction:column;gap:9px}.plan li{display:flex;gap:9px;font-size:13.5px;color:#4a443d;line-height:1.4}.plan li i{width:17px;height:17px;border-radius:50%;flex:none;display:grid;place-items:center;font-style:normal;font-size:10px;font-weight:800;margin-top:1px;background:rgba(28,26,23,.09);color:#8f867d}.plan.pro li i{background:#65a30d;color:#fff}.plan .price{margin-top:16px;font-size:20px;font-weight:800;letter-spacing:-.02em}
+  .pv-actions{display:flex;gap:7px;flex-wrap:wrap;padding:0 4px 10px}.act{border:1px solid rgba(28,26,23,.09);background:rgba(255,255,255,.82);font:inherit;font-size:11.5px;font-weight:600;color:#4a443d;padding:7px 11px;border-radius:10px;cursor:pointer;transition:.15s}.act:hover{background:#fff;border-color:rgba(194,65,12,.35);color:#c2410c}.act.primary{background:#c2410c;border-color:#c2410c;color:#fff}.act.primary:hover{background:#a8360a;color:#fff}.act:disabled{opacity:.4;cursor:not-allowed;filter:grayscale(.35)}.act:disabled:hover{background:rgba(255,255,255,.82);border-color:rgba(28,26,23,.09);color:#4a443d}.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);background:#1c1a17;color:#fff;padding:11px 18px;border-radius:12px;font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:.25s;z-index:80}.toast.on{opacity:1;transform:translate(-50%,0)}.empty-note{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(28,26,23,.88);color:#fff;font-size:12.5px;font-weight:600;padding:11px 18px;border-radius:999px;z-index:6;text-align:center;box-shadow:0 12px 30px rgba(28,26,23,.32);pointer-events:none;max-width:70%;line-height:1.4}.js-error{position:fixed;top:8px;left:50%;transform:translateX(-50%);background:#7f1d1d;color:#fff;padding:10px 16px;border-radius:10px;font-size:12px;z-index:999;max-width:90%;font-family:monospace}
+
+  /* Return navigation from the editor to the Artify landing. */
+.af-back-link{display:flex;align-items:center;justify-content:center;min-height:36px;margin:8px 16px 14px;padding:7px 10px;border:1px solid rgba(28,26,23,.12);border-radius:9px;color:#51483f;font:600 12px/1.3 Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;text-decoration:none;background:rgba(255,255,255,.52)}
+.af-back-link:hover{border-color:rgba(184,67,42,.48);color:#9f3926}
+#afDesktopGate .af-gate-back{display:inline-flex;align-items:center;justify-content:center;min-height:42px;margin-top:18px;padding:10px 14px;border:1px solid rgba(28,26,23,.16);border-radius:9px;color:#51483f;text-decoration:none;font-weight:650;font-size:13px}
+#afDesktopGate .af-gate-back:hover{border-color:#b8432a;color:#9f3926}
+</style>
+
+</head>
+<body>
+<div class="aurora"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+<div class="app">
+  <aside class="panel sidebar">
+    <div class="logo"><svg viewBox="0 0 64 64"><rect x="3" y="3" width="54" height="54" rx="14" fill="#1C1A17"/><text x="30" y="36" text-anchor="middle" fill="#F7F4EF" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="800" letter-spacing="-0.32">AF</text><circle cx="53" cy="55" r="9" fill="#B8432A" stroke="#F7F4EF" stroke-width="2"/></svg><div><span class="lg-t">Artify Factory</span><span class="lg-s">цифровые продукты</span></div></div>
+    <a class="af-back-link" href="../index.html" aria-label="Вернуться на лендинг Artify">← На лендинг Artify</a>
+    <div class="quality"><div class="ring-wrap"><svg class="ring" viewBox="0 0 64 64"><circle class="ring-bg" cx="32" cy="32" r="26"></circle><circle class="ring-fg" id="ringFg" cx="32" cy="32" r="26"></circle></svg><div class="ring-num" id="ringNum">0%</div></div><div class="q-right"><div class="q-title">Готовность</div><div class="q-row" id="qRow"></div></div></div>
+    <div class="tree" id="tree"></div><button class="btn-pro" id="proBtn">Перейти на PRO</button>
+  </aside>
+  <main class="panel center"><div class="ch-head" id="chHead"></div><div class="ch-body" id="chBody"></div></main>
+  <section class="panel preview" id="previewPanel">
+    <div class="pv-top"><div class="seg" id="seg"><button data-d="desktop">Desktop</button><button data-d="tablet">Tablet</button><button data-d="mobile">Mobile</button></div><div class="pv-chips"><span class="pv-chip" id="chipSize">1440 × 900</span><span class="pv-chip" id="chipScale">×1.00</span></div><div class="zoom-group" id="zoomGroup"><button data-z="1" class="on">1×</button><button data-z="1.5">1.5×</button><button data-z="2">2×</button><button data-z="3">3×</button></div><button class="pv-btn" id="refreshBtn" title="Обновить"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></button><button class="pv-btn" id="fsBtn" title="На весь экран"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M16 21h3a2 2 0 0 0 2-2v-3M8 21H5a2 2 0 0 1-2-2v-3"/></svg></button></div>
+    <div class="pv-actions"><button class="act primary" id="dlBtn">Скачать HTML</button><button class="act" id="shareBtn" disabled title="Планируется для PRO">Поделиться ссылкой</button><button class="act" id="saveJson" disabled title="Планируется для PRO">Сохранить JSON</button><button class="act" id="loadJson" disabled title="Планируется для PRO">Загрузить JSON</button><input type="file" id="jsonFile" accept="application/json" hidden></div>
+    <div class="stage" id="stage"><div class="frame-wrap" id="frameWrap"><div class="device" id="deviceEl" data-device="desktop"><span class="side-btn sb-power"></span><span class="side-btn sb-vup"></span><span class="side-btn sb-vdn"></span><span class="side-btn sb-mute"></span><div class="device-body"><div class="d-chrome" id="chromeEl"></div><div class="screen"><iframe id="pframe" title="Предпросмотр лендинга"></iframe></div><div class="home-ind"><i></i></div></div></div></div></div>
+    <div class="empty-note" id="emptyNote" style="display:none">Все секции выключены.<br>Включите нужные тумблеры в дереве слева.</div>
+  </section>
+</div>
+<div class="overlay" id="proOverlay"><div class="modal"><button class="modal-x" id="proClose" aria-label="Закрыть">✕</button><h2>Artify Factory PRO</h2><p class="sub">Расширенные возможности редактора планируются к запуску.</p><div class="plans"><div class="plan"><div class="tag">Free</div><h3>Базовый редактор</h3><ul><li><i>✓</i>Редактирование проекта в браузере</li><li><i>✓</i>Базовые секции и оформление</li><li><i>✓</i>Предпросмотр Desktop / Tablet / Mobile</li><li><i>✓</i>Скачивание HTML</li><li><i>✓</i>Автосохранение в этом браузере</li></ul><div class="price">0 BYN</div></div><div class="plan pro"><div class="tag">Планируется</div><h3>Расширенные возможности</h3><ul><li><i>✓</i>Дополнительные секции и шаблоны</li><li><i>✓</i>Экспорт проекта ZIP</li><li><i>✓</i>Расширенные настройки дизайна</li><li><i>✓</i>Дополнительные инструменты сборки</li></ul><div class="price">Условия уточняются</div></div></div></div></div>
+<div class="toast" id="toast"></div>
+<script>
+/* Artify Factory MVP 01 — editor core */
+var LS_KEY='artify-state',RING_LEN=2*Math.PI*26,zoomMul=1,currentScale=1,saveTimer,previewTimer;
+var DEVICES={desktop:{screenW:1440,screenH:900,chromeH:44,borderW:0,overlayChrome:false,name:'Desktop'},tablet:{screenW:834,screenH:1194,chromeH:42,borderW:16,overlayChrome:false,name:'Tablet'},mobile:{screenW:393,screenH:852,chromeH:0,borderW:12,overlayChrome:true,name:'Mobile'}};
+function devTotal(d){var x=DEVICES[d];return{w:x.screenW+2*x.borderW,h:x.screenH+2*x.borderW+(x.overlayChrome?0:x.chromeH)}}
+var FONTS=[{v:'Inter, system-ui, sans-serif',l:'Inter'},{v:'Manrope, system-ui, sans-serif',l:'Manrope'},{v:"Georgia, 'Times New Roman', serif",l:'Georgia'},{v:"'Times New Roman', Times, serif",l:'Times New Roman'},{v:'Arial, Helvetica, sans-serif',l:'Arial'},{v:'Verdana, Geneva, sans-serif',l:'Verdana'},{v:"'Trebuchet MS', sans-serif",l:'Trebuchet MS'},{v:"'Courier New', Courier, monospace",l:'Courier New'}];
+var ICONS={building:'<path d="M3 21h18M6 21V5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v16M14 21V9h3a1 1 0 0 1 1 1v11M9 8h2M9 12h2M9 16h2"/>',users:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>',sparkle:'<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15z"/>',palette:'<circle cx="12" cy="12" r="9"/><circle cx="8.7" cy="9.6" r="1.1"/><circle cx="15.3" cy="9.6" r="1.1"/><circle cx="9.2" cy="15" r="1.1"/>',layout:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01"/>',image:'<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5-5-9 9"/>',chart:'<path d="M3 21h18M7 21V10M12 21V4M17 21v-7"/>',box:'<path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8M12 13v8"/>',route:'<circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M6 8.5V15a3 3 0 0 0 3 3h6"/>',briefcase:'<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"/>',shield:'<path d="M12 3l7 3v6c0 4.5-3 7.7-7 9-4-1.3-7-4.5-7-9V6l7-3zM9 12l2 2 4-4"/>',help:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.3M12 17h.01"/>',mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/>',bottom:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 15h18"/>'};
+function icon(n){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+(ICONS[n]||'')+'</svg>'}
+var HINT={text:'Короткое значение — попадёт в соответствующий текст лендинга.',textarea:'Развёрнутый текст. Можно писать в несколько строк.',select:'Выберите один подходящий вариант из списка.',color:'Выберите цвет — он применится к оформлению лендинга.',toggle:'Включите или выключите эту опцию.',chips:'Отметьте один или несколько подходящих вариантов.',lines:'Одна строка — один элемент списка.',pipes:'Одна строка — один элемент. Значения разделяйте символом «|».'};
+var BLOCKS=[
+{id:'business',group:'project',label:'Бизнес',icon:'building',desc:'Базовые сведения о компании: название, сфера, предложение и контакты.',fields:[{k:'brandName',t:'text',l:'Название бренда',req:true,ph:'Введите название бренда'},{k:'industry',t:'text',l:'Сфера деятельности',req:true,ph:'Введите сферу деятельности'},{k:'whatSell',t:'textarea',l:'Что вы продаёте',req:true,ph:'Опишите, что вы продаёте'},{k:'phone',t:'text',l:'Телефон',req:true,ph:'Введите телефон'},{k:'email',t:'text',l:'E-mail',req:true,ph:'Введите e-mail'}]},
+{id:'audience',group:'project',label:'Аудитория',icon:'users',desc:'Кому адресован лендинг, какие у людей задачи и боли.',fields:[{k:'audienceTypes',t:'chips',l:'Типы аудитории',req:true,options:['Частные лица','Малый бизнес','Средний бизнес','Крупные компании','Госсектор','Партнёры']},{k:'audienceDesc',t:'textarea',l:'Описание аудитории',req:true,ph:'Опишите вашу аудиторию'},{k:'pains',t:'textarea',l:'Боли и проблемы',req:true,ph:'Опишите боли и проблемы клиентов'},{k:'criteria',t:'textarea',l:'Критерии выбора',req:true,ph:'Опишите критерии выбора'},{k:'goal',t:'select',l:'Цель лендинга',req:true,options:['Заявка','Звонок','Покупка','Регистрация','Подписка','Консультация']}]},
+{id:'diff',group:'project',label:'Отличия',icon:'sparkle',desc:'Чем вы отличаетесь от конкурентов и что гарантируете клиенту.',fields:[{k:'diff1',t:'text',l:'Отличие №1',req:true,ph:'Введите первое отличие'},{k:'diff2',t:'text',l:'Отличие №2',req:true,ph:'Введите второе отличие'},{k:'guarantees',t:'textarea',l:'Гарантии',req:true,ph:'Опишите ваши гарантии'}]},
+{id:'design',group:'project',label:'Дизайн',icon:'palette',desc:'Визуальный стиль будущего лендинга: сначала стиль, затем цвета и шрифт.',fields:[{k:'styleVibe',t:'chips',l:'Стиль',req:true,single:true,hint:'Выберите один стиль — цвета подставятся автоматически, далее их можно изменить.',options:['Минимализм','Технологичный','Премиальный','Дружелюбный','Строгий','Яркий'],presets:{'Минимализм':{primary:'#c2410c',accent:'#d97706'},'Технологичный':{primary:'#2563eb',accent:'#0ea5e9'},'Премиальный':{primary:'#1c1917',accent:'#a16207'},'Дружелюбный':{primary:'#db2777',accent:'#f97316'},'Строгий':{primary:'#334155',accent:'#64748b'},'Яркий':{primary:'#dc2626',accent:'#eab308'}}},{k:'primaryColor',t:'color',l:'Основной цвет',req:true},{k:'accentColor',t:'color',l:'Акцентный цвет',req:true},{k:'fontFamily',t:'select',l:'Шрифт',req:true,options:['Inter','Manrope','Georgia','Times New Roman','Arial','Verdana','Trebuchet MS','Courier New']},{k:'scrollytelling',t:'toggle',l:'Скроллителлинг (анимации при прокрутке)',hint:'Плавное появление секций, когда пользователь прокручивает страницу. Делает лендинг «живее».'}]},
+{id:'header',group:'struct',label:'Шапка',icon:'layout',toggle:true,desc:'Верхняя навигация лендинга: меню, телефон и кнопка действия.',fields:[{k:'headerNav',t:'text',l:'Пункты меню (через запятую, до 10)',req:true,ph:'Например: Возможности, Процесс, Кейсы'},{k:'showPhoneInHeader',t:'toggle',l:'Показывать телефон'},{k:'showCtaInHeader',t:'toggle',l:'Показывать CTA-кнопку'}]},
+{id:'hero',group:'struct',label:'Hero',icon:'image',toggle:true,desc:'Первый экран: бейдж, заголовок, подзаголовок и две кнопки.',fields:[{k:'heroBadge',t:'text',l:'Бейдж над заголовком',ph:'Например: Запуск за 5 дней'},{k:'heroTitle',t:'textarea',l:'Заголовок',req:true,ph:'Введите заголовок первого экрана'},{k:'heroSubtitle',t:'textarea',l:'Подзаголовок',req:true,ph:'Введите подзаголовок'},{k:'ctaPrimary',t:'text',l:'Текст главной кнопки',req:true,ph:'Например: Оставить заявку'}]},
+{id:'stats',group:'struct',label:'Цифры',icon:'chart',toggle:true,desc:'Ключевые показатели компании в виде числовых карточек.',fields:[{k:'stats',t:'textarea',l:'Цифры',req:true,ph:'число | пояснение',hint:HINT.pipes}]},
+{id:'products',group:'struct',label:'Продукты',icon:'box',toggle:true,desc:'Товары или услуги с ценой и коротким описанием.',fields:[{k:'productsTitle',t:'text',l:'Заголовок раздела',req:true,ph:'Введите заголовок раздела'},{k:'productsList',t:'textarea',l:'Список продуктов',req:true,ph:'название | цена | описание',hint:HINT.pipes}]},
+{id:'process',group:'struct',label:'Процесс',icon:'route',toggle:true,desc:'Этапы работы с клиентом и сроки по каждому шагу.',fields:[{k:'processTitle',t:'text',l:'Заголовок раздела',req:true,ph:'Введите заголовок раздела'},{k:'processSteps',t:'textarea',l:'Шаги процесса',req:true,ph:'шаг | описание | срок',hint:HINT.pipes}]},
+{id:'cases',group:'struct',label:'Кейсы',icon:'briefcase',toggle:true,desc:'Примеры работ: задача клиента и достигнутый результат.',fields:[{k:'casesTitle',t:'text',l:'Заголовок раздела',req:true,ph:'Введите заголовок раздела'},{k:'casesList',t:'textarea',l:'Список кейсов',req:true,ph:'название | задача | результат',hint:HINT.pipes}]},
+{id:'trust',group:'struct',label:'Доверие',icon:'shield',toggle:true,desc:'Факторы доверия: гарантии, документы, преимущества.',fields:[{k:'trustTitle',t:'text',l:'Заголовок раздела',req:true,ph:'Введите заголовок раздела'},{k:'trustList',t:'textarea',l:'Пункты доверия',req:true,ph:'Одна строка — один пункт доверия',hint:HINT.lines}]},
+{id:'faq',group:'struct',label:'FAQ',icon:'help',toggle:true,desc:'Частые вопросы клиентов и короткие ответы на них.',fields:[{k:'faqList',t:'textarea',l:'Вопросы и ответы',req:true,ph:'вопрос | ответ',hint:HINT.pipes}]},
+{id:'form',group:'struct',label:'Форма заявки',icon:'mail',toggle:true,desc:'Набор полей, которые клиент заполняет для связи с вами.',fields:[{k:'formsList',t:'chips',l:'Поля формы',req:true,options:['Имя','Телефон','E-mail','Компания','Комментарий','Бюджет','Город','Сайт','Мессенджер','Согласие'],extras:{'Телефон':{k:'formPhoneNumber',t:'text',l:'Номер телефона для формы',ph:'+375 XX XXX-XX-XX'},'E-mail':{k:'formEmailAddress',t:'text',l:'E-mail для формы',ph:'name@company.by'},'Мессенджер':{k:'formMessenger',t:'text',l:'Данные мессенджера',ph:'@username, ссылка или номер',hint:'Куда писать клиенту: ник, ссылка на чат или номер'},'Сайт':{k:'formSiteUrl',t:'text',l:'Адрес сайта для формы',ph:'https://example.by'},'Город':{k:'formCityDefault',t:'text',l:'Город по умолчанию',ph:'Минск'}}}]},
+{id:'footer',group:'struct',label:'Подвал',icon:'bottom',toggle:true,desc:'Нижняя часть лендинга: описание, колонки, контакты.',fields:[{k:'footerAbout',t:'textarea',l:'Описание в подвале',req:true,ph:'Опишите компанию в двух словах'},{k:'footerColumns',t:'chips',l:'Колонки подвала',req:true,options:['Контакты','Соцсети','Режим работы','Реквизиты'],extras:{'Контакты':{k:'footerContacts',t:'textarea',l:'Контактные данные',ph:'Телефон, e-mail, адрес',hint:'Одна строка — один контакт'},'Соцсети':{k:'footerSocials',t:'textarea',l:'Ссылки на соцсети',ph:'Telegram, Instagram, LinkedIn',hint:'Одна строка — одна соцсеть'},'Режим работы':{k:'footerHours',t:'text',l:'Режим работы',ph:'Пн-Пт 10:00-19:00'},'Реквизиты':{k:'footerRequisites',t:'textarea',l:'Реквизиты',ph:'Регистрационные данные, юр. адрес',hint:'Одна строка — один реквизит'}}},{k:'address',t:'text',l:'Адрес',ph:'Введите адрес'},{k:'workHours',t:'text',l:'Режим работы',ph:'Например: Пн-Пт 10:00-19:00'},{k:'socials',t:'text',l:'Соцсети (общий список)',ph:'Например: Telegram, Instagram, LinkedIn'}]}
+];
+var BMAP={};BLOCKS.forEach(function(b){BMAP[b.id]=b});
+var DEFAULTS={business:{brandName:'',industry:'',whatSell:'',phone:'',email:''},audience:{audienceTypes:[],audienceDesc:'',pains:'',criteria:'',goal:''},diff:{diff1:'',diff2:'',guarantees:''},design:{primaryColor:'#c2410c',accentColor:'#d97706',fontFamily:'Inter',styleVibe:[],scrollytelling:false},header:{headerNav:'',showPhoneInHeader:true,showCtaInHeader:true},hero:{heroBadge:'',heroTitle:'',heroSubtitle:'',ctaPrimary:''},stats:{stats:''},products:{productsTitle:'',productsList:''},process:{processTitle:'',processSteps:''},cases:{casesTitle:'',casesList:''},trust:{trustTitle:'',trustList:''},faq:{faqList:''},form:{formsList:[],formPhoneNumber:'',formEmailAddress:'',formMessenger:'',formSiteUrl:'',formCityDefault:''},footer:{footerAbout:'',footerColumns:[],address:'',workHours:'',socials:'',footerContacts:'',footerSocials:'',footerHours:'',footerRequisites:''}};
+var S={active:'business',device:'desktop',hidden:{},data:{},touched:{}};
+function loadState(){var loaded=false;try{var raw=localStorage.getItem(LS_KEY);if(raw){S=Object.assign(S,JSON.parse(raw));loaded=true}}catch(e){}S.data=S.data||{};S.touched=S.touched||{};S.hidden=S.hidden||{};Object.keys(DEFAULTS).forEach(function(id){S.data[id]=Object.assign({},DEFAULTS[id],S.data[id]||{})});var dg=S.data.design||{};var found=FONTS.find(function(f){return f.l===dg.fontFamily||f.v===dg.fontFamily});dg.fontFamily=found?found.l:'Inter';if(!loaded){S.hidden={};BLOCKS.forEach(function(b){if(b.toggle)S.hidden[b.id]=true})}if(!BMAP[S.active])S.active='business';if(!DEVICES[S.device])S.device='desktop'}
+function save(){clearTimeout(saveTimer);saveTimer=setTimeout(function(){try{localStorage.setItem(LS_KEY,JSON.stringify(S))}catch(e){}},240)}window.addEventListener('beforeunload',function(){try{localStorage.setItem(LS_KEY,JSON.stringify(S))}catch(e){}});
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])})}function lines(s){return String(s||'').split('\n').map(function(x){return x.trim()}).filter(Boolean)}function cells(s,n){return lines(s).map(function(l){var p=l.split('|').map(function(x){return x.trim()});while(p.length<n)p.push('');return p})}function val(id,k){return(S.data[id]||{})[k]}function touch(id,k){S.touched[id+'.'+k]=true}function isTouched(id,k){return!!S.touched[id+'.'+k]}function fontStack(label){var f=FONTS.find(function(x){return x.l===label});return f?f.v:'Inter, system-ui, sans-serif'}function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove('on')},2200)}function autoPlaceholder(f){if(f.ph)return f.ph;var l=String(f.l||'').replace(/\s*\([^)]*\)\s*$/,'').trim();return l?'Введите '+l.charAt(0).toLowerCase()+l.slice(1):''}
+function fieldFilled(bid,f){var v=val(bid,f.k);if(f.t==='chips')return Array.isArray(v)&&v.length>0;if(f.t==='toggle')return!!v;if(f.t==='select'||f.t==='color')return isTouched(bid,f.k)&&v!==undefined&&v!==null&&String(v)!=='';return v!==undefined&&v!==null&&String(v).trim()!==''}function blockFilled(id){var b=BMAP[id],any=false;if(!b)return false;for(var i=0;i<b.fields.length;i++){var f=b.fields[i];if(isTouched(id,f.k))any=true;if(f.req&&!fieldFilled(id,f))return false}return any}
+var QUALITY=[{id:'business',short:'Бз',label:'Бизнес'},{id:'audience',short:'Ау',label:'Аудитория'},{id:'diff',short:'От',label:'Отличия'},{id:'design',short:'Дз',label:'Дизайн'},{id:'structure',short:'Ст',label:'Структура'}];function qualityState(){return QUALITY.map(function(q){if(q.id==='structure')return['stats','products','process','cases','trust','faq','form'].filter(blockFilled).length>=3;return blockFilled(q.id)})}
+var treeEl=document.getElementById('tree'),qRow=document.getElementById('qRow'),ringFg=document.getElementById('ringFg'),ringNum=document.getElementById('ringNum');
+function renderSidebar(){var groups=[['project','Проект'],['struct','Структура']],html='';groups.forEach(function(g){html+='<div class="tree-group"><div class="tg-title">'+g[1]+'</div>';BLOCKS.forEach(function(b){if(b.group!==g[0])return;var filled=blockFilled(b.id),hidden=!!S.hidden[b.id];html+='<div class="tree-item'+(S.active===b.id?' active':'')+'" data-id="'+b.id+'"><span class="ti-ico">'+icon(b.icon)+'</span><span class="ti-lbl">'+esc(b.label)+'</span>'+(filled?'<span class="ti-ok">✓</span>':'')+(b.toggle?'<span class="sw sw-mini'+(hidden?'':' on')+'" data-tog="'+b.id+'"></span>':'')+'</div>'});html+='</div>'});treeEl.innerHTML=html}
+function renderQuality(){var st=qualityState(),html='';st.forEach(function(v,i){html+='<div class="q-dot'+(v?' on':'')+'" title="'+esc(QUALITY[i].label)+'">'+QUALITY[i].short+'</div>'});qRow.innerHTML=html;var done=st.filter(Boolean).length,p=done/st.length;ringFg.style.strokeDasharray=RING_LEN;ringFg.style.strokeDashoffset=RING_LEN*(1-p);ringNum.textContent=Math.round(p*100)+'%'}
+treeEl.addEventListener('click',function(e){var sw=e.target.closest('[data-tog]');if(sw){var id=sw.dataset.tog;S.hidden[id]=!S.hidden[id];renderSidebar();schedulePreview();save();return}var it=e.target.closest('.tree-item');if(it){S.active=it.dataset.id;renderSidebar();renderCenter();save()}});
+var chHead=document.getElementById('chHead'),chBody=document.getElementById('chBody');
+function fieldControlHTML(bid,f){var v=val(bid,f.k);if(f.t==='text')return '<input class="inp" type="text" data-k="'+f.k+'" value="'+esc(v==null?'':v)+'" placeholder="'+esc(autoPlaceholder(f))+'">';if(f.t==='textarea')return '<textarea class="inp" data-k="'+f.k+'" rows="3" placeholder="'+esc(autoPlaceholder(f))+'">'+esc(v==null?'':v)+'</textarea>';if(f.t==='select')return '<select class="inp" data-k="'+f.k+'"><option value="">— не выбрано —</option>'+f.options.map(function(o){return '<option'+(v===o?' selected':'')+'>'+esc(o)+'</option>'}).join('')+'</select>';if(f.t==='color'){var cv=v||'#c2410c';return '<div class="col-row"><input type="color" data-k="'+f.k+'" data-role="color" value="'+esc(cv)+'"><input class="inp hex" type="text" data-k="'+f.k+'" data-role="hex" value="'+esc(cv)+'"></div>'}if(f.t==='chips'){var arr=Array.isArray(v)?v:[];return '<div class="chips" data-k="'+f.k+'">'+f.options.map(function(o){return '<button type="button" class="chip'+(arr.indexOf(o)>=0?' on':'')+'" data-v="'+esc(o)+'">'+esc(o)+'</button>'}).join('')+'</div>'}if(f.t==='toggle')return '<button type="button" aria-label="Переключить '+esc(f.l)+'" class="sw'+(v?' on':'')+'" data-k="'+f.k+'" data-t="toggle"></button>';return ''}
+function fieldHTML(bid,f){var hint=f.hint||HINT[f.t]||'',label='<label>'+esc(f.l)+(f.req?' <span class="req">*</span>':'')+'</label>',hintEl=hint?'<div class="hint">'+esc(hint)+'</div>':'';if(f.t==='toggle')return '<div class="field"><div class="fld-row"><div class="txt">'+label+hintEl+'</div>'+fieldControlHTML(bid,f)+'</div></div>';return '<div class="field">'+label+fieldControlHTML(bid,f)+hintEl+'</div>'}
+function chipExtrasHTML(bid){var b=BMAP[bid],html='';b.fields.forEach(function(f){if(f.t!=='chips'||!f.extras)return;var selected=Array.isArray(val(bid,f.k))?val(bid,f.k):[];selected.forEach(function(opt){var ex=f.extras[opt];if(!ex)return;html+='<div class="field chip-extra" data-extra-for="'+esc(f.k+':'+opt)+'"><label>'+esc(ex.l)+'</label>'+fieldControlHTML(bid,ex)+(ex.hint?'<div class="hint">'+esc(ex.hint)+'</div>':'')+'</div>'})});return html}
+function renderCenter(){var b=BMAP[S.active];chHead.innerHTML='<div class="ch-ico">'+icon(b.icon)+'</div><div><h2>'+esc(b.label)+'</h2><p>'+esc(b.desc)+'</p></div>';chBody.innerHTML=b.fields.map(function(f){return fieldHTML(b.id,f)}).join('')+chipExtrasHTML(b.id)}
+function findField(bid,k){var b=BMAP[bid];if(!b)return null;for(var i=0;i<b.fields.length;i++){var f=b.fields[i];if(f.k===k)return f;if(f.extras)for(var o in f.extras)if(f.extras[o].k===k)return f.extras[o]}return null}
+chBody.addEventListener('input',function(e){var el=e.target.closest('[data-k]');if(!el)return;var bid=S.active,k=el.dataset.k,f=findField(bid,k);if(!f)return;if(f.t==='color'){var row=el.closest('.col-row'),ci=row.querySelector('[data-role="color"]'),hi=row.querySelector('[data-role="hex"]');if(el.dataset.role==='hex'){var vv=el.value.trim();if(vv&&vv[0]!=='#')vv='#'+vv;if(!/^#[0-9a-fA-F]{6}$/.test(vv))return;ci.value=vv;S.data[bid][k]=vv}else{S.data[bid][k]=el.value;hi.value=el.value}}else S.data[bid][k]=el.value;touch(bid,k);afterChange()});
+chBody.addEventListener('click',function(e){var chip=e.target.closest('.chip');if(chip){var wrap=chip.closest('[data-k]'),k=wrap.dataset.k,vv=chip.dataset.v,b=BMAP[S.active],fld=b.fields.find(function(f){return f.k===k});if(fld&&fld.single){var cur=Array.isArray(S.data[S.active][k])?S.data[S.active][k]:[];S.data[S.active][k]=cur[0]===vv?[]:[vv];if(cur[0]!==vv&&fld.presets&&fld.presets[vv]){S.data.design.primaryColor=fld.presets[vv].primary;S.data.design.accentColor=fld.presets[vv].accent;S.touched['design.primaryColor']=true;S.touched['design.accentColor']=true}touch(S.active,k);renderCenter();afterChange();return}var arr=Array.isArray(S.data[S.active][k])?S.data[S.active][k]:(S.data[S.active][k]=[]),idx=arr.indexOf(vv);if(idx>=0)arr.splice(idx,1);else arr.push(vv);touch(S.active,k);if(fld&&fld.extras)renderCenter();else chip.classList.toggle('on');afterChange();return}var sw=e.target.closest('.sw[data-k]');if(sw){var kk=sw.dataset.k;S.data[S.active][kk]=!S.data[S.active][kk];sw.classList.toggle('on',!!S.data[S.active][kk]);touch(S.active,kk);afterChange()}});
+function afterChange(){renderSidebar();renderQuality();schedulePreview();save()}
+/* Landing generator */
+function buildLanding(compact,device){var D=function(k){return S.data[k]||{}},b=D('business'),dg=D('design'),hd=D('header'),hr=D('hero'),st=D('stats'),pr=D('products'),pc=D('process'),cs=D('cases'),tr=D('trust'),fq=D('faq'),fm=D('form'),ft=D('footer');var primary=dg.primaryColor||'#c2410c',accent=dg.accentColor||'#d97706',font=fontStack(dg.fontFamily),k=compact?'0.5':'1',isDesktop=device==='desktop',vis=function(id){return !S.hidden[id]},brand=b.brandName||'Ваш бренд',cta=hr.ctaPrimary||'Оставить заявку',radius=(dg.styleVibe||[]).indexOf('Минимализм')>=0?'6':'16',navItems=lines(hd.headerNav).slice(0,10),body='';
+if(vis('header')){var nav=navItems.map(function(x){return '<a href="#">'+esc(x)+'</a>'}).join(''),phone=hd.showPhoneInHeader!==false&&b.phone?'<a class="ph" href="tel:">'+esc(b.phone)+'</a>':'',ctaBtn=hd.showCtaInHeader!==false?'<a class="btn btn-sm" href="#lead">'+esc(cta)+'</a>':'';body+='<header class="hd"><div class="cw hd-in"><a class="brand"><span class="mark"></span>'+esc(brand)+'</a>'+(isDesktop?'<nav class="nav">'+nav+'</nav>':'')+(isDesktop?'<div class="hd-r">'+phone+ctaBtn+'</div>':'')+'</div></header>'}
+if(vis('hero'))body+='<section class="hero"><div class="cw">'+(hr.heroBadge?'<span class="badge">'+esc(hr.heroBadge)+'</span>':'')+'<h1>'+esc(hr.heroTitle||'Заголовок лендинга')+'</h1>'+(hr.heroSubtitle?'<p class="lead">'+esc(hr.heroSubtitle)+'</p>':'')+'<div class="btns"><a class="btn" href="#lead">'+esc(cta)+'</a><a class="btn ghost" href="#more">Подробнее</a></div></div></section>';
+if(vis('stats')){var srows=cells(st.stats,2);if(srows.length)body+='<section class="sec"><div class="cw"><div class="grid g3">'+srows.map(function(r){return '<div class="stat"><div class="num">'+esc(r[0])+'</div><div class="lbl">'+esc(r[1])+'</div></div>'}).join('')+'</div></div></section>'}
+if(vis('products')){var prows=cells(pr.productsList,3);if(prows.length)body+='<section class="sec" id="more"><div class="cw"><h2>'+esc(pr.productsTitle||'Продукты и услуги')+'</h2><div class="grid g3">'+prows.map(function(r){return '<div class="card"><h3>'+esc(r[0])+'</h3>'+(r[1]?'<div class="price">'+esc(r[1])+'</div>':'')+'<p>'+esc(r[2])+'</p></div>'}).join('')+'</div></div></section>'}
+if(vis('process')){var crows=cells(pc.processSteps,3);if(crows.length)body+='<section class="sec"><div class="cw"><h2>'+esc(pc.processTitle||'Как мы работаем')+'</h2><div class="steps">'+crows.map(function(r,i){return '<div class="step"><div class="sn">'+(i+1)+'</div><div><h3>'+esc(r[0])+'</h3><p>'+esc(r[1])+'</p></div>'+(r[2]?'<div class="term">'+esc(r[2])+'</div>':'')+'</div>'}).join('')+'</div></div></section>'}
+if(vis('cases')){var carows=cells(cs.casesList,3);if(carows.length)body+='<section class="sec"><div class="cw"><h2>'+esc(cs.casesTitle||'Кейсы')+'</h2><div class="grid g3">'+carows.map(function(r){return '<div class="card case"><h3>'+esc(r[0])+'</h3><div class="row"><span>Задача</span><b>'+esc(r[1])+'</b></div><div class="row"><span>Результат</span><b class="ok">'+esc(r[2])+'</b></div></div>'}).join('')+'</div></div></section>'}
+if(vis('trust')){var trItems=lines(tr.trustList);if(trItems.length)body+='<section class="sec"><div class="cw"><h2>'+esc(tr.trustTitle||'Нам доверяют')+'</h2><ul class="trust">'+trItems.map(function(x){return '<li><i>✓</i>'+esc(x)+'</li>'}).join('')+'</ul></div></section>'}
+if(vis('faq')){var frows=cells(fq.faqList,2);if(frows.length)body+='<section class="sec"><div class="cw"><h2>Частые вопросы</h2><div class="faq">'+frows.map(function(r){return '<details><summary>'+esc(r[0])+'</summary><p>'+esc(r[1])+'</p></details>'}).join('')+'</div></div></section>'}
+if(vis('form')){var fields=Array.isArray(fm.formsList)?fm.formsList:[],phFor=function(name){if(name==='Телефон'&&fm.formPhoneNumber)return fm.formPhoneNumber;if(name==='E-mail'&&fm.formEmailAddress)return fm.formEmailAddress;if(name==='Мессенджер'&&fm.formMessenger)return fm.formMessenger;if(name==='Сайт'&&fm.formSiteUrl)return fm.formSiteUrl;if(name==='Город'&&fm.formCityDefault)return fm.formCityDefault;return name};body+='<section class="sec form-sec" id="lead"><div class="cw"><div class="form-card"><h2>Оставить заявку</h2><div class="fields">'+fields.map(function(f){return '<div class="ff"><label>'+esc(f)+'</label><input placeholder="'+esc(phFor(f))+'"></div>'}).join('')+'</div><a class="btn">'+esc(cta)+'</a></div></div></section>'}
+if(vis('footer')){var cols=Array.isArray(ft.footerColumns)?ft.footerColumns:[],colBody=function(c){if(c==='Контакты'){var d1=lines(ft.footerContacts);return d1.length?d1.map(function(x){return '<li>'+esc(x)+'</li>'}).join(''):'<li>'+esc(b.phone||'')+'</li><li>'+esc(b.email||'')+'</li><li>'+esc(ft.address||'')+'</li>'}if(c==='Соцсети'){var d2=lines(ft.footerSocials);return d2.length?d2.map(function(x){return '<li>'+esc(x)+'</li>'}).join(''):'<li>'+esc(ft.socials||'')+'</li>'}if(c==='Режим работы')return '<li>'+esc(ft.footerHours||ft.workHours||'')+'</li>';if(c==='Реквизиты'){var d3=lines(ft.footerRequisites);return d3.length?d3.map(function(x){return '<li>'+esc(x)+'</li>'}).join(''):'<li>'+esc(brand)+'</li><li>'+esc(ft.address||'')+'</li>'}return '<li>'+esc(brand)+'</li>'};body+='<footer class="ft"><div class="cw ft-in"><div><a class="brand"><span class="mark"></span>'+esc(brand)+'</a><p>'+esc(ft.footerAbout||'')+'</p><div class="soc">'+esc(ft.socials||'')+'</div></div><div class="ft-cols">'+cols.map(function(c){return '<div><h4>'+esc(c)+'</h4><ul>'+colBody(c)+'</ul></div>'}).join('')+'</div></div><div class="cw ft-bot">© '+new Date().getFullYear()+' '+esc(brand)+'</div></footer>'}
+var css='*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}'+':root{--k:'+k+';--p:'+primary+';--a:'+accent+';--r:'+radius+'px}html,body{overflow-x:hidden}body{font-family:'+font+';background:#fffdf9;color:#1c1a17;line-height:1.55;-webkit-font-smoothing:antialiased}a{text-decoration:none;color:inherit}.cw{max-width:1160px;margin:0 auto;padding:0 24px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--p);color:#fff;padding:14px 26px;border-radius:var(--r);font-weight:600;font-size:15px;border:0;cursor:pointer;transition:.2s}.btn:hover{filter:brightness(1.08)}.btn.ghost{background:transparent;color:#1c1a17;border:1.5px solid rgba(28,26,23,.18)}.btn-sm{padding:10px 18px;font-size:14px}.badge{display:inline-block;background:#fff3e6;color:var(--a);border:1px solid rgba(28,26,23,.06);padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;margin-bottom:20px}.hd{position:sticky;top:0;z-index:20;background:rgba(255,253,249,.88);backdrop-filter:blur(12px);border-bottom:1px solid rgba(28,26,23,.08)}.hd-in{display:flex;align-items:center;gap:24px;height:72px}.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.02em}.mark{width:26px;height:26px;border-radius:8px;background:var(--p);display:inline-block;position:relative;flex:none}.mark::after{content:"";position:absolute;right:-4px;bottom:-4px;width:12px;height:12px;border-radius:50%;background:var(--a);border:2px solid #fffdf9}.nav{display:flex;gap:22px;margin-left:auto}.nav a{font-size:14.5px;color:#4a443d;font-weight:500}.hd-r{display:flex;align-items:center;gap:16px}.ph{font-weight:600;font-size:14.5px}.hero{padding:calc(96px*var(--k)) 0 calc(88px*var(--k));background:radial-gradient(900px 480px at 12% -10%,rgba(194,65,12,.10),transparent 60%),radial-gradient(700px 420px at 92% 8%,rgba(217,119,6,.12),transparent 60%)}.hero h1{font-size:clamp(32px,5.2vw,60px);line-height:1.06;letter-spacing:-.03em;font-weight:800;max-width:16ch}.lead{margin-top:20px;font-size:clamp(16px,1.6vw,20px);color:#57504a;max-width:62ch}.btns{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}.sec{padding:calc(78px*var(--k)) 0}.sec h2{font-size:clamp(26px,3.4vw,40px);letter-spacing:-.02em;font-weight:800;margin-bottom:calc(36px*var(--k))}.grid{display:grid;gap:20px}.g3{grid-template-columns:repeat(3,1fr)}.stat{background:#fff;border:1px solid rgba(28,26,23,.07);border-radius:var(--r);padding:28px}.num{font-size:clamp(30px,4vw,46px);font-weight:800;letter-spacing:-.03em;color:var(--p);line-height:1.1}.lbl{color:#6b635b;font-size:15px;margin-top:8px}.card{background:#fff;border:1px solid rgba(28,26,23,.07);border-radius:var(--r);padding:28px;display:flex;flex-direction:column;gap:10px}.card h3{font-size:19px;font-weight:700}.price{color:var(--a);font-weight:700;font-size:15px}.card p{color:#6b635b;font-size:15px}.case .row{display:flex;flex-direction:column;gap:2px;border-top:1px solid rgba(28,26,23,.07);padding-top:10px}.case .row span{font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:#a9a199;font-weight:700}.case .row b{font-size:15px;font-weight:600}.case .row b.ok{color:#65a30d}.steps{display:flex;flex-direction:column;gap:14px}.step{display:flex;gap:20px;align-items:flex-start;background:#fff;border:1px solid rgba(28,26,23,.07);border-radius:var(--r);padding:24px}.sn{width:40px;height:40px;border-radius:12px;background:var(--p);color:#fff;display:grid;place-items:center;font-weight:800;flex:none}.step h3{font-size:17px}.step p{color:#6b635b;font-size:15px;margin-top:4px}.term{margin-left:auto;font-size:13px;font-weight:600;color:var(--a);background:#fff5ea;padding:6px 12px;border-radius:999px;white-space:nowrap;flex:none}.trust{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.trust li{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid rgba(28,26,23,.07);border-radius:var(--r);padding:18px 20px;font-size:15.5px}.trust i{width:24px;height:24px;border-radius:50%;background:#65a30d;color:#fff;display:grid;place-items:center;font-style:normal;font-size:13px;flex:none}.faq details{background:#fff;border:1px solid rgba(28,26,23,.07);border-radius:var(--r);padding:18px 22px;margin-bottom:12px}.faq summary{cursor:pointer;font-weight:600;font-size:16px;list-style:none}.faq summary::-webkit-details-marker{display:none}.faq summary::after{content:"+";float:right;color:var(--a);font-weight:800}.faq details[open] summary::after{content:"-"}.faq p{color:#6b635b;margin-top:10px;font-size:15px}.form-sec{background:linear-gradient(180deg,#fff7ee,#fffdf9)}.form-card{background:#fff;border:1px solid rgba(28,26,23,.08);border-radius:calc(var(--r) + 6px);padding:calc(40px*var(--k));box-shadow:0 24px 60px rgba(28,26,23,.07);max-width:760px;margin:0 auto}.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0}.ff label{display:block;font-size:13px;font-weight:600;color:#6b635b;margin-bottom:6px}.ff input{width:100%;padding:12px 14px;border:1px solid rgba(28,26,23,.14);border-radius:10px;font:inherit;font-size:15px;background:#fffdf9;outline:none}.ft{background:#1c1a17;color:#e9e3da;padding:calc(60px*var(--k)) 0 28px}.ft-in{display:grid;grid-template-columns:1.4fr 2fr;gap:40px}.ft .brand{color:#fff}.ft .mark{background:var(--a)}.ft p{color:#a79f95;font-size:14.5px;margin-top:12px;max-width:38ch}.soc{margin-top:14px;font-size:14px;color:#cfc7bd}.ft-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}.ft-cols h4{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:#8b8377;margin-bottom:12px;font-weight:700}.ft-cols ul{list-style:none}.ft-cols li{font-size:14.5px;margin-bottom:8px;color:#cfc7bd}.ft-bot{border-top:1px solid rgba(255,255,255,.1);margin-top:36px;padding-top:20px;font-size:13px;color:#8b8377}.scrolly .sec,.scrolly .hero,.scrolly .ft{animation:rv .7s both}@keyframes rv{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}@media(max-width:860px){.g3{grid-template-columns:1fr}.nav,.hd-r{display:none}.trust{grid-template-columns:1fr}.fields{grid-template-columns:1fr}.ft-in{grid-template-columns:1fr}.ft-cols{grid-template-columns:repeat(2,1fr)}}';
+return '<!doctype html>\n<html lang="ru">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1">\n<title>'+esc(brand)+'</title>\n<style>'+css+'</style>\n</head>\n<body'+(dg.scrollytelling?' class="scrolly"':'')+'>\n'+body+'\n</body>\n</html>'}
+/* Preview */
+var stage=document.getElementById('stage'),frameWrap=document.getElementById('frameWrap'),deviceEl=document.getElementById('deviceEl'),chromeEl=document.getElementById('chromeEl'),iframe=document.getElementById('pframe'),chipSize=document.getElementById('chipSize'),chipScale=document.getElementById('chipScale'),emptyNote=document.getElementById('emptyNote');
+function chromeHTML(d){if(d==='desktop')return '<div class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></div><div class="url">artify.factory/landing</div><div class="d-spacer"></div>';if(d==='tablet')return '<span class="cam"></span>';return '<span class="island"></span>'}
+function schedulePreview(){clearTimeout(previewTimer);previewTimer=setTimeout(renderPreview,130)}function renderPreview(){var dev=DEVICES[S.device],total=devTotal(S.device);deviceEl.dataset.device=S.device;chromeEl.innerHTML=chromeHTML(S.device);deviceEl.style.width=total.w+'px';deviceEl.style.height=total.h+'px';iframe.srcdoc=buildLanding(false,S.device);chipSize.textContent=dev.screenW+' × '+dev.screenH;requestAnimationFrame(function(){fit();stage.classList.remove('fade');updateEmptyNote()})}
+function updateEmptyNote(){var any=false;BLOCKS.forEach(function(b){if(b.toggle&&!S.hidden[b.id])any=true});emptyNote.style.display=any?'none':'block'}function fit(){var total=devTotal(S.device),aw=stage.clientWidth-26,ah=stage.clientHeight-26;if(aw<=0||ah<=0)return;var fs=Math.max(.02,Math.min(aw/total.w,ah/total.h,1)),scale=fs*zoomMul;currentScale=scale;frameWrap.style.width=total.w*scale+'px';frameWrap.style.height=total.h*scale+'px';deviceEl.style.transform='scale('+scale+')';chipScale.textContent='×'+scale.toFixed(2)}if(window.ResizeObserver)new ResizeObserver(function(){fit()}).observe(stage);else window.addEventListener('resize',fit);
+document.getElementById('seg').addEventListener('click',function(e){var btn=e.target.closest('button[data-d]');if(!btn||btn.dataset.d===S.device)return;S.device=btn.dataset.d;syncSeg();save();stage.classList.add('fade');setTimeout(renderPreview,160)});function syncSeg(){document.querySelectorAll('#seg button').forEach(function(b){b.classList.toggle('on',b.dataset.d===S.device)})}document.getElementById('zoomGroup').addEventListener('click',function(e){var btn=e.target.closest('button[data-z]');if(!btn)return;zoomMul=parseFloat(btn.dataset.z);document.querySelectorAll('#zoomGroup button').forEach(function(b){b.classList.toggle('on',b===btn)});fit()});document.getElementById('refreshBtn').addEventListener('click',function(){stage.classList.add('fade');renderPreview()});document.getElementById('fsBtn').addEventListener('click',function(){var p=document.getElementById('previewPanel');if(!document.fullscreenElement){if(p.requestFullscreen)p.requestFullscreen()}else if(document.exitFullscreen)document.exitFullscreen()});document.addEventListener('fullscreenchange',function(){setTimeout(fit,60)});
+function download(name,content,type){var blob=new Blob([content],{type:type||'text/plain;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url)},1200)}document.getElementById('dlBtn').addEventListener('click',function(){var html=buildLanding(false,'desktop'),name=(S.data.business.brandName||'landing').toString().replace(/[^\wа-яА-Я\-]+/g,'_').slice(0,40);download(name+'.html',html,'text/html;charset=utf-8');toast('HTML-файл скачан')});
+document.getElementById('shareBtn').addEventListener('click',function(){if(this.disabled)return;try{var packed=btoa(unescape(encodeURIComponent(JSON.stringify(S)))),url=location.origin+location.pathname+'#'+packed;location.hash=packed;if(navigator.clipboard)navigator.clipboard.writeText(url).catch(function(){});toast('Ссылка скопирована в буфер')}catch(e){toast('Не удалось создать ссылку')}});document.getElementById('saveJson').addEventListener('click',function(){if(!this.disabled)download('artify-project.json',JSON.stringify(S,null,2),'application/json')});document.getElementById('loadJson').addEventListener('click',function(){if(!this.disabled)document.getElementById('jsonFile').click()});document.getElementById('jsonFile').addEventListener('change',function(e){var file=e.target.files[0];if(!file)return;var r=new FileReader();r.onload=function(){try{var p=JSON.parse(r.result);if(!p||typeof p!=='object')throw Error();S=Object.assign({active:'business',device:'desktop',hidden:{},data:{},touched:{}},p);Object.keys(DEFAULTS).forEach(function(id){S.data[id]=Object.assign({},DEFAULTS[id],S.data[id]||{})});var font=FONTS.find(function(f){return f.l===S.data.design.fontFamily||f.v===S.data.design.fontFamily});S.data.design.fontFamily=font?font.l:'Inter';if(!BMAP[S.active])S.active='business';if(!DEVICES[S.device])S.device='desktop';syncSeg();renderSidebar();renderQuality();renderCenter();renderPreview();save();toast('Проект загружен')}catch(err){toast('Некорректный файл проекта')}e.target.value=''};r.readAsText(file)});
+var proOverlay=document.getElementById('proOverlay');document.getElementById('proBtn').addEventListener('click',function(){proOverlay.classList.add('on')});document.getElementById('proClose').addEventListener('click',function(){proOverlay.classList.remove('on')});proOverlay.addEventListener('click',function(e){if(e.target===proOverlay)proOverlay.classList.remove('on')});document.addEventListener('keydown',function(e){if(e.key==='Escape')proOverlay.classList.remove('on')});
+try{loadState();syncSeg();renderSidebar();renderQuality();renderCenter();renderPreview();window.addEventListener('load',function(){setTimeout(fit,120)})}catch(err){var box=document.createElement('div');box.className='js-error';box.textContent='Ошибка JS: '+err.message;document.body.appendChild(box);console.error(err)}
+</script>
+
+<!-- MVP 01 enhancements merged into this single HTML file -->
+<script>
+/*
+ * Artify Factory — MVP enhancement patch
+ * Add this script AFTER the original editor script and BEFORE </body>.
+ * It keeps the existing three-column UI and current visual style.
+ * This is a review build; do not treat client-side Free/PRO checks as licensing security.
+ */
+(function () {
+  'use strict';
+
+  if (typeof window === 'undefined' || typeof S === 'undefined' ||
+      typeof BLOCKS === 'undefined' || typeof DEFAULTS === 'undefined' ||
+      typeof renderSidebar !== 'function' || typeof renderCenter !== 'function' ||
+      typeof renderPreview !== 'function' || typeof save !== 'function') {
+    console.error('Artify Factory patch: original editor globals were not found. Load this file after the editor script.');
+    return;
+  }
+
+  var DEMO = {
+    business: {
+      brandName: 'Studio Forma · ДЕМО',
+      industry: 'Дизайн интерьеров',
+      whatSell: 'Концепция интерьера, планировка и сопровождение реализации.',
+      phone: '',
+      email: ''
+    },
+    audience: {
+      audienceTypes: ['Частные лица', 'Малый бизнес'],
+      audienceDesc: 'Люди и небольшие компании, которым нужен продуманный интерьер под свои задачи.',
+      pains: 'Неясно, с чего начать; сложно связать пожелания, бюджет и реальные ограничения помещения.',
+      criteria: 'Понятный процесс, согласованный состав работ, удобная коммуникация.',
+      goal: 'Консультация'
+    },
+    diff: {
+      diff1: 'Решение начинается с задач, сценариев использования и ограничений помещения.',
+      diff2: 'Концепция, материалы и этапы проекта обсуждаются до начала реализации.',
+      guarantees: 'Состав и условия работ фиксируются после обсуждения задачи.'
+    },
+    design: {
+      primaryColor: '#c2410c', accentColor: '#d97706', fontFamily: 'Inter',
+      styleVibe: ['Минимализм'], scrollytelling: false
+    },
+    header: {
+      headerNav: 'Услуги, Процесс, Преимущества, Контакты',
+      showPhoneInHeader: true, showCtaInHeader: true
+    },
+    hero: {
+      heroBadge: 'ДЕМО-ПРОЕКТ · замените примеры перед публикацией',
+      heroTitle: 'Интерьер, продуманный под вашу жизнь и работу',
+      heroSubtitle: 'Покажите, чем вы занимаетесь, кому помогаете и как проходит работа. Это демонстрационный текст — замените его своим предложением.',
+      ctaPrimary: 'Обсудить проект'
+    },
+    stats: {
+      stats: '01 | Уточнение задачи\n02 | Концепция и планировка\n03 | Подготовка проекта'
+    },
+    products: {
+      productsTitle: 'Форматы работы',
+      productsList: 'Консультация | По запросу | Обсуждаем задачу, ограничения и возможный формат работы.\nДизайн-проект | По запросу | Состав проекта и материалы определяются после брифа.'
+    },
+    process: {
+      processTitle: 'Как проходит работа',
+      processSteps: 'Бриф | Уточняем задачу и ограничения | Этап 1\nКонцепция | Выбираем направление и согласуем решения | Этап 2\nПроект | Готовим согласованный состав материалов | Этап 3'
+    },
+    cases: { casesTitle: 'Примеры проектов', casesList: '' },
+    trust: {
+      trustTitle: 'Принципы работы',
+      trustList: 'Состав работ и ожидаемый результат согласуются заранее\nРешения учитывают задачи, бюджет и ограничения помещения\nДемонстрационные сведения необходимо заменить подтверждёнными данными'
+    },
+    faq: { faqList: '' },
+    form: {
+      formsList: ['Имя', 'Телефон', 'Комментарий', 'Согласие'],
+      formPhoneNumber: '+375 XX XXX-XX-XX', formEmailAddress: '',
+      formMessenger: '', formSiteUrl: '', formCityDefault: ''
+    },
+    footer: {
+      footerAbout: 'Демонстрационный проект Artify Factory. Замените текст и контакты перед публикацией.',
+      footerColumns: ['Контакты'], address: '', workHours: '', socials: '',
+      footerContacts: '', footerSocials: '', footerHours: '', footerRequisites: ''
+    }
+  };
+
+  var VISIBLE_ON_FIRST_RUN = ['header', 'hero', 'stats', 'products', 'process', 'trust', 'form', 'footer'];
+
+  function clone(value) { return JSON.parse(JSON.stringify(value)); }
+  function hasAnyUserInput() {
+    if (S.touched && Object.keys(S.touched).length) return true;
+    var keys = ['brandName', 'industry', 'whatSell', 'heroTitle', 'heroSubtitle', 'headerNav', 'productsList'];
+    for (var i = 0; i < keys.length; i++) {
+      for (var j = 0; j < BLOCKS.length; j++) {
+        var id = BLOCKS[j].id;
+        if (S.data && S.data[id] && String(S.data[id][keys[i]] || '').trim()) return true;
+      }
+    }
+    return false;
+  }
+
+  function setFirstRunDemo() {
+    if (hasAnyUserInput()) return false;
+    var data = clone(DEFAULTS);
+    Object.keys(DEMO).forEach(function (id) {
+      data[id] = Object.assign({}, data[id] || {}, clone(DEMO[id]));
+    });
+    S.data = data;
+    S.active = 'business';
+    S.device = 'desktop';
+    S.hidden = {};
+    BLOCKS.forEach(function (block) {
+      if (block.toggle) S.hidden[block.id] = VISIBLE_ON_FIRST_RUN.indexOf(block.id) < 0;
+    });
+    S.touched = {};
+    save();
+    return true;
+  }
+
+  /* Strengthen the field hints: the brief helps plan the page; it is not all pasted verbatim. */
+  function setHint(blockId, fieldKey, message) {
+    var block = BLOCKS.find(function (b) { return b.id === blockId; });
+    if (!block) return;
+    var field = block.fields.find(function (f) { return f.k === fieldKey; });
+    if (field) field.hint = message;
+  }
+  function setRequired(blockId, fieldKey, required) {
+    var block = BLOCKS.find(function (b) { return b.id === blockId; });
+    var field = block && block.fields.find(function (f) { return f.k === fieldKey; });
+    if (field) field.req = required;
+  }
+  /* Phone and email are alternatives, not both mandatory; address/hours/social links are optional. */
+  setRequired('business', 'phone', false);
+  setRequired('business', 'email', false);
+  setRequired('footer', 'address', false);
+  setRequired('footer', 'workHours', false);
+  setRequired('footer', 'socials', false);
+  setHint('business', 'industry', 'Данные брифа. Используются для понимания задачи; при необходимости отразите сферу в тексте первого экрана.');
+  setHint('business', 'whatSell', 'Краткое описание предложения. Если отдельный подзаголовок не заполнен, текст может использоваться как его основа.');
+  ['audienceDesc', 'pains', 'criteria'].forEach(function (k) {
+    setHint('audience', k, 'Рабочий бриф для подготовки структуры и сообщений. Не выводится дословно на лендинг автоматически.');
+  });
+  ['diff1', 'diff2', 'guarantees'].forEach(function (k) {
+    setHint('diff', k, 'При заполнении может появиться в отдельном блоке «Ценность предложения» на лендинге. Проверяйте формулировки перед публикацией.');
+  });
+
+  /* Desktop-first editor notice. The generated landing remains responsive and previewable in device mode. */
+  var patchStyle = document.createElement('style');
+  patchStyle.id = 'af-mvp-patch-style';
+  patchStyle.textContent = `
+    #afDesktopGate{display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;padding:28px;background:linear-gradient(145deg,#f5f0e8,#fff9ef 55%,#f0dfce);color:#1c1a17;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif}
+    #afDesktopGate .af-gate-card{width:min(640px,100%);padding:clamp(26px,5vw,48px);border:1px solid rgba(28,26,23,.10);border-radius:26px;background:rgba(255,252,245,.9);box-shadow:0 22px 70px rgba(28,26,23,.12)}
+    #afDesktopGate .af-gate-mark{display:grid;place-items:center;width:44px;height:44px;margin-bottom:24px;border-radius:14px;background:#1c1a17;color:#f7f4ef;font-weight:800;letter-spacing:-.04em;position:relative}
+    #afDesktopGate .af-gate-mark:after{content:'';position:absolute;width:11px;height:11px;right:-4px;bottom:-3px;border-radius:50%;background:#b8432a;border:2px solid #fff9ef}
+    #afDesktopGate .af-gate-eyebrow{font-size:11px;letter-spacing:.14em;font-weight:800;color:#a8360a;text-transform:uppercase;margin:0 0 10px}
+    #afDesktopGate h1{font-size:clamp(27px,4vw,38px);line-height:1.1;letter-spacing:-.035em;margin:0 0 16px}
+    #afDesktopGate p{font-size:15px;line-height:1.65;color:#5c534b;margin:0 0 14px}
+    #afDesktopGate .af-gate-note{margin-top:20px;padding:14px 16px;border-radius:13px;background:rgba(194,65,12,.07);color:#6f341b;font-size:13px;line-height:1.55}
+    #afDesktopGate .af-gate-small{font-size:12px;color:#8f867d;margin-top:18px}
+    @media(max-width:1099px){
+      html.af-editor-gated,body.af-editor-gated{overflow:auto;min-height:100%;height:auto}
+      html body.af-editor-gated .app{display:none}
+      html body.af-editor-gated .overlay,html body.af-editor-gated .overlay.on,html body.af-editor-gated .toast{display:none}
+      html body.af-editor-gated #afDesktopGate{display:flex}
+      html body.af-editor-gated .aurora{display:none}
+    }
+    .q-title{font-size:10px;letter-spacing:.06em}
+    .af-generated-form{display:flex;flex-direction:column;gap:0}
+    .af-generated-form .af-form-submit{font:inherit;appearance:none;-webkit-appearance:none}
+    .af-generated-form .ff-consent{display:flex;align-items:flex-start;gap:10px;margin:2px 0 8px}
+    .af-generated-form .ff-consent input[type=checkbox]{width:17px;height:17px;flex:none;margin-top:3px;accent-color:var(--p)}
+    .af-generated-form .ff-consent .af-consent-text{font-size:13px;color:#57504a;line-height:1.5}
+    .af-form-note{margin:0 0 18px;font-size:12px;line-height:1.5;color:#756b61}
+    .af-form-status{margin-top:12px;font-size:13px;line-height:1.5;color:#a8360a}
+    .af-diff{background:linear-gradient(180deg,#fffdf9,#fff7ee)}
+    .af-diff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+    .af-diff-card{background:#fff;border:1px solid rgba(28,26,23,.08);border-radius:var(--r,16px);padding:22px;font-size:15px;line-height:1.6;color:#4a443d}
+    @media(max-width:860px){.af-diff-grid{grid-template-columns:1fr}.af-form-note{font-size:12px}}
+  `;
+  document.head.appendChild(patchStyle);
+
+  var gate = document.createElement('div');
+  gate.id = 'afDesktopGate';
+  gate.setAttribute('role', 'status');
+  gate.innerHTML = '<div class="af-gate-card">' +
+    '<div class="af-gate-mark">AF</div>' +
+    '<div class="af-gate-eyebrow">Artify Factory · Landing Builder</div>' +
+    '<h1>Для сборки лендинга откройте редактор на компьютере</h1>' +
+    '<p>Редактор использует три рабочие колонки: параметры проекта, настройки секций и визуальный просмотр. На узком экране они будут мешать друг другу, поэтому мы не уменьшаем интерфейс до неудобного мобильного формата.</p>' +
+    '<div class="af-gate-note"><strong>Это не ограничение создаваемого сайта.</strong> Внутри редактора есть режимы Desktop, Tablet и Mobile — ими можно проверять адаптивность будущего лендинга.</div>' +
+    '<div class="af-gate-small">Рекомендуется ноутбук или компьютер с шириной окна от 1100 px.</div>' +
+    '<a class="af-gate-back" href="../index.html">← Вернуться на лендинг Artify</a>' +
+    '</div>';
+  document.body.insertBefore(gate, document.body.firstChild);
+  function syncEditorViewportGate() {
+    var gated = window.matchMedia('(max-width: 1099px)').matches;
+    document.documentElement.classList.toggle('af-editor-gated', gated);
+    document.body.classList.toggle('af-editor-gated', gated);
+  }
+  syncEditorViewportGate();
+  window.addEventListener('resize', syncEditorViewportGate, { passive: true });
+
+  /* Demo data only if the project is effectively empty; preserve user data. */
+  var usedDemo = setFirstRunDemo();
+
+  /* Validate values used in CSS before the generator embeds them in <style>. */
+  function validHex(v, fallback) { return /^#[0-9a-fA-F]{6}$/.test(String(v || '')) ? String(v) : fallback; }
+  function normalizeState() {
+    S.data = S.data || {};
+    Object.keys(DEFAULTS).forEach(function (id) {
+      S.data[id] = Object.assign({}, DEFAULTS[id], S.data[id] || {});
+    });
+    var dg = S.data.design;
+    dg.primaryColor = validHex(dg.primaryColor, DEFAULTS.design.primaryColor);
+    dg.accentColor = validHex(dg.accentColor, DEFAULTS.design.accentColor);
+    var font = FONTS.find(function (f) { return f.l === dg.fontFamily || f.v === dg.fontFamily; });
+    dg.fontFamily = font ? font.l : 'Inter';
+    if (!BMAP[S.active]) S.active = 'business';
+    if (!DEVICES[S.device]) S.device = 'desktop';
+    S.hidden = S.hidden && typeof S.hidden === 'object' ? S.hidden : {};
+    S.touched = S.touched && typeof S.touched === 'object' ? S.touched : {};
+  }
+
+  /* Turn brief differentiators into visible content only when the user entered them. */
+  function enhanceLandingHTML(originalHTML) {
+    var parser = new DOMParser();
+    var doc = parser.parseFromString(originalHTML, 'text/html');
+
+    var bodyData = S.data.business || {};
+    var diffData = S.data.diff || {};
+
+    /* Stable target IDs for generated navigation links. */
+    var hero = doc.querySelector('.hero');
+    if (hero) hero.id = 'hero';
+    var header = doc.querySelector('.hd');
+    if (header) header.id = 'header';
+    var footer = doc.querySelector('.ft');
+    if (footer) footer.id = 'footer';
+    var statSection = doc.querySelector('.stat');
+    if (statSection && statSection.closest('.sec')) statSection.closest('.sec').id = 'stats';
+    var products = doc.querySelector('#more');
+    if (products) products.id = 'products';
+    var process = doc.querySelector('.steps');
+    if (process && process.closest('.sec')) process.closest('.sec').id = 'process';
+    var cases = doc.querySelector('.case');
+    if (cases && cases.closest('.sec')) cases.closest('.sec').id = 'cases';
+    var trust = doc.querySelector('.trust');
+    if (trust && trust.closest('.sec')) trust.closest('.sec').id = 'trust';
+    var faq = doc.querySelector('.faq');
+    if (faq && faq.closest('.sec')) faq.closest('.sec').id = 'faq';
+    var formCard = doc.querySelector('.form-card');
+    if (formCard) {
+      var formSection = formCard.closest('.form-sec') || formCard.closest('.sec');
+      if (formSection) formSection.id = 'lead';
+    }
+
+    function targetFor(label) {
+      var t = String(label || '').toLowerCase().trim();
+      if (/контакт|заяв|связ|обратн/.test(t)) return 'lead';
+      if (/процесс|этап|как мы работаем/.test(t)) return 'process';
+      if (/преимущ|ценност|почему/.test(t)) return 'advantages';
+      if (/довер|гарант/.test(t)) return 'trust';
+      if (/кейс|работы|портфолио|проект/.test(t)) return 'cases';
+      if (/частые вопрос|вопрос|faq/.test(t)) return 'faq';
+      if (/услуг|продукт|товар|каталог|цены|формат/.test(t)) return 'products';
+      if (/цифр|результат|факт/.test(t)) return 'stats';
+      if (/главн|начало|о нас|компан/.test(t)) return 'hero';
+      return 'hero';
+    }
+    doc.querySelectorAll('.nav a').forEach(function (a) {
+      a.setAttribute('href', '#' + targetFor(a.textContent));
+    });
+    doc.querySelectorAll('a.ph').forEach(function (a) {
+      var phone = String(bodyData.phone || '').replace(/[^0-9+*#]/g, '');
+      a.setAttribute('href', phone ? 'tel:' + phone : '#lead');
+    });
+    doc.querySelectorAll('.hd .btn, .hero .btn:not(.ghost)').forEach(function (a) { a.setAttribute('href', '#lead'); });
+    doc.querySelectorAll('.hero .btn.ghost').forEach(function (a) { a.setAttribute('href', products ? '#products' : '#trust'); });
+
+    /* If the subtitle is empty, use the offer from the business brief as a fallback. */
+    if (hero && String(bodyData.whatSell || '').trim() && !hero.querySelector('.lead')) {
+      var h1 = hero.querySelector('h1');
+      var cw = hero.querySelector('.cw');
+      if (h1 && cw) {
+        var lead = doc.createElement('p');
+        lead.className = 'lead';
+        lead.textContent = String(bodyData.whatSell).trim();
+        h1.insertAdjacentElement('afterend', lead);
+      }
+    }
+
+    /* Render differentiators from the project brief, but only when they are present. */
+    var diffItems = [diffData.diff1, diffData.diff2, diffData.guarantees]
+      .map(function (x) { return String(x || '').trim(); }).filter(Boolean);
+    if (diffItems.length && hero) {
+      var diffSection = doc.createElement('section');
+      diffSection.className = 'sec af-diff';
+      diffSection.id = 'advantages';
+      var cw2 = doc.createElement('div');
+      cw2.className = 'cw';
+      var h2 = doc.createElement('h2');
+      h2.textContent = 'Ценность предложения';
+      cw2.appendChild(h2);
+      var grid = doc.createElement('div');
+      grid.className = 'af-diff-grid';
+      diffItems.forEach(function (text) {
+        var card = doc.createElement('div');
+        card.className = 'af-diff-card';
+        card.textContent = text;
+        grid.appendChild(card);
+      });
+      cw2.appendChild(grid);
+      diffSection.appendChild(cw2);
+      var before = doc.querySelector('#trust') || doc.querySelector('.sec') || null;
+      if (before && before.parentNode) before.parentNode.insertBefore(diffSection, before);
+      else hero.insertAdjacentElement('afterend', diffSection);
+    }
+
+    /* Make the generated contact form honest and minimally functional via the visitor's email app.
+       This is NOT server-side lead storage or a CRM integration. */
+    if (formCard) {
+      var fields = formCard.querySelector('.fields');
+      var oldSubmit = formCard.querySelector('a.btn');
+      if (fields && oldSubmit) {
+        var form = doc.createElement('form');
+        form.id = 'artifyLeadForm';
+        form.className = 'af-generated-form';
+        form.noValidate = false;
+        var fieldWrappers = Array.prototype.slice.call(fields.querySelectorAll('.ff'));
+        fieldWrappers.forEach(function (wrapper, index) {
+          var label = wrapper.querySelector('label');
+          var input = wrapper.querySelector('input');
+          if (!label || !input) return;
+          var labelText = label.textContent.trim();
+          var slug = labelText.toLowerCase().replace(/[^a-zа-яё0-9]+/gi, '_').replace(/^_+|_+$/g, '') || ('field_' + index);
+          input.name = slug;
+          if (/телефон|phone/i.test(labelText)) { input.type = 'tel'; input.autocomplete = 'tel'; }
+          else if (/e-mail|email|электронн/i.test(labelText)) { input.type = 'email'; input.autocomplete = 'email'; }
+          else if (/имя/i.test(labelText)) { input.autocomplete = 'name'; }
+          else if (/согласие/i.test(labelText)) {
+            input.type = 'checkbox';
+            input.required = true;
+            input.removeAttribute('placeholder');
+            wrapper.classList.add('ff-consent');
+            label.remove();
+            var consentText = doc.createElement('span');
+            consentText.className = 'af-consent-text';
+            consentText.textContent = 'Я согласен(на) на обработку персональных данных. Перед публикацией добавьте ссылку на политику конфиденциальности.';
+            wrapper.appendChild(consentText);
+          }
+        });
+        fields.replaceWith(form);
+        form.appendChild(fields);
+        var submit = doc.createElement('button');
+        submit.type = 'submit';
+        submit.className = 'btn af-form-submit';
+        submit.textContent = oldSubmit.textContent.trim() || 'Отправить заявку';
+        oldSubmit.replaceWith(submit);
+        form.appendChild(submit);
+        var note = doc.createElement('p');
+        note.className = 'af-form-note';
+        note.textContent = 'В этой версии заявка готовится через почтовое приложение посетителя. Для автоматического приёма и хранения заявок понадобится серверная форма или интеграция.';
+        form.appendChild(note);
+        var status = doc.createElement('p');
+        status.className = 'af-form-status';
+        status.setAttribute('aria-live', 'polite');
+        form.appendChild(status);
+
+        var recipient = String(bodyData.email || '').trim();
+        var formScript = doc.createElement('script');
+        formScript.textContent = '(function(){var f=document.getElementById("artifyLeadForm");if(!f)return;var to=' + JSON.stringify(recipient) + ';f.addEventListener("submit",function(e){e.preventDefault();var st=f.querySelector(".af-form-status");if(!to||!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(to)){st.textContent="Укажите действующий адрес для приёма заявок в разделе «Бизнес» редактора.";return;}var rows=[];Array.prototype.forEach.call(f.elements,function(el){if(!el.name||el.type==="submit"||el.type==="button")return;if(el.type==="checkbox"){if(el.checked)rows.push(el.name+": Да");}else if(el.value)rows.push(el.name+": "+el.value);});var subject=encodeURIComponent("Заявка с сайта");var body=encodeURIComponent(rows.join("\\n"));st.textContent="Откроется почтовое приложение для отправки заявки. Если оно не открылось, проверьте настройки устройства.";window.location.href="mailto:"+encodeURIComponent(to)+"?subject="+subject+"&body="+body;});})();';
+        doc.body.appendChild(formScript);
+      }
+    }
+
+    /* Styles belong to the generated site/iframe too, not only to the editor UI. */
+    var generatedStyle = doc.querySelector('style');
+    if (generatedStyle) {
+      generatedStyle.textContent += '\n' +
+        '.af-diff{background:linear-gradient(180deg,#fffdf9,#fff7ee)}' +
+        '.af-diff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}' +
+        '.af-diff-card{background:#fff;border:1px solid rgba(28,26,23,.08);border-radius:var(--r,16px);padding:22px;font-size:15px;line-height:1.6;color:#4a443d}' +
+        '.af-generated-form{display:flex;flex-direction:column;gap:0}' +
+        '.af-generated-form .af-form-submit{font:inherit;appearance:none;-webkit-appearance:none}' +
+        '.af-generated-form .ff-consent{display:flex;align-items:flex-start;gap:10px;margin:2px 0 8px}' +
+        '.af-generated-form .ff-consent input[type=checkbox]{width:17px;height:17px;flex:none;margin-top:3px;accent-color:var(--p)}' +
+        '.af-generated-form .ff-consent .af-consent-text{font-size:13px;color:#57504a;line-height:1.5}' +
+        '.af-form-note{margin:0 0 18px;font-size:12px;line-height:1.5;color:#756b61}' +
+        '.af-form-status{margin-top:12px;font-size:13px;line-height:1.5;color:#a8360a}' +
+        '@media(max-width:860px){.af-diff-grid{grid-template-columns:1fr}.hd-in{height:auto;min-height:64px;gap:10px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}.brand{font-size:16px}.hd-r{display:flex;margin-left:auto;gap:0}.hd-r .ph{display:none}.hd-r .btn{padding:9px 12px;font-size:12px}.nav{display:none}.hero{padding:60px 0}.sec{padding:48px 0}.form-card{padding:24px}}';
+    }
+
+    return '<!doctype html>\n' + doc.documentElement.outerHTML;
+  }
+
+  var originalBuildLanding = buildLanding;
+  buildLanding = function (compact, device) {
+    normalizeState();
+    var html = originalBuildLanding(compact, device);
+    return enhanceLandingHTML(html);
+  };
+
+  /* Replace JSON import with an allow-listed importer; never trust imported fields or CSS values. */
+  var jsonFile = document.getElementById('jsonFile');
+  if (jsonFile) {
+    jsonFile.addEventListener('change', function (event) {
+      var file = event.target.files && event.target.files[0];
+      if (!file) return;
+      event.stopImmediatePropagation();
+      if (file.size > 2 * 1024 * 1024) {
+        toast('Файл проекта слишком большой (лимит 2 МБ)');
+        event.target.value = '';
+        return;
+      }
+      var reader = new FileReader();
+      reader.onload = function () {
+        try {
+          var incoming = JSON.parse(String(reader.result || ''));
+          if (!incoming || typeof incoming !== 'object' || Array.isArray(incoming) || !incoming.data || typeof incoming.data !== 'object') throw new Error('invalid project');
+          var safe = { active: BMAP[incoming.active] ? incoming.active : 'business', device: DEVICES[incoming.device] ? incoming.device : 'desktop', hidden: {}, data: clone(DEFAULTS), touched: {} };
+          Object.keys(DEFAULTS).forEach(function (id) {
+            var src = incoming.data[id];
+            if (!src || typeof src !== 'object' || Array.isArray(src)) return;
+            Object.keys(DEFAULTS[id]).forEach(function (key) {
+              var base = DEFAULTS[id][key];
+              var value = src[key];
+              if (Array.isArray(base)) {
+                if (Array.isArray(value)) {
+                  var block = BMAP[id];
+                  var field = block && block.fields.find(function (f) { return f.k === key; });
+                  var allowed = field && field.options ? field.options : null;
+                  safe.data[id][key] = value.filter(function (x) { return typeof x === 'string' && x.length <= 120 && (!allowed || allowed.indexOf(x) >= 0); }).slice(0, 50);
+                }
+              } else if (typeof base === 'boolean') {
+                if (typeof value === 'boolean') safe.data[id][key] = value;
+              } else if (typeof base === 'string') {
+                if (typeof value === 'string' && value.length <= 5000) safe.data[id][key] = value;
+              }
+            });
+          });
+          BLOCKS.forEach(function (b) { if (b.toggle) safe.hidden[b.id] = !!(incoming.hidden && incoming.hidden[b.id]); });
+          if (incoming.touched && typeof incoming.touched === 'object') {
+            Object.keys(incoming.touched).slice(0, 500).forEach(function (key) {
+              if (/^[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+$/.test(key) && incoming.touched[key] === true) safe.touched[key] = true;
+            });
+          }
+          S = safe;
+          normalizeState();
+          syncSeg(); renderSidebar(); renderQuality(); renderCenter(); renderPreview(); save();
+          toast('Проект загружен после проверки данных');
+        } catch (err) {
+          toast('Не удалось загрузить проект: проверьте JSON-файл');
+        }
+        event.target.value = '';
+      };
+      reader.onerror = function () { toast('Не удалось прочитать файл проекта'); event.target.value = ''; };
+      reader.readAsText(file);
+    }, true);
+  }
+
+  /* Avoid overstating PRO capabilities while they are still being implemented. */
+  var proSub = document.querySelector('#proOverlay .modal > .sub');
+  if (proSub) proSub.textContent = 'PRO находится в разработке. Состав функций, условия лицензии и цена будут объявлены перед запуском.';
+  document.querySelectorAll('#proOverlay .plan.pro .price').forEach(function (el) { el.textContent = 'Условия уточняются'; });
+  var proPlan = document.querySelector('#proOverlay .plan.pro');
+  if (proPlan) {
+    var proTag = proPlan.querySelector('.tag');
+    if (proTag) proTag.textContent = 'ПЛАНИРУЕТСЯ';
+    var proTitle = proPlan.querySelector('h3');
+    if (proTitle) proTitle.textContent = 'Расширенные возможности';
+  }
+  var freePlan = document.querySelector('#proOverlay .plan:not(.pro)');
+  if (freePlan) {
+    var freeTitle = freePlan.querySelector('h3');
+    if (freeTitle) freeTitle.textContent = 'Базовый редактор';
+    var freeList = freePlan.querySelector('ul');
+    if (freeList) freeList.innerHTML = '<li><i>✓</i>Редактирование проекта в браузере</li><li><i>✓</i>Базовые секции и оформление</li><li><i>✓</i>Предпросмотр Desktop / Tablet / Mobile</li><li><i>✓</i>Скачивание HTML</li><li><i>✓</i>Автосохранение в этом браузере</li>';
+  }
+  var qTitle = document.querySelector('.q-title');
+  if (qTitle) qTitle.textContent = 'Готовность';
+  var dlBtn = document.getElementById('dlBtn');
+  if (dlBtn) dlBtn.addEventListener('click', function () {
+    setTimeout(function () { toast('HTML скачан. Проверьте контакты, согласие и отправку формы перед публикацией.'); }, 0);
+  }, true);
+
+  normalizeState();
+  if (usedDemo) {
+    ['audience.goal', 'design.primaryColor', 'design.accentColor', 'design.fontFamily'].forEach(function (key) { S.touched[key] = true; });
+  }
+  renderSidebar();
+  renderQuality();
+  renderCenter();
+  renderPreview();
+  save();
+  if (usedDemo) {
+    setTimeout(function () { toast('Открыт демо-проект. Замените примеры своими данными перед публикацией.'); }, 350);
+  }
+})();
+
+</script>
+</body>
+</html>

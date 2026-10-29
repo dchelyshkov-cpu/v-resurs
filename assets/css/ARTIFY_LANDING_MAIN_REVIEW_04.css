@@ -1,0 +1,1210 @@
+/* Artify landing review CSS — only the canonical landing section + constructor region.
+   Base theme, header, Hero, catalogue, product/cart/checkout, footer and global behavior
+   continue to come from the live index.html source. */
+
+#app > #top {
+  margin: 0;
+  padding-bottom: var(--landing-section-gap);
+}
+#app > #landing-constructor,
+#app > .landing-route-section,
+#app > #contacts {
+  box-sizing: border-box;
+  margin: 0;
+  padding-top: var(--landing-section-inset);
+  padding-bottom: var(--landing-section-gap);
+  border: 0;
+  scroll-margin-top: 0;
+}
+#app > #landing-constructor {
+  background: var(--surface-muted);
+  /* Keep horizontal overflow contained, but allow the info tooltip to escape upward. */
+  overflow-x: clip;
+  overflow-y: visible;
+}
+#app > .landing-products-section { background: var(--surface); }
+#app > .landing-development-section { background: var(--bg); }
+#app > #contacts { background: var(--surface-muted); }
+#app > #contacts .contact-section-inner {
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: 22px;
+}
+#app > #contacts .contact-copy { width: 100%; min-width: 0; max-width: none; }
+#app > #contacts .contact-card { width: 100%; max-width: 680px; }
+
+.landing-route-section .page-head { padding: 0; border: 0; background: transparent; }
+.landing-route-section .section { margin-top: 28px; padding: 0; border: 0; background: transparent; }
+.landing-route-section .section .container { min-width: 0; }
+#landing-development .af-full-development { padding-bottom: 0; border: 0; background: transparent; }
+
+.landing-constructor-container {
+  width: min(var(--content-max), calc(100% - 2 * var(--page-gutter)));
+  margin-inline: auto;
+}
+.landing-constructor-head { margin: 0 0 22px; }
+.landing-constructor-intro { min-width: 0; max-width: none; }
+/* H2 and intro paragraph metrics are owned by the shared global typography role. */
+.landing-constructor-workflow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: var(--layout-gap);
+}
+.landing-constructor-overview-panel,
+.landing-constructor-detail-panel {
+  box-sizing: border-box;
+  min-width: 0;
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(28, 26, 23, .035);
+}
+:root[data-theme="dark"] .landing-constructor-overview-panel,
+:root[data-theme="dark"] .landing-constructor-detail-panel,
+:root[data-theme="dark"] .landing-constructor-action-card {
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .14);
+}
+.landing-constructor-overview-panel {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+.landing-constructor-overview-open {
+  display: flex;
+  flex: 1 1 auto;
+  align-self: stretch;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: default;
+}
+.landing-constructor-image-trigger {
+  display: flex;
+  flex: 1 1 auto;
+  align-self: stretch;
+  align-items: stretch;
+  justify-content: stretch;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  color: inherit;
+  cursor: zoom-in;
+}
+.landing-constructor-image-trigger:focus-visible,
+.landing-constructor-step:focus-visible,
+.landing-constructor-step-nav-button:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: -3px;
+}
+/* A pointer press can briefly match :focus-visible in some browser/input-mode states.
+   Suppress only that transient ring while the zoom trigger is being clicked. */
+body.constructor-image-zoom-pointer-press .landing-constructor-image-trigger:focus-visible {
+  outline: none;
+  outline-offset: 0;
+  box-shadow: none;
+}
+/* Suppress only transient focus rings caused by programmatically opening/closing the image zoom.
+   Normal keyboard focus indication returns on the next Tab or pointer interaction. */
+body.constructor-image-zoom-pointer-opened .constructor-image-close:focus-visible,
+body.constructor-image-zoom-focus-restored .landing-constructor-image-trigger:focus-visible {
+  outline: none;
+  outline-offset: 0;
+  box-shadow: none;
+}
+.landing-constructor-overview-open img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: contain;
+  object-position: center;
+}
+/* Card 2: real text labels plus an abstract information screen, not a fake site screenshot. */
+.landing-constructor-detail-panel { display: flex; min-height: 0; padding: 10px; }
+.landing-constructor-detail-layout {
+  display: grid;
+  grid-template-columns: minmax(170px, .78fr) minmax(0, 1.22fr);
+  align-items: stretch;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+}
+.landing-constructor-steps {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: stretch;
+  gap: 8px;
+  min-width: 0;
+}
+.landing-constructor-step {
+  font: inherit; /* Keep typography independent of the former button user-agent styles. */
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 64px;
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: var(--surface-muted);
+  color: var(--text-secondary);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--motion), background-color var(--motion), color var(--motion);
+}
+.landing-constructor-step:hover { border-color: var(--border-strong); }
+.landing-constructor-step.is-active {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 7%, var(--surface));
+  color: var(--text);
+}
+.landing-constructor-step-number {
+  color: var(--accent);
+  font-size: var(--af-font-px-10);
+  font-weight: 600;
+  line-height: 1.45;
+}
+.landing-constructor-step-copy { display: block; min-width: 0; }
+.landing-constructor-step-copy small {
+  display: block;
+  margin-top: 6px;
+  color: var(--text-muted);
+  font-size: var(--af-font-px-13);
+  font-weight: 400;
+  line-height: 1.48;
+  overflow-wrap: anywhere;
+}
+.landing-constructor-step-copy strong {
+  display: block;
+  font-size: var(--af-font-px-13);
+  font-weight: 650;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  color: var(--text);
+}
+/* One visual stage at a time: the selected image uses the whole right-hand viewport. */
+.landing-constructor-detail-view {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 390px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface-muted);
+  overflow: hidden;
+}
+.landing-constructor-test-shot {
+  display: none;
+  position: absolute;
+  inset: 0;
+  place-items: center;
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--surface-muted);
+  overflow: hidden;
+}
+.landing-constructor-test-shot.is-active {
+  display: grid;
+}
+.landing-constructor-test-shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.landing-constructor-info-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  width: min(100%, 288px);
+  aspect-ratio: 1 / 1;
+  box-sizing: border-box;
+  margin: 10px auto 0;
+  padding: 18px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface-muted);
+}
+.landing-constructor-info-screen-head,
+.landing-constructor-info-screen-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--text-muted);
+  font-size: var(--af-font-px-10);
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+.landing-constructor-info-screen-head span:last-child { font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+.landing-constructor-info-art {
+  display: grid;
+  grid-template-columns: 38% minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  min-height: 0;
+  flex: 1 1 auto;
+}
+.landing-constructor-info-art-sidebar {
+  display: grid;
+  gap: 9px;
+  align-content: center;
+  padding: 10px 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+.landing-constructor-info-art-sidebar i,
+.landing-constructor-info-art-main i {
+  display: block;
+  height: 7px;
+  border-radius: 5px;
+  background: var(--border);
+}
+.landing-constructor-info-art-sidebar i:nth-child(2) { width: 76%; }
+.landing-constructor-info-art-sidebar i:nth-child(3) { width: 88%; }
+.landing-constructor-info-art-sidebar i:nth-child(4) { width: 60%; }
+.landing-constructor-info-art-main {
+  display: grid;
+  align-content: center;
+  gap: 10px;
+  min-width: 0;
+}
+.landing-constructor-info-art-main .art-accent {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 3px;
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--border));
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+  color: var(--accent);
+  font-size: var(--af-font-px-23);
+  font-weight: 750;
+}
+.landing-constructor-info-art-main i:nth-child(3) { width: 82%; }
+.landing-constructor-info-art-main i:nth-child(4) { width: 64%; }
+.landing-constructor-info-art-main i:nth-child(5) { width: 72%; }
+.landing-constructor-info-screen[data-stage="2"] .art-accent { border-radius: 50%; }
+.landing-constructor-info-screen[data-stage="3"] .art-accent { border-radius: 6px; transform: scale(.92); }
+.landing-constructor-info-screen[data-stage="4"] .art-accent { border-radius: 6px 6px 14px 6px; }
+.landing-constructor-info-screen-foot { justify-content: flex-start; gap: 6px; }
+.landing-constructor-info-screen-foot i {
+  display: block;
+  width: 20px;
+  height: 4px;
+  border-radius: 3px;
+  background: var(--border-strong);
+}
+.landing-constructor-info-screen-foot i.is-active { width: 34px; background: var(--accent); }
+
+.landing-constructor-action-card {
+  /* Keep the information plaque aligned to the same outer edges as the two cards above. */
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 18px;
+  margin-left: 0;
+  border: 1px solid var(--landing-constructor-info-border, var(--border));
+  border-radius: 12px;
+  background: var(--landing-constructor-info-bg, var(--surface));
+  box-shadow: 0 4px 16px rgba(28, 26, 23, .035);
+}
+.landing-constructor-action-row {
+  display: block;
+  margin: 0;
+  padding: 20px 24px;
+}
+.landing-constructor-action-row p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--af-font-px-12);
+  line-height: 1.5;
+}
+.landing-constructor-try-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-top: 18px;
+}
+.landing-constructor-try-align {
+  display: flex;
+  flex: 0 1 auto;
+  width: calc(var(--cta-button-width) + var(--cta-button-width) + var(--cta-button-gap));
+  max-width: 100%;
+  min-width: 0;
+}
+.landing-constructor-try {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  flex: 0 0 var(--cta-button-width);
+  width: var(--cta-button-width);
+  min-width: 0;
+  max-width: 100%;
+  height: var(--cta-button-height);
+  min-height: var(--cta-button-height);
+  padding: 0 var(--cta-button-padding-x);
+  border-width: 1px;
+  border-radius: var(--cta-button-radius);
+  text-align: center;
+  white-space: normal;
+}
+.landing-constructor-mobile-note { display: none; }
+
+/* Match the Home Hero's primary CTA x-position and exact two-button group geometry. */
+@media (min-width: 1440px) {
+  .landing-constructor-try-row {
+    display: grid;
+    grid-template-columns: minmax(0,1.25fr) minmax(0,.93fr) minmax(0,.93fr);
+    gap: 12px;
+  }
+  .landing-constructor-try-align {
+    grid-column: 1;
+    justify-self: center;
+  }
+}
+@media (min-width: 768px) and (max-width: 1439px) {
+  .landing-constructor-try-row { justify-content: center; }
+}
+@media (max-width: 767px) {
+  .landing-constructor-action-row { padding: 12px 14px; }
+  .landing-constructor-try-row { display: block; }
+  .landing-constructor-try-align { width: 100%; max-width: none; }
+  .landing-constructor-try { flex-basis: 100%; width: 100%; }
+}
+
+/* Existing forms, modal, policy and image zoom behavior are preserved. */
+.constructor-email-overlay[hidden],
+.constructor-policy-overlay[hidden],
+.constructor-image-overlay[hidden] { display: none; }
+.constructor-email-overlay,
+.constructor-policy-overlay,
+.constructor-image-overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(16, 14, 11, .62);
+  z-index: 5200;
+  overscroll-behavior: contain;
+}
+.constructor-email-dialog,
+.constructor-policy-dialog {
+  position: relative;
+  box-sizing: border-box;
+  width: min(100%, 520px);
+  max-height: calc(100dvh - 40px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 28px;
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, .28);
+}
+.constructor-email-dialog h2,
+.constructor-policy-dialog h2 { margin: 8px 34px 9px 0; font: 650 var(--af-font-px-27)/1.12 var(--font-display); letter-spacing: -.025em; }
+.constructor-email-intro,
+.constructor-policy-dialog p { margin: 0 0 17px; color: var(--text-secondary); font-size: var(--af-font-px-13); line-height: 1.6; }
+.constructor-email-close,
+.constructor-policy-close,
+.constructor-image-close {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  inset-block-start: 12px;
+  inset-inline-end: 12px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: var(--af-font-px-23);
+  line-height: 1;
+  cursor: pointer;
+}
+.constructor-email-field { display: grid; gap: 6px; margin: 0 0 13px; color: var(--text); font-size: var(--af-font-px-12); font-weight: 650; }
+.constructor-email-field input {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 46px;
+  padding: 11px 13px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-size: var(--af-font-px-14);
+}
+.constructor-email-label { display: inline; color: var(--text); font-size: var(--af-font-px-12); font-weight: 650; }
+.constructor-email-required { color: var(--accent); }
+.constructor-email-field input[aria-invalid="true"] { border-color: #b63d2a; }
+.constructor-email-error { color: #b63d2a; font-size: var(--af-font-px-11); font-weight: 500; line-height: 1.4; }
+.constructor-email-consents { display: grid; gap: 10px; margin: 15px 0 16px; }
+.constructor-email-consent-row { display: grid; grid-template-columns: 18px minmax(0, 1fr); align-items: start; gap: 9px; color: var(--text-secondary); font-size: var(--af-font-px-11); font-weight: 400; line-height: 1.5; }
+.constructor-email-consent-row input { width: 17px; height: 17px; margin: 1px 0 0; accent-color: var(--accent); }
+.constructor-email-consent-row a { color: var(--text); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 2px; }
+.constructor-email-consent-row[aria-invalid="true"] { color: #b63d2a; }
+.constructor-email-submit { width: 100%; min-height: 48px; }
+.constructor-email-demo-note { margin: 11px 0 0; color: var(--text-muted); font-size: var(--af-font-px-10); line-height: 1.5; }
+.constructor-email-status { margin-top: 13px; padding: 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface-muted); color: var(--text-secondary); font-size: var(--af-font-px-12); line-height: 1.55; }
+.constructor-email-status[hidden] { display: none; }
+.constructor-policy-overlay { z-index: 5300; }
+.constructor-policy-dialog { width: min(100%, 440px); }
+.constructor-image-overlay { z-index: 5300; padding: 24px; cursor: zoom-out; }
+.constructor-image-dialog { position: relative; display: flex; flex-direction: column; align-items: stretch; width: min(1600px, calc(100vw - 48px)); max-height: calc(100dvh - 48px); margin: 0; padding: 12px; overflow: hidden; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); box-shadow: 0 28px 80px rgba(0, 0, 0, .35); cursor: default; }
+.constructor-image-dialog img { display: block; width: 100%; max-width: 100%; height: auto; max-height: calc(100dvh - 112px); object-fit: contain; }
+.constructor-image-dialog figcaption { margin-top: 8px; color: var(--text-muted); font-size: var(--af-font-px-11); }
+.constructor-image-close { z-index: 1; }
+body.constructor-overlay-lock { overflow: hidden; }
+:root[data-theme="dark"] .constructor-email-dialog,
+:root[data-theme="dark"] .constructor-policy-dialog,
+:root[data-theme="dark"] .constructor-image-dialog { box-shadow: 0 28px 80px rgba(0, 0, 0, .48); }
+
+@media (max-width: 1100px) {
+  .landing-constructor-workflow { gap: 14px; }
+  .landing-constructor-overview-panel { padding: 9px; }
+  .landing-constructor-detail-panel { padding: 9px; }
+  .landing-constructor-detail-layout { grid-template-columns: minmax(0,1fr); gap: 10px; }
+  .landing-constructor-step { grid-template-columns: 24px minmax(0, 1fr); min-height: 60px; gap: 7px; padding: 8px; flex: 0 0 220px; scroll-snap-align: start; }
+  .landing-constructor-info-screen { width: min(100%, 258px); padding: 14px; }
+  .landing-constructor-steps { display:flex; gap:8px; padding:9px; overflow-x:auto; overscroll-behavior-x:contain; scrollbar-width:none; scroll-snap-type:x proximity; }
+  .landing-constructor-steps::-webkit-scrollbar { display:none; }
+  .landing-constructor-detail-view { min-height: 360px; padding: 0; }
+  .landing-constructor-test-shot { padding: 0; }
+}
+@media (min-width: 768px) and (max-width: 1439px) {
+  .landing-constructor-step-copy small { font-size: var(--af-font-px-12); }
+}
+@media (max-width: 900px) {
+  .landing-constructor-workflow { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .landing-constructor-overview-panel { height: 355px; min-height: 355px; }
+  .landing-constructor-detail-layout { grid-template-columns: minmax(190px, .72fr) minmax(0, 1.28fr); }
+  .landing-constructor-detail-view { min-height: 380px; }
+  .landing-constructor-info-screen { width: min(100%, 288px); }
+}
+@media (max-width: 767px) {
+  .landing-constructor-head { margin-bottom: 15px; }
+    .landing-constructor-workflow { gap: 12px; }
+  .landing-constructor-overview-panel { height: 310px; min-height: 310px; }
+  .landing-constructor-detail-layout { grid-template-columns: minmax(0, 1fr); }
+  .landing-constructor-steps { display: flex; gap: 7px; padding-bottom: 2px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; scroll-snap-type: x proximity; }
+  .landing-constructor-steps::-webkit-scrollbar { display: none; }
+  .landing-constructor-detail-view { min-height: 285px; padding: 0; }
+  .landing-constructor-test-shot { padding: 4px; }
+  .landing-constructor-step { display: flex; flex: 0 0 150px; min-height: 60px; padding: 9px; scroll-snap-align: start; }
+  .landing-constructor-info-screen { width: min(100%, 288px); }
+  .landing-constructor-mobile-note { display: block; margin: 10px 0 0; color: var(--text-muted); font-size: var(--af-font-px-10); line-height: 1.5; }
+  .landing-route-section .page-head { padding: 0; }
+  .landing-route-section .section { margin-top: 22px; padding: 0; }
+  .constructor-email-overlay, .constructor-policy-overlay { padding: 12px; }
+  .constructor-email-dialog, .constructor-policy-dialog { max-height: calc(100dvh - 24px); padding: 24px 18px 18px; border-radius: 12px; }
+  .constructor-email-dialog h2, .constructor-policy-dialog h2 { font-size: var(--af-font-px-24); }
+  .constructor-email-intro, .constructor-policy-dialog p { font-size: var(--af-font-px-12); }
+  .constructor-email-consent-row { font-size: var(--af-font-px-10); }
+  .constructor-image-overlay { padding: 12px; }
+  .constructor-image-dialog { width: calc(100vw - 24px); max-width: calc(100vw - 24px); max-height: calc(100dvh - 24px); padding: 8px; }
+  .constructor-image-dialog img { max-height: calc(100dvh - 66px); }
+}
+@media (max-width: 420px) {
+  .landing-constructor-step { flex-basis: 132px; }
+  .landing-constructor-detail-view { min-height: 245px; padding: 0; }
+  .landing-constructor-test-shot { padding: 3px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing-constructor-step { transition: none; }
+  .landing-constructor-steps { scroll-behavior: auto; }
+}
+
+
+/* FOLLOW-UP 04: measured screenshot placeholders for the two-card constructor block. */
+.landing-constructor-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding: 16px;
+  border: 1px solid rgba(45, 38, 31, .14);
+  border-radius: 6px;
+  color: #28241F;
+  text-align: center;
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .landing-constructor-placeholder.landing-constructor-placeholder-stage { border: 0; border-radius: 0; }
+}
+.landing-constructor-placeholder-stage.stage-01 { background: #D9E4ED; }
+.landing-constructor-placeholder-stage.stage-02 { background: #E2D9ED; }
+.landing-constructor-placeholder-stage.stage-03 { background: #D0E1D8; }
+.landing-constructor-placeholder-stage.stage-04 { background: #E9CFC3; }
+.landing-constructor-placeholder-overview { display: none; background: #E5D6C5; }
+.landing-constructor-placeholder-kicker {
+  display: block;
+  max-width: 100%;
+  color: currentColor;
+  font-size: var(--af-font-px-11);
+  font-weight: 750;
+  letter-spacing: .08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+.landing-constructor-placeholder strong {
+  display: block;
+  max-width: 100%;
+  color: currentColor;
+  font-size: var(--af-font-px-18);
+  font-weight: 700;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.landing-constructor-placeholder-size {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  min-height: 32px;
+  padding: 7px 12px;
+  border: 1px solid rgba(45, 38, 31, .18);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, .56);
+  color: currentColor;
+  font-size: var(--af-font-px-12);
+  font-weight: 750;
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+:root[data-theme="dark"] .landing-constructor-placeholder {
+  border-color: rgba(242, 239, 234, .18);
+  color: #F4F0EA;
+}
+:root[data-theme="dark"] .landing-constructor-placeholder-stage.stage-01 { background: #425663; }
+:root[data-theme="dark"] .landing-constructor-placeholder-stage.stage-02 { background: #51465F; }
+:root[data-theme="dark"] .landing-constructor-placeholder-stage.stage-03 { background: #3F5A4D; }
+:root[data-theme="dark"] .landing-constructor-placeholder-stage.stage-04 { background: #704A3E; }
+:root[data-theme="dark"] .landing-constructor-placeholder-overview { background: #635342; }
+:root[data-theme="dark"] .landing-constructor-placeholder-size {
+  border-color: rgba(242, 239, 234, .2);
+  background: rgba(18, 17, 15, .28);
+}
+@media (max-width: 767px) {
+  .landing-constructor-placeholder { gap: 10px; padding: 12px; }
+  .landing-constructor-placeholder strong { font-size: var(--af-font-px-16); }
+  .landing-constructor-placeholder-kicker { font-size: var(--af-font-px-10); }
+}
+@media (max-width: 420px) {
+  .landing-constructor-overview-panel { height: 287px; min-height: 287px; }
+  .landing-constructor-placeholder { gap: 8px; padding: 9px; }
+  .landing-constructor-placeholder strong { font-size: var(--af-font-px-14); }
+  .landing-constructor-placeholder-size { min-height: 28px; padding: 5px 8px; font-size: var(--af-font-px-11); }
+}
+
+@media (max-width: 360px) {
+  .landing-constructor-overview-panel { height: 300px; min-height: 300px; }
+}
+
+
+/* FOLLOW-UP 10: Hero-aligned stage typography and compact mobile sequence. Brand color is driven by the global theme token. */
+:root[data-theme="dark"] .landing-constructor-step-copy small,
+:root[data-theme="dark"] .landing-constructor-action-row p {
+  color: #C5BCAD;
+}
+
+/* Up to 448px: intro → four step buttons → info plaque → CTA. Hide both image viewports. */
+@media (max-width: 448px) {
+  .landing-constructor-workflow {
+    display: block;
+  }
+  .landing-constructor-overview-panel,
+  .landing-constructor-detail-view {
+    display: none;
+  }
+  .landing-constructor-detail-panel {
+    padding: 10px;
+  }
+  .landing-constructor-detail-layout {
+    display: block;
+  }
+  .landing-constructor-steps {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: stretch;
+    gap: 8px;
+    padding: 0;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+  .landing-constructor-step {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr);
+    flex: none;
+    width: 100%;
+    min-height: 64px;
+    padding: 10px;
+    scroll-snap-align: none;
+  }
+  .landing-constructor-step-copy small {
+    margin-top: 4px;
+  }
+  .landing-constructor-action-card {
+    margin-top: 14px;
+  }
+  .landing-constructor-action-row {
+    padding: 14px 16px;
+  }
+  .landing-constructor-try-row {
+    margin-top: 12px;
+  }
+  .landing-constructor-mobile-note {
+    display: none;
+  }
+}
+
+
+/* Shared section-heading role owns heading typography and position. */
+/* FOLLOW-UP 12.7: persistent small superscript marker + mouse-hover tooltip. */
+.landing-constructor-info-tip {
+  display: inline-block;
+  position: relative;
+  width: 12px;
+  height: 12px;
+  margin-left: 4px;
+  vertical-align: super;
+  font-size: 50%;
+  line-height: 0;
+  white-space: normal;
+  letter-spacing: normal;
+}
+/* Lift the hovered marker above the sticky site header so an upward tooltip is not masked near the viewport top. */
+.landing-constructor-info-tip:hover {
+  z-index: 120;
+}
+.landing-constructor-info-trigger {
+  display: grid;
+  place-items: center;
+  position: relative;
+  top: 0;
+  box-sizing: border-box;
+  width: 12px;
+  height: 12px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--gold);
+  font: 650 var(--type-info-mark)/1 var(--font-ui);
+  text-align: center;
+  cursor: help;
+}
+.landing-constructor-info-tooltip {
+  position: absolute;
+  z-index: 80;
+  top: auto;
+  right: auto;
+  bottom: calc(100% + 5px);
+  left: 0;
+  display: block;
+  box-sizing: border-box;
+  width: max-content;
+  max-width: min(260px, calc(100vw - 32px));
+  padding: 7px 9px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow);
+  font: 400 var(--type-tooltip)/1.4 var(--font-body);
+  letter-spacing: normal;
+  text-align: left;
+  text-transform: none;
+  white-space: normal;
+  overflow-wrap: break-word;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 140ms ease, visibility 140ms ease;
+}
+/* Desktop/tablet landscape: hover card works from 768px upwards, including 1024 and 768px. */
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+  .landing-constructor-info-trigger:hover + .landing-constructor-info-tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+/* Mobile uses its own layout and does not show this desktop-only information control. */
+@media (max-width: 767px) {
+  .landing-constructor-info-tip { display: none; }
+}
+.landing-constructor-free {
+  color: var(--accent);
+  font-weight: 700;
+  white-space: normal;
+}
+
+.landing-constructor-bottom-row {
+  display: grid;
+  /* Wider layouts preserve the primary Hero CTA x-position; 901–1100px uses its dedicated two-column alignment rule. */
+  grid-template-columns: minmax(0, var(--constructor-cta-offset, 6px)) var(--cta-button-width) minmax(0, 1fr);
+  align-items: stretch;
+  column-gap: 0;
+  min-width: 0;
+  margin-top: 18px;
+}
+.landing-constructor-bottom-row .landing-constructor-try-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+.landing-constructor-bottom-row .landing-constructor-try-align {
+  display: flex;
+  flex: 0 1 auto;
+  width: var(--cta-button-width);
+  max-width: 100%;
+  min-width: 0;
+}
+.landing-constructor-bottom-row .landing-constructor-action-card {
+  display: flex;
+  grid-column: 3;
+  grid-row: 1;
+  align-items: stretch;
+  width: auto;
+  min-width: 0;
+  min-height: var(--cta-button-height);
+  margin: 0 0 0 var(--cta-button-gap);
+}
+.landing-constructor-bottom-row .landing-constructor-action-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  padding: 14px 20px;
+}
+.landing-constructor-bottom-row .landing-constructor-action-row p {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  text-align: center;
+}
+
+@media (min-width: 768px) and (max-width: 900px) {
+  .landing-constructor-bottom-row .landing-constructor-action-row { padding-inline: 12px; }
+}
+@media (max-width: 767px) {
+  .landing-constructor-bottom-row {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 14px;
+  }
+  .landing-constructor-bottom-row .landing-constructor-action-card {
+    order: 1;
+    width: 100%;
+    min-height: var(--cta-button-height);
+    margin: 0;
+  }
+  .landing-constructor-bottom-row .landing-constructor-try-row {
+    order: 2;
+    display: block;
+    width: 100%;
+    padding: 0;
+  }
+  .landing-constructor-bottom-row .landing-constructor-try-align {
+    width: 100%;
+    max-width: none;
+  }
+  .landing-constructor-bottom-row .landing-constructor-try {
+    flex-basis: 100%;
+    width: 100%;
+  }
+  .landing-constructor-bottom-row .landing-constructor-action-row { padding: 14px 16px; }
+}
+
+
+/* FOLLOW-UP 12.17 — 1024px constructor two-column scheme; section CTA row follows the same inner edges. */
+@media (min-width: 901px) and (max-width: 1100px) {
+  /* One combined work area: four vertical step cards on the left and the selected screenshot on the right. */
+  .landing-constructor-workflow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+  .landing-constructor-overview-panel { display: none; }
+  .landing-constructor-detail-panel {
+    width: 100%;
+    padding: 9px;
+  }
+  .landing-constructor-detail-layout {
+    display: grid;
+    grid-template-columns: minmax(0, .62fr) minmax(0, 1fr);
+    align-items: stretch;
+    gap: 16px;
+    width: 100%;
+    min-width: 0;
+  }
+  .landing-constructor-steps {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+    align-content: stretch;
+    gap: 8px;
+    min-width: 0;
+    padding: 0;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+  .landing-constructor-step {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    flex: none;
+    width: auto;
+    min-width: 0;
+    min-height: 60px;
+    padding: 8px;
+    scroll-snap-align: none;
+  }
+  .landing-constructor-detail-view {
+    min-width: 0;
+    min-height: 360px;
+    height: auto;
+    padding: 0;
+  }
+  .landing-constructor-test-shot { padding: 0; }
+
+  /* Button starts at the four-step column's left edge; plaque ends at the screenshot column's right edge. */
+  .landing-constructor-bottom-row {
+    display: grid;
+    grid-template-columns: var(--cta-button-width) minmax(0, 1fr);
+    column-gap: var(--cta-button-gap);
+    align-items: stretch;
+    margin-top: 18px;
+    margin-inline: 10px;
+  }
+  .landing-constructor-bottom-row .landing-constructor-try-row {
+    display: flex;
+    grid-column: 1;
+    grid-row: 1;
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .landing-constructor-bottom-row .landing-constructor-try-align {
+    width: var(--cta-button-width);
+    max-width: 100%;
+    min-width: 0;
+  }
+  .landing-constructor-bottom-row .landing-constructor-try {
+    flex: 0 0 var(--cta-button-width);
+    width: var(--cta-button-width);
+  }
+  .landing-constructor-bottom-row .landing-constructor-action-card {
+    display: flex;
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+  }
+  .landing-constructor-bottom-row .landing-constructor-action-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+    padding: 14px 20px;
+  }
+  .landing-constructor-bottom-row .landing-constructor-action-row p {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    text-align: center;
+  }
+}
+
+
+/* FOLLOW-UP 2.1 — tablet constructor layout at 449–900px.
+   Step cards are informational only here; show a measured overview placeholder until a breakpoint-specific image is prepared. */
+.landing-constructor-question { display: none; }
+
+@media (min-width: 449px) and (max-width: 900px) {
+  .landing-constructor-workflow {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+  .landing-constructor-detail-panel {
+    width: 100%;
+    padding: 10px;
+  }
+  .landing-constructor-detail-layout { display: block; width: 100%; }
+  .landing-constructor-steps {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: stretch;
+    gap: 8px;
+    padding: 0;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+  .landing-constructor-step {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr);
+    flex: none;
+    width: 100%;
+    min-height: 64px;
+    padding: 10px;
+    scroll-snap-align: none;
+  }
+  .landing-constructor-detail-view { display: none; }
+
+  /* Reserve the same 3:2 display area, but keep it as a measured placeholder until this breakpoint gets its own image. */
+  .landing-constructor-overview-panel {
+    display: flex;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 0;
+  }
+  .landing-constructor-overview-open {
+    display: block;
+    flex: 0 0 auto;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 3 / 2;
+    line-height: normal;
+  }
+  .landing-constructor-image-trigger { display: none; }
+  .landing-constructor-overview-open .landing-constructor-placeholder-overview {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Image → information plaque → matching Hero CTA pair. */
+  .landing-constructor-bottom-row {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    margin: 14px 0 0;
+  }
+  .landing-constructor-bottom-row .landing-constructor-action-card {
+    order: 0;
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+  }
+  .landing-constructor-bottom-row .landing-constructor-action-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+    padding: 14px 16px;
+  }
+  .landing-constructor-bottom-row .landing-constructor-action-row p {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    text-align: center;
+  }
+  .landing-constructor-bottom-row .landing-constructor-try-row {
+    order: 1;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+  }
+  .landing-constructor-bottom-row .landing-constructor-try-align {
+    display: flex;
+    flex: 0 1 auto;
+    gap: var(--cta-button-gap);
+    width: calc(var(--cta-button-width) + var(--cta-button-width) + var(--cta-button-gap));
+    max-width: 100%;
+    min-width: 0;
+  }
+  .landing-constructor-bottom-row .landing-constructor-try {
+    flex: 0 0 var(--cta-button-width);
+    width: var(--cta-button-width);
+    max-width: 100%;
+  }
+  .landing-constructor-question {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    flex: 0 0 var(--cta-button-width);
+    width: var(--cta-button-width);
+    min-width: 0;
+    max-width: 100%;
+    height: var(--cta-button-height);
+    min-height: var(--cta-button-height);
+    padding: 0 var(--cta-button-padding-x);
+    border-width: 1px;
+    border-radius: var(--cta-button-radius);
+    background: transparent;
+    border-color: var(--border-strong);
+    color: var(--text);
+    text-align: center;
+    white-space: normal;
+  }
+  .landing-constructor-question:hover {
+    border-color: var(--text);
+    background: color-mix(in srgb, var(--surface-muted) 65%, transparent);
+  }
+  :root[data-theme="dark"] .landing-constructor-question {
+    border-color: rgba(242, 238, 230, .42);
+    color: #F2EEE6;
+  }
+  :root[data-theme="dark"] .landing-constructor-question:hover {
+    border-color: #F2EEE6;
+    background: rgba(255, 255, 255, .045);
+  }
+}
+
+/* Hero uses a full-width vertical pair below 768px; the constructor follows the same rule. */
+@media (min-width: 449px) and (max-width: 767px) {
+  .landing-constructor-bottom-row .landing-constructor-try-row { justify-content: stretch; }
+  .landing-constructor-bottom-row .landing-constructor-try-align {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--cta-button-gap);
+    width: 100%;
+  }
+  .landing-constructor-bottom-row .landing-constructor-try {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: none;
+  }
+  .landing-constructor-question {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: none;
+  }
+}
+
+
+/* Stage cards are informational text wherever the individual stage viewport is hidden. */
+@media (max-width: 900px) {
+  .landing-constructor-step {
+    cursor: default;
+    transition: none;
+  }
+  .landing-constructor-step:hover { border-color: transparent; }
+}
+
+/* FOLLOW-UP 2.2 — small-breakpoint usage note and fully stubbed CTA pair. */
+.landing-constructor-usage-note { display: none; }
+
+@media (max-width: 900px) {
+  .landing-constructor-usage-note.landing-constructor-action-card {
+    display: block;
+    margin: 0 0 14px;
+  }
+  .landing-constructor-usage-note .landing-constructor-action-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    padding: 14px 16px;
+  }
+  .landing-constructor-usage-note .landing-constructor-action-row p {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+  }
+}
+
+/* On phone widths the secondary CTA is visible too, stacked like the Hero CTA pair. */
+@media (max-width: 448px) {
+  .landing-constructor-bottom-row .landing-constructor-try-align {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--cta-button-gap);
+    width: 100%;
+  }
+  .landing-constructor-bottom-row .landing-constructor-try {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: none;
+  }
+  .landing-constructor-question {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    height: var(--cta-button-height);
+    min-height: var(--cta-button-height);
+    padding: 0 var(--cta-button-padding-x);
+    border-width: 1px;
+    border-radius: var(--cta-button-radius);
+    background: transparent;
+    border-color: var(--border-strong);
+    color: var(--text);
+    text-align: center;
+    white-space: normal;
+  }
+  :root[data-theme="dark"] .landing-constructor-question {
+    border-color: rgba(242, 238, 230, .42);
+    color: #F2EEE6;
+  }
+}
+
