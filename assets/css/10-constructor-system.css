@@ -1,0 +1,2567 @@
+/* ARTIFY stylesheet bundle: Constructor system, typography tokens and responsive refinements. Original inline layers are kept in their approved order. */
+
+/* Original inline CSS layer 3/29: #artify-cta-edge-align-followup-12-17 */
+
+/* FOLLOW-UP 12.18 — outer radius 10px trial — preserve CTA dimensions; align the two desktop Hero buttons to card 1 edges. */
+@media (min-width: 1440px) {
+  .af-hero-actions { justify-content: space-between; }
+}
+
+/* Original inline CSS layer 4/29: #artify-constructor-unified-trial-02 */
+
+/* Artify Factory · unified constructor card trial 02
+   Experimental layout for the visual review only. The 2.1 baseline remains unchanged.
+   1101px+: one shared card containing the four selectable stages and their existing screenshots.
+   901–1100px: preserve the agreed two-column steps + screenshot composition.
+   449–900px: informational step cards, followed by the existing overview placeholder.
+   <=448px: preserve the compact text-only mobile composition. */
+
+@media (min-width: 1101px) {
+  .landing-constructor-workflow-unified {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--artify-outer-radius);
+    background: var(--surface);
+    box-shadow: 0 4px 16px rgba(28, 26, 23, .035);
+    overflow: hidden;
+  }
+
+  :root[data-theme="dark"] .landing-constructor-workflow-unified {
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .14);
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-detail-panel {
+    display: flex;
+    width: 100%;
+    min-height: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-detail-layout {
+    display: grid;
+    grid-template-columns: minmax(320px, .34fr) minmax(0, .66fr);
+    align-items: stretch;
+    gap: 14px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-steps {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+    align-content: stretch;
+    gap: 8px;
+    min-width: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-step {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr);
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    padding: 12px;
+    scroll-snap-align: none;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-detail-view {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--artify-outer-radius);
+    background: #F7F4EF;
+    overflow: hidden;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-test-shot {
+    position: absolute;
+    inset: 0;
+    display: none;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: #F7F4EF;
+    overflow: hidden;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-test-shot.is-active {
+    display: grid;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-image-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    background: #F7F4EF;
+    cursor: zoom-in;
+    overflow: hidden;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-image-trigger img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .landing-constructor-overview-panel {
+    display: none;
+  }
+}
+
+/* Keep the agreed 1024px two-column composition. The image is now the selected real screenshot. */
+@media (min-width: 901px) and (max-width: 1100px) {
+  .landing-constructor-workflow-unified {
+    display: block;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-detail-panel {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    padding: 9px;
+    border: 1px solid var(--border);
+    border-radius: var(--artify-outer-radius);
+    background: var(--surface);
+    box-shadow: 0 4px 16px rgba(28, 26, 23, .035);
+    overflow: hidden;
+  }
+
+  :root[data-theme="dark"] .landing-constructor-workflow-unified .landing-constructor-detail-panel {
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .14);
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-detail-layout {
+    display: grid;
+    grid-template-columns: minmax(0, .62fr) minmax(0, 1fr);
+    align-items: stretch;
+    gap: 16px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-detail-view {
+    display: block;
+    min-width: 0;
+    min-height: 360px;
+    height: auto;
+    aspect-ratio: auto;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-test-shot {
+    position: absolute;
+    inset: 0;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-image-trigger {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    min-height: 360px;
+  }
+
+  .landing-constructor-overview-panel {
+    display: none;
+  }
+}
+
+/* At 768px the text cards remain static and the general overview placeholder stays below them. */
+@media (max-width: 900px) {
+  .landing-constructor-workflow-unified {
+    display: block;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  .landing-constructor-overview-panel {
+    margin-top: 14px;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-detail-panel {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--artify-outer-radius);
+    background: var(--surface);
+    box-shadow: 0 4px 16px rgba(28, 26, 23, .035);
+    overflow: hidden;
+  }
+
+  :root[data-theme="dark"] .landing-constructor-workflow-unified .landing-constructor-detail-panel {
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .14);
+  }
+}
+
+@media (max-width: 448px) {
+  .landing-constructor-workflow-unified .landing-constructor-detail-panel {
+    padding: 10px;
+  }
+}
+
+/* Trial 02 — the information viewport is composed per stage, not forced into one image ratio.
+   Original screenshots retain their native proportions; explanatory panels use only information
+   visible in the supplied captures or stated in the stage descriptions. */
+@media (min-width: 1101px) {
+  .landing-constructor-workflow-unified .landing-constructor-detail-view {
+    aspect-ratio: 3 / 2;
+    background: var(--surface-muted);
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-test-shot.is-active {
+    display: block;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-test-shot[data-landing-step-shot="0"] {
+    display: grid;
+    place-items: center;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-image-trigger {
+    border-radius: 9px;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-test-shot[data-landing-step-shot="0"] .landing-constructor-stage-image-trigger {
+    border-radius: 0;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-composition {
+    box-sizing: border-box;
+    display: grid;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-composition-details {
+    grid-template-columns: minmax(0, 2fr) minmax(250px, 1fr);
+    align-items: stretch;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-composition-details > .landing-constructor-stage-image-trigger {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: #F7F4EF;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-composition-details > .landing-constructor-stage-image-trigger img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-explainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    min-height: 0;
+    box-sizing: border-box;
+    padding: clamp(16px, 1.4vw, 22px);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--surface);
+    color: var(--text);
+    overflow: hidden;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-kicker {
+    display: block;
+    margin: 0 0 10px;
+    color: var(--accent);
+    font-size: var(--af-font-px-10);
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-explainer h3,
+  .landing-constructor-workflow-unified .landing-constructor-export-intro h3 {
+    margin: 0;
+    color: var(--text);
+    font-size: clamp(17px, 1.35vw, 20px);
+    font-weight: 650;
+    line-height: 1.25;
+    letter-spacing: -.02em;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-explainer > p,
+  .landing-constructor-workflow-unified .landing-constructor-export-intro > p {
+    margin: 9px 0 0;
+    color: var(--text-muted);
+    font-size: var(--af-font-px-12);
+    font-weight: 400;
+    line-height: 1.48;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-feature-list {
+    display: grid;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-feature {
+    display: grid;
+    grid-template-columns: 25px minmax(0, 1fr);
+    align-items: start;
+    gap: 9px;
+    min-width: 0;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-feature-mark {
+    display: grid;
+    place-items: center;
+    width: 25px;
+    height: 25px;
+    border-radius: 7px;
+    background: var(--surface-muted);
+    color: var(--accent);
+    font-size: var(--af-font-px-10);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-feature strong,
+  .landing-constructor-workflow-unified .landing-constructor-device-item strong {
+    display: block;
+    color: var(--text);
+    font-size: var(--af-font-px-12);
+    font-weight: 650;
+    line-height: 1.3;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-feature small,
+  .landing-constructor-workflow-unified .landing-constructor-device-item small {
+    display: block;
+    margin-top: 2px;
+    color: var(--text-muted);
+    font-size: var(--af-font-px-11);
+    font-weight: 400;
+    line-height: 1.35;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-color-samples {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 14px;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-color-samples > span {
+    display: grid;
+    grid-template-columns: 22px minmax(0, 1fr);
+    align-items: center;
+    column-gap: 7px;
+    min-width: 0;
+    padding: 8px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface-muted);
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-color-samples i {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    display: block;
+    width: 22px;
+    height: 26px;
+    border: 1px solid rgba(0, 0, 0, .10);
+    border-radius: 5px;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-color-main { background: #C2410C; }
+  .landing-constructor-workflow-unified .landing-constructor-color-accent { background: #D97706; }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-color-samples small {
+    display: block;
+    color: var(--text-muted);
+    font-size: var(--af-font-px-10);
+    line-height: 1.2;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-color-samples b {
+    display: block;
+    color: var(--text);
+    font-size: var(--af-font-px-10);
+    font-weight: 650;
+    line-height: 1.2;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-device-list {
+    display: grid;
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-device-item {
+    display: grid;
+    grid-template-columns: 32px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 9px;
+    min-width: 0;
+    padding: 9px 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface-muted);
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-device-item.is-current {
+    border-color: color-mix(in srgb, var(--accent) 48%, var(--border));
+    background: color-mix(in srgb, var(--accent) 6%, var(--surface));
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-device-item em {
+    color: var(--accent);
+    font-size: var(--af-font-px-9);
+    font-style: normal;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-device-glyph {
+    position: relative;
+    display: block;
+    justify-self: center;
+    width: 25px;
+    height: 18px;
+    border: 1.5px solid var(--text-muted);
+    border-radius: 3px;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-device-desktop::after {
+    content: "";
+    position: absolute;
+    left: 9px;
+    bottom: -5px;
+    width: 6px;
+    height: 3px;
+    border-top: 1.5px solid var(--text-muted);
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-device-tablet {
+    width: 18px;
+    height: 23px;
+    border-radius: 4px;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-device-mobile {
+    width: 12px;
+    height: 23px;
+    border-radius: 4px;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-explainer .landing-constructor-stage-footnote {
+    margin-top: auto;
+    padding-top: 14px;
+    font-size: var(--af-font-px-10);
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-composition-export {
+    grid-template-rows: auto minmax(0, 1fr);
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-composition-export > .landing-constructor-stage-image-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: #F7F4EF;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-composition-export > .landing-constructor-stage-image-trigger img {
+    width: 100%;
+    height: auto;
+    max-height: 184px;
+    object-fit: contain;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-export-explainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    min-height: 0;
+    padding: 15px 18px 17px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--surface);
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-export-intro {
+    display: grid;
+    grid-template-columns: minmax(190px, .8fr) minmax(0, 1.2fr);
+    align-items: center;
+    column-gap: 22px;
+    row-gap: 4px;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-export-intro .landing-constructor-stage-kicker {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-export-intro h3 {
+    font-size: clamp(16px, 1.2vw, 19px);
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-export-intro > p {
+    margin: 0;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-export-flow {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-export-flow-item {
+    display: grid;
+    align-content: start;
+    gap: 5px;
+    min-width: 0;
+    min-height: 82px;
+    padding: 11px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface-muted);
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-export-flow-item > span {
+    color: var(--accent);
+    font-size: var(--af-font-px-10);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-export-flow-item strong {
+    color: var(--text);
+    font-size: var(--af-font-px-12);
+    font-weight: 650;
+    line-height: 1.3;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-export-flow-item small {
+    color: var(--text-muted);
+    font-size: var(--af-font-px-11);
+    line-height: 1.35;
+  }
+}
+
+/* Medium desktop keeps its previously agreed image viewport; supplementary copy is desktop-only. */
+@media (min-width: 901px) and (max-width: 1100px) {
+  .landing-constructor-workflow-unified .landing-constructor-stage-composition {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-explainer,
+  .landing-constructor-workflow-unified .landing-constructor-export-explainer {
+    display: none;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-image-trigger {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    min-height: 360px;
+  }
+}
+
+
+/* Original inline CSS layer 5/29: #artify-constructor-unified-trial-03 */
+
+/* Artify Factory · unified constructor card trial 03
+   Keeps the 2.1 baseline unchanged. Reworks the explanatory compositions and 1024px layout.
+   All four stages use the same 1400 × 960 vector artwork ratio. */
+
+@media (min-width: 1101px) {
+  .landing-constructor-workflow-unified .landing-constructor-detail-view {
+    aspect-ratio: 2 / 1;
+    background: var(--surface-muted);
+  }
+  .landing-constructor-workflow-unified .landing-constructor-test-shot.is-active {
+    display: block;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-composition {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: minmax(0, 1.9fr) minmax(250px, 1fr);
+    align-items: stretch;
+    gap: 14px;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    padding: 14px;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-composition > .landing-constructor-stage-image-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: #F7F4EF;
+    overflow: hidden;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-image-trigger img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-explainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    min-height: 0;
+    box-sizing: border-box;
+    padding: clamp(15px, 1.35vw, 21px);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--surface);
+    color: var(--text);
+    overflow: hidden;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-kicker {
+    display: block;
+    margin: 0 0 9px;
+    color: var(--accent);
+    font-size: var(--af-font-px-10);
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-explainer h3 {
+    margin: 0;
+    color: var(--text);
+    font-size: clamp(17px, 1.25vw, 20px);
+    font-weight: 650;
+    line-height: 1.25;
+    letter-spacing: -.02em;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-explainer > p {
+    margin: 8px 0 0;
+    color: var(--text-muted);
+    font-size: var(--af-font-px-12);
+    font-weight: 400;
+    line-height: 1.45;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-feature-list {
+    display: grid;
+    gap: 9px;
+    margin-top: 15px;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-feature {
+    display: grid;
+    grid-template-columns: 23px minmax(0, 1fr);
+    align-items: start;
+    gap: 8px;
+    min-width: 0;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-feature-mark {
+    display: grid;
+    place-items: center;
+    width: 23px;
+    height: 23px;
+    border-radius: 7px;
+    background: var(--surface-muted);
+    color: var(--accent);
+    font-size: var(--af-font-px-10);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-feature strong {
+    display: block;
+    color: var(--text);
+    font-size: var(--af-font-px-12);
+    font-weight: 650;
+    line-height: 1.3;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-feature small {
+    display: block;
+    margin-top: 2px;
+    color: var(--text-muted);
+    font-size: var(--af-font-px-11);
+    font-weight: 400;
+    line-height: 1.35;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-device-list {
+    display: grid;
+    gap: 7px;
+    margin-top: 13px;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-device-item {
+    display: grid;
+    grid-template-columns: 29px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    padding: 8px 9px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface-muted);
+  }
+  .landing-constructor-workflow-unified .landing-constructor-device-item.is-current {
+    border-color: color-mix(in srgb, var(--accent) 48%, var(--border));
+    background: color-mix(in srgb, var(--accent) 6%, var(--surface));
+  }
+  .landing-constructor-workflow-unified .landing-constructor-device-item strong {
+    display: block;
+    color: var(--text);
+    font-size: var(--af-font-px-12);
+    font-weight: 650;
+    line-height: 1.25;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-device-item small {
+    display: block;
+    margin-top: 2px;
+    color: var(--text-muted);
+    font-size: var(--af-font-px-11);
+    line-height: 1.25;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-device-item em {
+    color: var(--accent);
+    font-size: var(--af-font-px-9);
+    font-style: normal;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-device-glyph {
+    position: relative;
+    display: block;
+    justify-self: center;
+    width: 23px;
+    height: 17px;
+    border: 1.5px solid var(--text-muted);
+    border-radius: 3px;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-device-desktop::after {
+    content: "";
+    position: absolute;
+    left: 8px;
+    bottom: -5px;
+    width: 6px;
+    height: 3px;
+    border-top: 1.5px solid var(--text-muted);
+  }
+  .landing-constructor-workflow-unified .landing-constructor-device-tablet {
+    width: 17px;
+    height: 22px;
+    border-radius: 4px;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-device-mobile {
+    width: 12px;
+    height: 22px;
+    border-radius: 4px;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-footnote {
+    margin: 11px 0 0;
+    color: var(--text-muted);
+    font-size: var(--af-font-px-10);
+    line-height: 1.35;
+  }
+}
+
+/* 901–1100px: retain the stage selector on the left, but show the same complete image + explanation composition on the right. */
+@media (min-width: 901px) and (max-width: 1100px) {
+  .landing-constructor-workflow-unified .landing-constructor-detail-view {
+    min-height: 640px;
+    height: auto;
+    aspect-ratio: auto;
+    background: var(--surface-muted);
+  }
+  .landing-constructor-workflow-unified .landing-constructor-test-shot {
+    position: absolute;
+    inset: 0;
+    display: none;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-test-shot.is-active {
+    display: block;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-composition {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(190px, 1fr);
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    padding: 10px;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-composition > .landing-constructor-stage-image-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 1400 / 960;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: #F7F4EF;
+    overflow: hidden;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-image-trigger img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-explainer {
+    display: grid;
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+    grid-template-rows: auto auto 1fr;
+    align-content: center;
+    align-items: start;
+    column-gap: 14px;
+    row-gap: 5px;
+    min-width: 0;
+    min-height: 0;
+    padding: 10px 13px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--surface);
+    overflow: hidden;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-kicker {
+    grid-column: 1 / -1;
+    margin: 0 0 2px;
+    color: var(--accent);
+    font-size: var(--af-font-px-10);
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-explainer h3 {
+    grid-column: 1;
+    margin: 0;
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 650;
+    line-height: 1.2;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-explainer > p:first-of-type {
+    grid-column: 2;
+    grid-row: 2 / span 2;
+    align-self: start;
+    margin: 0;
+    color: var(--text-muted);
+    font-size: var(--af-font-px-11);
+    line-height: 1.4;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-feature-list {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 9px;
+    margin-top: 8px;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-feature {
+    display: grid;
+    grid-template-columns: 18px minmax(0, 1fr);
+    align-items: start;
+    gap: 6px;
+    min-width: 0;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-feature-mark {
+    display: grid;
+    place-items: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    background: var(--surface-muted);
+    color: var(--accent);
+    font-size: 9px;
+    font-weight: 700;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-feature strong {
+    display: block;
+    color: var(--text);
+    font-size: var(--af-font-px-10);
+    font-weight: 650;
+    line-height: 1.25;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-feature small {
+    display: block;
+    margin-top: 2px;
+    color: var(--text-muted);
+    font-size: 10px;
+    line-height: 1.3;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-explainer-responsive .landing-constructor-device-list {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+    margin-top: 8px;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-device-item {
+    display: grid;
+    grid-template-columns: 17px minmax(0, 1fr);
+    align-items: center;
+    gap: 5px;
+    min-width: 0;
+    padding: 6px 7px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    background: var(--surface-muted);
+  }
+  .landing-constructor-workflow-unified .landing-constructor-device-item.is-current {
+    border-color: color-mix(in srgb, var(--accent) 48%, var(--border));
+    background: color-mix(in srgb, var(--accent) 6%, var(--surface));
+  }
+  .landing-constructor-workflow-unified .landing-constructor-device-item strong {
+    display: block;
+    color: var(--text);
+    font-size: 10px;
+    font-weight: 650;
+    line-height: 1.2;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-device-item small {
+    display: block;
+    margin-top: 2px;
+    color: var(--text-muted);
+    font-size: 9px;
+    line-height: 1.2;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-device-item em {
+    display: none;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-footnote {
+    grid-column: 1 / -1;
+    margin: 5px 0 0;
+    color: var(--text-muted);
+    font-size: 10px;
+    line-height: 1.3;
+  }
+  .landing-constructor-workflow-unified .landing-constructor-stage-explainer-export .landing-constructor-stage-feature-list {
+    margin-top: 8px;
+  }
+}
+
+/* Tablet and mobile retain the established static overview flow; only the overview art is upgraded. */
+@media (max-width: 900px) {
+  .landing-constructor-overview-panel .landing-constructor-overview-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1400 / 960;
+    object-fit: contain;
+  }
+}
+
+
+/* Original inline CSS layer 6/29: #artify-constructor-unified-trial-04 */
+
+/* Artify Factory · Unified Constructor Trial 04
+   Geometry and typography pass only. Trial 03 artwork and copy remain unchanged.
+   The viewing area is filled edge-to-edge by the image and explanation cards.
+   The explanation panel follows one shared top-aligned spacing system at all desktop widths. */
+
+@media (min-width: 901px) {
+  .landing-constructor-workflow-unified {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--artify-outer-radius);
+    background: var(--surface);
+    box-shadow: 0 4px 16px rgba(28, 26, 23, .035);
+    overflow: hidden;
+  }
+
+  :root[data-theme="dark"] .landing-constructor-workflow-unified {
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .14);
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-detail-panel {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-detail-layout {
+    display: grid;
+    align-items: stretch;
+    gap: 14px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-detail-view {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    height: auto;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    overflow: visible;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-test-shot {
+    position: absolute;
+    inset: 0;
+    display: none;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    overflow: visible;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-test-shot.is-active {
+    display: block;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-composition {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    align-items: stretch;
+    gap: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-image-trigger {
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: #F7F4EF;
+    overflow: hidden;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-image-trigger img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  /* Shared explainer-card system: identical top edge, inset, text rhythm and card styling. */
+  .landing-constructor-workflow-unified .landing-constructor-stage-explainer {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--surface);
+    color: var(--text);
+    text-align: left;
+    overflow: visible;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-kicker {
+    display: block;
+    margin: 0;
+    color: var(--accent);
+    font-size: var(--type-section-label);
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-explainer h3 {
+    margin: 8px 0 0;
+    color: var(--text);
+    font-size: var(--af-font-px-18);
+    font-weight: 650;
+    line-height: 1.25;
+    letter-spacing: -.02em;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-explainer > p:not(.landing-constructor-stage-footnote) {
+    margin: 8px 0 0;
+    color: var(--text-muted);
+    font-size: var(--type-small);
+    font-weight: 400;
+    line-height: 1.45;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-feature-list {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 9px;
+    margin: 15px 0 0;
+    padding: 0;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-feature {
+    display: grid;
+    grid-template-columns: 22px minmax(0, 1fr);
+    align-items: start;
+    gap: 8px;
+    min-width: 0;
+    margin: 0;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-feature-mark {
+    display: grid;
+    place-items: center;
+    box-sizing: border-box;
+    width: 22px;
+    height: 22px;
+    margin: 0;
+    border-radius: 7px;
+    background: var(--surface-muted);
+    color: var(--accent);
+    font-size: var(--type-micro);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-feature strong {
+    display: block;
+    margin: 0;
+    color: var(--text);
+    font-size: var(--type-card-title);
+    font-weight: 650;
+    line-height: 1.3;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-feature small {
+    display: block;
+    margin: 2px 0 0;
+    color: var(--text-muted);
+    font-size: var(--type-small);
+    font-weight: 400;
+    line-height: 1.35;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-device-list {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 7px;
+    margin: 15px 0 0;
+    padding: 0;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-device-item {
+    display: grid;
+    grid-template-columns: 25px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    margin: 0;
+    padding: 7px 9px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface-muted);
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-device-item.is-current {
+    border-color: color-mix(in srgb, var(--accent) 48%, var(--border));
+    background: color-mix(in srgb, var(--accent) 6%, var(--surface));
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-device-item strong {
+    display: block;
+    margin: 0;
+    color: var(--text);
+    font-size: var(--type-card-title);
+    font-weight: 650;
+    line-height: 1.25;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-device-item small {
+    display: block;
+    margin: 2px 0 0;
+    color: var(--text-muted);
+    font-size: var(--type-small);
+    line-height: 1.25;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-device-item em {
+    color: var(--accent);
+    font-size: var(--type-micro);
+    font-style: normal;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-device-glyph {
+    position: relative;
+    display: block;
+    justify-self: center;
+    width: 21px;
+    height: 15px;
+    border: 1.5px solid var(--text-muted);
+    border-radius: 3px;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-device-desktop::after {
+    content: "";
+    position: absolute;
+    left: 7px;
+    bottom: -5px;
+    width: 6px;
+    height: 3px;
+    border-top: 1.5px solid var(--text-muted);
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-device-tablet {
+    width: 16px;
+    height: 20px;
+    border-radius: 4px;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-device-mobile {
+    width: 11px;
+    height: 20px;
+    border-radius: 4px;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-footnote {
+    margin: 11px 0 0;
+    color: var(--text-muted);
+    font-size: var(--type-micro);
+    line-height: 1.4;
+  }
+}
+
+/* Large desktop: image and explainer cards have no inset from the viewing-area frame. */
+@media (min-width: 1101px) {
+  .landing-constructor-workflow-unified .landing-constructor-detail-layout {
+    grid-template-columns: minmax(320px, .34fr) minmax(0, .66fr);
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-detail-view {
+    aspect-ratio: 2.2 / 1;
+  }
+}
+
+/* 901–1100px (including 1024): same shell, flush cards, image first and a simple top-aligned text flow below. */
+@media (min-width: 901px) and (max-width: 1100px) {
+  .landing-constructor-workflow-unified .landing-constructor-detail-layout {
+    grid-template-columns: minmax(250px, .62fr) minmax(0, 1fr);
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-detail-view {
+    height: auto;
+    aspect-ratio: auto;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-test-shot {
+    position: relative;
+    inset: auto;
+    display: none;
+    width: 100%;
+    height: auto;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-test-shot.is-active {
+    display: block;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-composition {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    height: auto;
+    min-height: 0;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-image-trigger {
+    height: auto;
+    aspect-ratio: 1400 / 960;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-image-trigger img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-explainer {
+    padding: 20px;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-feature-list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 9px;
+  }
+}
+
+
+/* Original inline CSS layer 7/29: #artify-typography-scale-unified-followup-12-15 */
+
+/* ARTIFY CANONICAL GLOBAL TYPE SCALE — FOLLOW-UP 12.15.
+   Semantic roles in this file are the single owner of text sizes and line-height for landing copy.
+   Do not override these roles with component-local responsive font-size declarations.
+   Hero process copy, constructor intro, all section leads, and contact intro share --type-body.
+   Component geometry, colors, and miniature editor UI are intentionally untouched. */
+:root {
+  --type-display: var(--af-font-px-40);
+  /* All marketing H1s share the display scale; separate name kept only as a semantic alias. */
+  --type-page-title: var(--type-display);
+  /* Heading hierarchy is a relationship to the corresponding H1, not duplicated breakpoint values. */
+  --type-heading-gap: var(--af-font-px-2);
+  --type-section-title: calc(var(--type-page-title) - var(--type-heading-gap));
+  --type-section-label: var(--af-font-px-10);
+  --type-weight-section-label: 700;
+  --type-line-section-label: 1.35;
+  --type-tracking-section-label: .15em;
+  --type-subsection-title: var(--af-font-px-24);
+  --type-card-heading: var(--af-font-px-22);
+  --type-card-title: var(--af-font-px-13);
+  /* Single public body-copy role: regular marketing p and p.lead share this token. Hero manifesto/closing, small notes and mini-card copy are separate approved roles. */
+  --type-body: var(--af-font-px-14);
+  /* Hero manifesto keeps its separate editorial role; all supporting body copy uses --type-body. */
+  --type-hero-manifest: var(--af-font-px-16);
+  --type-hero-closing: var(--af-font-px-14);
+  --type-date: var(--af-font-px-10);
+  --type-hero-route-description: var(--af-font-px-13);
+  --type-body-compact: var(--af-font-px-13);
+  --type-small: var(--af-font-px-12);
+  --type-micro: var(--af-font-px-10);
+  --type-index-number: var(--af-font-px-10); /* Hero path indices + constructor step indices; shared approved size. */
+  --type-button: var(--af-font-px-14);
+  --type-stage-description: var(--af-font-px-13);
+  --type-overlay-title: var(--af-font-px-20);
+  --type-nav: var(--af-font-px-14);
+  --type-tooltip: var(--af-font-px-12);
+  --type-info-mark: var(--af-font-px-8);
+  --type-form-label: var(--af-font-px-13);
+  --type-form-help: var(--af-font-px-12);
+  --type-overlay-kicker: var(--af-font-px-8);
+  --type-modal-title: var(--af-font-px-24);
+
+  /* Shared typography properties: a text role owns more than its size. */
+  --type-weight-display: 600;
+  --type-weight-cta: 600;
+  --type-weight-button: var(--type-weight-cta);
+  --type-weight-section-title: 650;
+  --type-weight-hero-manifest: 500;
+  --type-weight-body: 400;
+  --type-weight-card-heading: 600;
+  --type-weight-eyebrow: 700;
+  --type-weight-tag: 400;
+  --type-line-display: 1.07;
+  --type-line-section-title: 1.08;
+  --type-line-hero-manifest: 1.44;
+  --type-line-body: 1.5;
+  --type-line-card-heading: 1.2;
+  --type-line-eyebrow: 1.35;
+  --type-line-tag: 1.3;
+  --type-line-small: 1.45;
+  --type-line-date: 1.4;
+  --type-line-card-link: 1.35;
+  --type-line-hero-route: 1.48;
+  --type-line-hero-closing: 1.45;
+  --type-line-overlay-title: 1.12;
+  /* Match the currently approved Hero update-note rendering; no later generic override. */
+  --type-line-update-note: 1.5;
+  --type-weight-hero-closing: 550;
+  --type-weight-card-title: 650;
+  --type-weight-card-link: 600;
+  --type-weight-overlay-kicker: 650;
+  --type-tracking-card-title: normal;
+  --type-tracking-overlay-kicker: .13em;
+  --type-tracking-display: -.035em;
+  --type-tracking-section-title: -.035em;
+  --type-tracking-hero-manifest: -.012em;
+  --type-tracking-body: normal;
+  --type-tracking-eyebrow: .15em;
+  --type-tracking-tag: .08em;
+  --type-tracking-card-heading: -.015em;
+  --type-tag: var(--af-font-px-10);
+}
+
+/* Hero card 1 follows the published source's type contract. H1: 40 / 36 / 32 / 30 / 28 / 26 / 24 px.
+   Manifest and supporting lead are always identical: 18px at >=2000px, otherwise 16px.
+   Process copy and closing line: 14px normally, 13px at <=320px; closing is 15px at >=2000px. */
+@media (max-width: 1999px) { :root { --type-display: var(--af-font-px-36); } }
+@media (max-width: 1439px) { :root { --type-display: var(--af-font-px-32); } }
+@media (max-width: 1023px) { :root { --type-display: var(--af-font-px-30); } }
+@media (max-width: 767px) { :root { --type-display: var(--af-font-px-28); } }
+@media (max-width: 375px) { :root { --type-display: var(--af-font-px-26); --type-section-label: var(--af-font-px-9); --type-tracking-section-label: .08em; } }
+@media (max-width: 320px) { :root { --type-display: var(--af-font-px-24); } }
+
+/* Heading hierarchy contract:
+   All marketing H1s alias --type-display. Both page and section H2s use that role minus
+   --type-heading-gap, so all marketing H1/H2 pairs stay exactly 2px apart at every breakpoint. */
+@media (max-width: 1100px) { :root { --type-subsection-title: var(--af-font-px-22); --type-card-heading: var(--af-font-px-20); } }
+@media (max-width: 767px) { :root { --type-subsection-title: var(--af-font-px-20); --type-card-heading: var(--af-font-px-18); } }
+@media (max-width: 420px) { :root { --type-subsection-title: var(--af-font-px-18); --type-card-heading: var(--af-font-px-16); } }
+@media (max-width: 320px) { :root { --type-subsection-title: var(--af-font-px-16); } }
+
+@media (min-width: 2000px) { :root { --type-hero-manifest: var(--af-font-px-18); --type-hero-closing: var(--af-font-px-15); } }
+@media (min-width: 768px) and (max-width: 1023px) { :root { --type-hero-route-description: var(--af-font-px-12); } }
+/* Canonical marketing body role changes to 13px only at <=320px; all aliases follow it. */
+@media (max-width: 320px) { :root { --type-body: var(--af-font-px-13); --type-hero-closing: var(--af-font-px-13); } }
+@media (max-width: 900px) { :root { --type-button: var(--af-font-px-13); } }
+@media (min-width: 768px) and (max-width: 1439px) { :root { --type-stage-description: var(--af-font-px-12); } }
+@media (max-width: 1439px) { :root { --type-overlay-title: var(--af-font-px-18); --type-body-compact: var(--af-font-px-12); } }
+@media (max-width: 767px) { :root { --type-overlay-title: var(--af-font-px-17); --type-nav: var(--af-font-px-13); } }
+@media (max-width: 420px) { :root { --type-overlay-title: var(--af-font-px-16); } }
+@media (max-width: 1150px) { :root { --type-nav: var(--af-font-px-13); } }
+@media (max-width: 1100px) { :root { --type-modal-title: var(--af-font-px-22); } }
+@media (max-width: 767px) { :root { --type-modal-title: var(--af-font-px-20); } }
+@media (max-width: 420px) { :root { --type-modal-title: var(--af-font-px-18); } }
+
+/* 01 — Header and Hero. Header identity / logo lettering keeps its own visual contract. */
+.site-header .nav a { font-size: var(--type-nav); }
+.mobile-nav a { font-size: var(--type-nav); }
+
+#app .af-bento-card.bento-main-v2 .bento-main-content > h1 {
+  font-family: var(--font-display);
+  font-size: var(--type-display);
+  font-weight: var(--type-weight-display);
+  line-height: var(--type-line-display);
+  letter-spacing: var(--type-tracking-display);
+}
+#app .af-bento-card.bento-main-v2 .bento-main-content > .bento-manifest-lead {
+  font-family: var(--font-body);
+  font-size: var(--type-hero-manifest);
+  font-weight: var(--type-weight-hero-manifest);
+  line-height: var(--type-line-hero-manifest);
+  letter-spacing: var(--type-tracking-hero-manifest);
+}
+/* Canonical public body-copy metrics — exactly one owner for font metrics across p.lead and regular p.
+   Hero cards with editorial, route, overlay or microcopy roles are intentionally listed separately below. */
+#app .af-bento-card.bento-main-v2 .bento-main-content > .bento-process-copy,
+#app .landing-constructor-intro > p,
+#app .landing-products-intro,
+#app .page-head .lead,
+#app .landing-route-section .section-intro .lead,
+#app .af-dark-block .lead,
+#app .af-full-development .lead,
+#app .af-full-pinterest .lead,
+#app .contact-copy .lead,
+#app .product-copy p:not(.muted-note),
+#app .tab-panel,
+#app .catalog-card p,
+#app .direction-card p,
+#app .landing-route-section .section-intro p:not(.lead),
+#app .af-dark-block p:not(.lead),
+#app .af-full-development p:not(.lead),
+#app .af-full-pinterest p:not(.lead),
+#app .contact-copy p:not(.lead),
+#app .manifesto-inner > p,
+#app .contact-card p,
+#app .service-grid p,
+#app .pinterest-steps p {
+  font-family: var(--font-body);
+  font-size: var(--type-body);
+  font-weight: var(--type-weight-body);
+  line-height: var(--type-line-body);
+  letter-spacing: var(--type-tracking-body);
+}
+/* Lead-specific layout and wrapping only; font metrics are owned by the shared rule above. */
+#app .af-bento-card.bento-main-v2 .bento-main-content > .bento-process-copy,
+#app .landing-constructor-intro > p,
+#app .landing-products-intro,
+#app .page-head .lead,
+#app .landing-route-section .section-intro .lead,
+#app .af-dark-block .lead,
+#app .af-full-development .lead,
+#app .af-full-pinterest .lead,
+#app .contact-copy .lead {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  text-wrap: pretty;
+  overflow-wrap: normal;
+}
+/* Preserve the separate visual color roles without reintroducing typography overrides. */
+#app .af-dark-block .lead { color: var(--contrast-muted); }
+#app .landing-constructor-intro > p,
+#app .landing-products-intro,
+#app .page-head .lead,
+#app .landing-route-section .section-intro .lead,
+#app .af-full-pinterest .lead,
+#app .contact-copy .lead { color: var(--text-secondary); }
+/* Main section labels: one semantic role, one-line text, one source of typography. */
+#app .landing-section-label {
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  max-width: 100%;
+  margin: 0;
+  color: var(--landing-section-label-color, var(--accent));
+  font-family: var(--font-body);
+  font-size: var(--type-section-label);
+  font-weight: var(--type-weight-section-label);
+  line-height: var(--type-line-section-label);
+  letter-spacing: var(--type-tracking-section-label);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+#app .landing-section-label::before {
+  content: none;
+  display: none;
+}
+/* Marketing tags only; the checkout's .checkout-v4-shell .tag keeps its own typography contract. */
+#app .landing-route-section .tag,
+#app .direction-card .tag,
+#app .product-hero .product-copy .tag {
+  font-family: var(--font-body);
+  font-size: var(--type-tag);
+  font-weight: var(--type-weight-tag);
+  line-height: var(--type-line-tag);
+  letter-spacing: var(--type-tracking-tag);
+}
+/* Match the public v-resurs Hero: both lines inherit font, size, weight, line-height and tracking
+   from the same .bento-manifest-lead parent. The lead must not get a separate, smaller size. */
+#app .af-bento-card.bento-main-v2 .bento-main-content > .bento-manifest-lead > .bento-manifest,
+#app .af-bento-card.bento-main-v2 .bento-main-content > .bento-manifest-lead > .lead {
+  font: inherit;
+  letter-spacing: inherit;
+}
+/* Hero process copy and constructor intro intentionally rely only on the shared body-role block above. */
+#app .af-bento-card.bento-main-v2 .bento-main-content > .bento-hero-closing {
+  font-family: var(--font-body);
+  font-size: var(--type-hero-closing);
+  font-weight: var(--type-weight-hero-closing);
+  line-height: var(--type-line-hero-closing);
+  letter-spacing: normal;
+}
+/* Marketing CTAs share one canonical type contract; transactional checkout controls are excluded. */
+#app .af-hero-actions > .btn,
+#app .landing-constructor-try,
+#app .landing-constructor-question,
+#app .landing-constructor-pro-cta,
+#app .constructor-try-btn,
+#app .constructor-secondary-btn,
+#app .project-discussion-actions > .btn,
+#app .landing-route-section .btn,
+#app .product-hero .product-copy .btn,
+#app #contacts .btn {
+  font-family: var(--font-ui);
+  font-size: var(--type-button);
+  font-weight: var(--type-weight-cta);
+  line-height: 1.2;
+}
+
+/* Keep the general content-action size role separate from the marketing CTA weight contract. */
+#app .actions > .btn {
+  font-size: var(--type-button);
+}
+#app .direction-card .text-link {
+  font-family: var(--font-ui);
+  font-size: var(--type-button);
+  font-weight: var(--type-weight-button);
+  line-height: 1.2;
+}
+
+/* Bento secondary cards: keep clear hierarchy beneath the Hero. */
+#app .bento-card-content h2,
+#app .quick-links h3 {
+  font-family: var(--font-display);
+  font-size: var(--type-subsection-title);
+  font-weight: 500;
+  line-height: 1.16;
+  letter-spacing: -.02em;
+}
+#app .pinterest-steps strong {
+  font-family: var(--font-body);
+  font-size: var(--type-card-title);
+  font-weight: var(--type-weight-card-title);
+  line-height: 1.35;
+  letter-spacing: normal;
+}
+#app .bento-path-row strong {
+  font-family: var(--font-body);
+  font-size: var(--type-card-title);
+  font-weight: var(--type-weight-card-title);
+  line-height: 1.4;
+  letter-spacing: var(--type-tracking-card-title);
+}
+#app .bento-links-card .bento-card-content > a {
+  font-family: var(--font-body);
+  font-size: var(--type-card-title);
+  font-weight: var(--type-weight-card-link);
+  line-height: var(--type-line-card-link);
+  letter-spacing: var(--type-tracking-card-title);
+}
+#app .bento-path-row p { font-family: var(--font-body); font-size: var(--type-hero-route-description); line-height: var(--type-line-hero-route); }
+#app .bento-update { font-family: var(--font-body); font-size: var(--type-small); font-weight: var(--type-weight-body); line-height: var(--type-line-small); }
+#app .bento-update-note { font-family: var(--font-body); font-size: var(--type-small); font-weight: var(--type-weight-body); line-height: var(--type-line-update-note); letter-spacing: normal; }
+#app .bento-kicker,
+#app .bento-image-copy-kicker {
+  font-family: var(--font-body);
+  font-size: var(--type-overlay-kicker);
+  font-weight: var(--type-weight-overlay-kicker);
+  line-height: var(--type-line-eyebrow);
+  letter-spacing: var(--type-tracking-overlay-kicker);
+}
+/* Approved Card 2 update dates are 10px; do not group them with 8px visual kickers. */
+#app .bento-update time { font-family: var(--font-body); font-size: var(--type-date); font-weight: var(--type-weight-card-title); line-height: var(--type-line-date); }
+/* The Hero route numbers (01 / 02 / 03) are indices, not overlay kickers.
+   Keep them at the approved 10px and preserve their existing 1.5px optical offset. */
+#app .bento-path-row > span {
+  font-size: var(--type-index-number);
+  line-height: var(--type-line-small);
+}
+#app .bento-image-copy h2 {
+  font-family: var(--font-display);
+  font-size: var(--type-overlay-title);
+  font-weight: 550;
+  line-height: var(--type-line-overlay-title);
+  letter-spacing: -.025em;
+}
+#app .bento-image-copy p {
+  font-family: var(--font-body);
+  font-size: var(--type-small);
+  font-weight: var(--type-weight-body);
+  line-height: 1.4;
+  letter-spacing: normal;
+}
+
+/* 02 — All marketing H1s share --type-display. Every marketing H2 uses that same scale minus the shared 2px gap. */
+#app .landing-route-section .page-head h1,
+#app .product-hero .product-copy h1 {
+  font-family: var(--font-display);
+  font-size: var(--type-page-title);
+  font-weight: var(--type-weight-display);
+  line-height: var(--type-line-display);
+  letter-spacing: var(--type-tracking-display);
+}
+
+/* Unified H2 role. Main landing headings and internal marketing H2s share the same font metrics. */
+#app .landing-section-heading,
+#app .af-dark-block h2,
+#app .af-full-development h2,
+#app .af-full-pinterest h2 {
+  font-family: var(--font-display);
+  font-size: var(--type-section-title);
+  font-weight: var(--type-weight-section-title);
+  line-height: var(--type-line-section-title);
+  letter-spacing: var(--type-tracking-section-title);
+  text-wrap: balance;
+}
+#app .landing-section-heading { margin: 10px 0; }
+/* Compact constructor steps are labels, not section headings. */
+#app .landing-constructor-step-copy strong,
+#app .af-full-constructor .constructor-step-tab {
+  font-size: var(--type-card-title);
+}
+#app .landing-constructor-step-copy small {
+  font-size: var(--type-stage-description);
+  line-height: 1.48;
+}
+#app .landing-constructor-step-number,
+#app .landing-constructor-step-counter,
+#app .af-full-constructor .constructor-benefits i,
+#app .af-full-constructor .constructor-step-tab span,
+#app .af-full-constructor .constructor-step-number,
+#app .af-full-constructor .constructor-step-counter,
+#app .af-full-constructor .constructor-step-kicker {
+  font-size: var(--type-index-number);
+}
+#app .landing-constructor-overview-caption,
+#app .landing-constructor-mobile-note,
+#app .landing-constructor-step-copy small + small,
+#app .landing-constructor-info-tooltip { font-size: var(--type-tooltip); line-height: 1.5; }
+#app .landing-constructor-action-row p,
+#app .landing-products-note p,
+#app .landing-products-featured p,
+#app .landing-products-pro p,
+#app .landing-products-service-note {
+  font-family: var(--font-body);
+  font-size: var(--type-small);
+  font-weight: var(--type-weight-body);
+  line-height: var(--type-line-small);
+  letter-spacing: var(--type-tracking-body);
+}
+
+/* 03 — Internal headings and copy in the full constructor/story block. */
+#app .af-full-constructor .constructor-gallery-head h2,
+#app .constructor-gallery-head h3,
+#app .constructor-bottom-cta h3 {
+  font-size: var(--type-subsection-title);
+  line-height: 1.16;
+}
+#app .af-full-constructor .constructor-slide-copy h3,
+#app .constructor-slide-copy h4 {
+  font-size: var(--type-card-heading);
+  line-height: var(--type-line-card-heading);
+}
+/* Card headings in product and development sections share one responsive role. */
+#app .catalog-card h3,
+#app .direction-card h3,
+#app .service-grid h3 {
+  font-family: var(--font-display);
+  font-size: var(--type-card-heading);
+  font-weight: var(--type-weight-card-heading);
+  line-height: var(--type-line-card-heading);
+  letter-spacing: var(--type-tracking-card-heading);
+}
+#app .af-full-constructor .constructor-slide-copy p,
+#app .af-full-constructor .constructor-bottom-cta p,
+#app .af-full-constructor .constructor-gallery-head p {
+  font-size: var(--type-body-compact);
+  line-height: 1.55;
+}
+#app .af-full-constructor .constructor-slide-copy .constructor-step-detail,
+#app .constructor-schematic-note,
+#app .constructor-feature-copy .constructor-status-note {
+  font-size: var(--type-small);
+  line-height: 1.5;
+}
+#app .constructor-gallery-hint,
+#app .landing-constructor-detail-copy small,
+#app .constructor-desktop-note p,
+#app .catalog-disclaimer,
+#app .data-warning {
+  font-size: var(--type-small);
+  line-height: 1.5;
+}
+
+/* 04 — Product catalogue, product detail and landing cards. Transactional cart/checkout remains component-specific. */
+/* Shared paragraph metrics are defined once in section 01; compact notes stay on their own role. */
+#app .contact-card-label {
+  font-family: var(--font-body);
+  font-size: var(--type-micro);
+  font-weight: var(--type-weight-eyebrow);
+  line-height: var(--type-line-eyebrow);
+  letter-spacing: var(--type-tracking-eyebrow);
+}
+#app .service-grid article > span {
+  font-size: var(--type-index-number);
+  font-weight: var(--type-weight-body);
+  line-height: var(--type-line-small);
+}
+#app .muted-note { font-size: var(--type-small); line-height: 1.5; }
+#app .service-note,
+#app .data-specs .spec small { font-size: var(--type-small); line-height: 1.5; }
+#app .contact-phone { font-size: var(--type-subsection-title); line-height: 1.2; }
+
+/* 05 — Footer and landing enquiry forms. The compact cookie surface keeps its approved sizing. */
+.site-footer .footer-inner > p,
+.site-footer .footer-nav { font-size: var(--type-small); }
+.cookie-settings-card h2 { font-size: var(--type-modal-title); line-height: 1.15; }
+
+.project-discussion-dialog h2,
+.constructor-email-dialog h2,
+.constructor-policy-dialog h2 { font-size: var(--type-modal-title); line-height: 1.15; }
+.project-discussion-dialog .project-discussion-intro,
+.constructor-email-intro { font-size: var(--type-body); line-height: 1.55; }
+.project-callback-field,
+.constructor-email-field,
+.constructor-email-label { font-size: var(--type-form-label, var(--af-font-px-13)); }
+.project-callback-consent,
+.constructor-email-consent-row,
+.constructor-policy-dialog p { font-size: var(--type-small); line-height: 1.5; }
+.project-callback-feedback,
+.constructor-email-error { font-size: var(--af-font-px-11); line-height: 1.4; }
+.project-discussion-prototype-note,
+.constructor-email-demo-note { font-size: var(--type-micro); line-height: var(--type-line-small); }
+
+/* The scaled editor UI inside the preview is intentionally excluded: its labels represent a miniature product interface.
+   The product checkout/card-payment UI also remains under its own sizing contract. */
+
+
+/* Original inline CSS layer 8/29: #artify-font-value-tokens-followup-12-15 */
+
+/* ARTIFY FOLLOW-UP 12.15 — shared font-value registry for the landing page.
+   All px font-size values resolve through this registry.
+   Semantic roles are owned by ARTIFY_TYPE_SCALE_UNIFIED_FOLLOWUP_12_15.css. */
+:root {
+  --af-font-px-0: 0;
+  --af-font-px-1: 1px;
+  --af-font-px-2: 2px;
+  --af-font-px-6: 6px;
+  --af-font-px-7: 7px;
+  --af-font-px-8: 8px;
+  --af-font-px-9: 9px;
+  --af-font-px-10: 10px;
+  --af-font-px-11: 11px;
+  --af-font-px-12: 12px;
+  --af-font-px-13: 13px;
+  --af-font-px-14: 14px;
+  --af-font-px-15: 15px;
+  --af-font-px-16: 16px;
+  --af-font-px-17: 17px;
+  --af-font-px-18: 18px;
+  --af-font-px-19: 19px;
+  --af-font-px-20: 20px;
+  --af-font-px-21: 21px;
+  --af-font-px-22: 22px;
+  --af-font-px-23: 23px;
+  --af-font-px-24: 24px;
+  --af-font-px-25: 25px;
+  --af-font-px-26: 26px;
+  --af-font-px-27: 27px;
+  --af-font-px-28: 28px;
+  --af-font-px-29: 29px;
+  --af-font-px-30: 30px;
+  --af-font-px-32: 32px;
+  --af-font-px-33: 33px;
+  --af-font-px-34: 34px;
+  --af-font-px-36: 36px;
+  --af-font-px-38: 38px;
+  --af-font-px-40: 40px;
+  --af-font-px-42: 42px;
+  --af-font-px-44: 44px;
+  --af-font-px-48: 48px;
+  --af-font-px-50: 50px;
+  --af-font-px-52: 52px;
+  --af-font-px-54: 54px;
+  --af-font-px-55: 55px;
+  --af-font-px-56: 56px;
+  --af-font-px-58: 58px;
+  --af-font-px-60: 60px;
+  --af-font-px-66: 66px;
+  --af-font-px-70: 70px;
+  --af-font-px-92: 92px;
+  --af-font-fluid-10-12-0_8vw: clamp(var(--af-font-px-10),.8vw,var(--af-font-px-12));
+  --af-font-fluid-13-22-2vw-round-1px: round(nearest, clamp(var(--af-font-px-13),2vw,var(--af-font-px-22)), var(--af-font-px-1));
+  --af-font-fluid-14-15-1vw-round-1px: round(nearest, clamp(var(--af-font-px-14),1vw,var(--af-font-px-15)), var(--af-font-px-1));
+  --af-font-fluid-15-17-4vw-round-1px: round(nearest, clamp(var(--af-font-px-15),4vw,var(--af-font-px-17)), var(--af-font-px-1));
+  --af-font-fluid-15-18-1vw-round-1px: round(nearest, clamp(var(--af-font-px-15),1vw,var(--af-font-px-18)), var(--af-font-px-1));
+  --af-font-fluid-16-18-1vw-round-1px: round(nearest, clamp(var(--af-font-px-16),1vw,var(--af-font-px-18)), var(--af-font-px-1));
+  --af-font-fluid-16-18-2vw-round-1px: round(nearest, clamp(var(--af-font-px-16),2vw,var(--af-font-px-18)), var(--af-font-px-1));
+  --af-font-fluid-17-20-1_7vw: clamp(var(--af-font-px-17),1.7vw,var(--af-font-px-20));
+  --af-font-fluid-17-21-1_42vw: clamp(var(--af-font-px-17),1.42vw,var(--af-font-px-21));
+  --af-font-fluid-18-28-2vw-round-1px: round(nearest, clamp(var(--af-font-px-18),2vw,var(--af-font-px-28)), var(--af-font-px-1));
+  --af-font-fluid-19-25-2vw-round-1px: round(nearest, clamp(var(--af-font-px-19),2vw,var(--af-font-px-25)), var(--af-font-px-1));
+  --af-font-fluid-22-26-2vw-round-1px: round(nearest, clamp(var(--af-font-px-22),2vw,var(--af-font-px-26)), var(--af-font-px-1));
+  --af-font-fluid-22-30-6vw-round-1px: round(nearest, clamp(var(--af-font-px-22),6vw,var(--af-font-px-30)), var(--af-font-px-1));
+  --af-font-fluid-23-30-3vw-round-1px: round(nearest, clamp(var(--af-font-px-23),3vw,var(--af-font-px-30)), var(--af-font-px-1));
+  --af-font-fluid-23-32-3vw-round-1px: round(nearest, clamp(var(--af-font-px-23),3vw,var(--af-font-px-32)), var(--af-font-px-1));
+  --af-font-fluid-25-30-3_2vw: clamp(var(--af-font-px-25),3.2vw,var(--af-font-px-30));
+  --af-font-fluid-28-44-4vw-round-1px: round(nearest, clamp(var(--af-font-px-28),4vw,var(--af-font-px-44)), var(--af-font-px-1));
+  --af-font-fluid-29-32-9vw-round-1px: round(nearest, clamp(var(--af-font-px-29),9vw,var(--af-font-px-32)), var(--af-font-px-1));
+  --af-font-fluid-30-42-3vw-round-1px: round(nearest, clamp(var(--af-font-px-30),3vw,var(--af-font-px-42)), var(--af-font-px-1));
+  --af-font-fluid-32-38-8vw-round-1px: round(nearest, clamp(var(--af-font-px-32),8vw,var(--af-font-px-38)), var(--af-font-px-1));
+  --af-font-fluid-33-42-8vw-round-1px: round(nearest, clamp(var(--af-font-px-33),8vw,var(--af-font-px-42)), var(--af-font-px-1));
+  --af-font-fluid-34-44-9vw-round-1px: round(nearest, clamp(var(--af-font-px-34), 9vw, var(--af-font-px-44)), var(--af-font-px-1));
+  --af-font-fluid-34-50-4vw-round-1px: round(nearest, clamp(var(--af-font-px-34),4vw,var(--af-font-px-50)), var(--af-font-px-1));
+  --af-font-fluid-34-52-4vw-round-1px: round(nearest, clamp(var(--af-font-px-34),4vw,var(--af-font-px-52)), var(--af-font-px-1));
+  --af-font-fluid-36-42-4vw-round-1px: round(nearest, clamp(var(--af-font-px-36),4vw,var(--af-font-px-42)), var(--af-font-px-1));
+  --af-font-fluid-38-44-2vw-round-1px: round(nearest, clamp(var(--af-font-px-38),2vw,var(--af-font-px-44)), var(--af-font-px-1));
+  --af-font-fluid-38-54-4vw-round-1px: round(nearest, clamp(var(--af-font-px-38),4vw,var(--af-font-px-54)), var(--af-font-px-1));
+  --af-font-fluid-38-54-5vw-round-1px: round(nearest, clamp(var(--af-font-px-38),5vw,var(--af-font-px-54)), var(--af-font-px-1));
+  --af-font-fluid-38-55-4vw-round-1px: round(nearest, clamp(var(--af-font-px-38),4vw,var(--af-font-px-55)), var(--af-font-px-1));
+  --af-font-fluid-38-56-4vw-round-1px: round(nearest, clamp(var(--af-font-px-38), 4vw, var(--af-font-px-56)), var(--af-font-px-1));
+  --af-font-fluid-38-60-5vw-round-1px: round(nearest, clamp(var(--af-font-px-38),5vw,var(--af-font-px-60)), var(--af-font-px-1));
+  --af-font-fluid-40-66-6vw-round-1px: round(nearest, clamp(var(--af-font-px-40),6vw,var(--af-font-px-66)), var(--af-font-px-1));
+  --af-font-fluid-40-70-5vw-round-1px: round(nearest, clamp(var(--af-font-px-40),5vw,var(--af-font-px-70)), var(--af-font-px-1));
+  --af-font-fluid-58-92-7vw-round-1px: round(nearest, clamp(var(--af-font-px-58),7vw,var(--af-font-px-92)), var(--af-font-px-1));
+  --af-font-relative-0_85em: 0.85em;
+  --af-font-relative-0_875em: 0.875em;
+  --af-font-relative-100: 100%;
+  --af-font-relative-1_25em: 1.25em;
+  --af-font-relative-1_5em: 1.5em;
+  --af-font-relative-1em: 1em;
+  --af-font-relative-2em: 2em;
+  --af-font-relative-75: 75%;
+  --af-font-relative-80: 80%;
+  --af-font-relative-85: 85%;
+  --af-font-relative-90: 90%;
+}
+
+
+/* Original inline CSS layer 9/29: #artify-outer-radius-trial-10 */
+
+/* ARTIFY outer-radius comparison trial — 10px
+   Derived from FOLLOW-UP 12.17. One shared radius for outer surface components.
+   Intentionally excluded: true circles/dots, hamburger strokes, decorative line ends,
+   and tiny UI pieces inside illustrative constructor-screen artwork. */
+:root {
+  --artify-outer-radius: 10px;
+  --radius-card: var(--artify-outer-radius);
+  --radius-large: var(--artify-outer-radius);
+  --control-radius: var(--artify-outer-radius);
+  --main-button-radius: var(--artify-outer-radius);
+  --checkout-button-radius: var(--artify-outer-radius);
+  --cta-button-radius: var(--artify-outer-radius);
+  --logo-radius: var(--artify-outer-radius);
+}
+
+.product-art,
+.product-copy,
+.catalog-card,
+.cart-main,
+.checkout-card,
+.summary,
+.cart-thumb,
+.choice,
+.summary-card-art,
+.payment-preview,
+.payment-fields input,
+.notice,
+.success-box,
+.toast,
+.direction-card,
+.catalog-disclaimer,
+.data-warning,
+.af-dark-block,
+.service-grid article,
+.pin-mosaic > div,
+.trust-grid > div,
+.tag,
+.checkout-v4-shell .tag,
+.checkout-v4-shell .pill,
+.checkout-v4-shell .note,
+.checkout-v4-shell .product-art,
+.checkout-v4-shell .result,
+.checkout-v4-shell .secure-banner,
+.checkout-v4-shell .card-fields,
+.checkout-v4-shell .cvv-note,
+.checkout-v4-shell .legal-preview-dialog,
+.checkout-v4-shell .panel,
+.checkout-v4-shell .summary,
+.checkout-v4-shell .choice,
+.checkout-v4-shell .method,
+.checkout-v4-shell .field input,
+.checkout-v4-shell .field select,
+.checkout-v4-shell .field textarea,
+.checkout-v4-shell .button,
+.checkout-v4-shell .brand-mark,
+.checkout-v4-shell .checkout-footer-brand .brand-mark,
+.btn,
+.cookie-consent,
+.cookie-settings-trigger,
+.cookie-settings-card,
+.cookie-settings-close,
+.cookie-btn,
+.back-to-top,
+.constructor-carousel-controls button,
+.constructor-feature-copy,
+.constructor-desktop-note,
+.constructor-interface,
+.constructor-slide,
+.contact-card,
+.site-header .brand-mark,
+.pinterest-steps > div > span,
+.constructor-note-icon,
+.site-header .nav,
+.site-header .nav a,
+.site-header .nav-cart,
+.site-header .af-theme-control > summary,
+.site-header .af-theme-menu,
+.site-header .af-theme-option,
+.site-header .mobile-toggle,
+.mobile-nav,
+.mobile-nav a,
+.af-bento-card.bento-main-v2,
+.af-bento-card.bento-image-card,
+.af-bento-card.bento-paths-card,
+.af-bento-card.bento-links-card,
+.af-bento-card.bento-updates-card,
+.af-hero-actions > .btn,
+.project-discussion-dialog,
+.project-discussion-close,
+.project-callback-field input,
+.project-callback-field select,
+.landing-constructor-overview-panel,
+.landing-constructor-detail-panel,
+.landing-constructor-step,
+.landing-constructor-detail-view,
+.landing-constructor-test-shot,
+.landing-constructor-action-card,
+.landing-constructor-try,
+.landing-constructor-info-tooltip,
+.constructor-email-dialog,
+.constructor-policy-dialog,
+.constructor-email-close,
+.constructor-policy-close,
+.constructor-image-close,
+.constructor-email-field input,
+.constructor-email-status,
+.constructor-image-dialog,
+.landing-constructor-placeholder,
+.landing-constructor-placeholder-size,
+.af-full-constructor .constructor-try-btn,
+.af-full-constructor .constructor-secondary-btn,
+.af-full-constructor .constructor-preview-frame,
+.af-full-constructor .constructor-benefits i,
+.af-full-constructor .constructor-step-tab,
+.af-full-constructor .constructor-story-arrow,
+.af-full-constructor .constructor-story-grid,
+.af-full-constructor .constructor-step-shot,
+.af-full-constructor .constructor-step-shot img,
+.af-full-constructor .constructor-bottom-cta {
+  border-radius: var(--artify-outer-radius);
+}
+
+/* Respect intentional circles: cart badge, logo accent dot, status indicators,
+   circular swatches, and round info/control marks keep their original shape. */
+.cart-dot,
+.step-indicator b,
+.checkout-v4-shell .mark:after,
+.checkout-v4-shell .dot,
+.checkout-v4-shell .number,
+.checkout-v4-shell .product-art:before,
+.checkout-v4-shell .secure-icon,
+.site-header .brand-mark::after,
+.landing-constructor-info-trigger,
+.af-full-constructor .constructor-preview-chrome > span,
+.af-full-constructor .constructor-step-progress i {
+  border-radius: 50%;
+}
+
+
+/* Original inline CSS layer 10/29: #artify-constructor-zoom-fill-trial-05 */
+
+/* Trial 05 — the enlarged image is the dialog itself: no nested frame or inner padding. */
+.constructor-image-overlay {
+  place-items: center;
+}
+.constructor-image-dialog {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  width: min(1600px, calc(100vw - 48px));
+  height: auto;
+  aspect-ratio: 1400 / 960;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--artify-outer-radius, 10px);
+  background: transparent;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, .35);
+  cursor: default;
+}
+.constructor-image-dialog img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  border: 0;
+  border-radius: inherit;
+}
+/* Keep the caption available to assistive technology without taking image space. */
+.constructor-image-dialog figcaption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+:root[data-theme="dark"] .constructor-image-dialog {
+  box-shadow: 0 28px 80px rgba(0, 0, 0, .48);
+}
+@media (max-width: 1100px) {
+  .constructor-image-dialog {
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    padding: 0;
+  }
+}
+
+
+/* Original inline CSS layer 11/29: #artify-constructor-image-radius-trial-06 */
+
+/* Artify Factory · Unified Constructor Trial 06
+   Step 1 only: make the visible screenshot surface visibly rounded at every breakpoint
+   where constructor artwork is shown. The 10px radius is shared by frame, clipping box and image. */
+:root {
+  --artify-constructor-image-radius: var(--artify-outer-radius, 10px);
+}
+
+/* Desktop and compact desktop (2560 / 1440 / 1024 and adjacent widths). */
+@media (min-width: 901px) {
+  .landing-constructor-workflow-unified .landing-constructor-detail-view {
+    border-radius: var(--artify-constructor-image-radius);
+    overflow: hidden;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-composition > .landing-constructor-stage-image-trigger {
+    border-radius: var(--artify-constructor-image-radius);
+    overflow: hidden;
+    clip-path: inset(0 round var(--artify-constructor-image-radius));
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-composition > .landing-constructor-stage-image-trigger img {
+    border-radius: inherit;
+    clip-path: inset(0 round var(--artify-constructor-image-radius));
+  }
+}
+
+/* Tablet layout (449–900px) uses the single overview image instead of the four-stage viewport. */
+@media (min-width: 449px) and (max-width: 900px) {
+  .landing-constructor-workflow-unified .landing-constructor-overview-panel {
+    border-radius: var(--artify-constructor-image-radius);
+    overflow: hidden;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-overview-open {
+    border-radius: inherit;
+    overflow: hidden;
+    clip-path: inset(0 round var(--artify-constructor-image-radius));
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-overview-image {
+    border-radius: inherit;
+    clip-path: inset(0 round var(--artify-constructor-image-radius));
+  }
+}
+
+/* At 448px and below the project intentionally hides image viewports; no empty rounded shell is added. */
+
+
+/* Original inline CSS layer 12/29: #artify-constructor-tablet-overview-trial-07 */
+
+/* Artify Factory · Unified Constructor Trial 07
+   Tablet information-window clarification only.
+   449–900px: remove the duplicate heading info marker; show a static first-screen editor capture.
+   The overview image is deliberately not a button and has no zoom handler. */
+@media (min-width: 449px) and (max-width: 900px) {
+  .landing-constructor-info-tip {
+    display: none;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-overview-open {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    cursor: default;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-overview-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: center;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+}
+
+
+/* Original inline CSS layer 13/29: #artify-constructor-info-tooltip-trial-08 */
+
+/* Artify Factory · Unified Constructor Trial 08
+   Approved copy and safe tooltip placement.
+   The tooltip opens below the marker and never crosses the landing section top edge. */
+.landing-constructor-info-tip { z-index: 120; }
+.landing-constructor-info-tooltip {
+  top: calc(100% + 8px);
+  right: 0;
+  bottom: auto;
+  left: auto;
+  width: min(420px, calc(100vw - 32px));
+  max-width: min(420px, calc(100vw - 32px));
+  padding: 12px 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  z-index: 121;
+}
+
+
+/* Original inline CSS layer 14/29: #artify-constructor-info-tooltip-trial-09 */
+
+/* Artify Factory · Unified Constructor Trial 09
+   1) Restore the info card above and right-aligned to the heading marker.
+   2) Keep the marker and tooltip inside the landing layer, below the sticky header.
+   3) Use the current unified editor overview artwork on 449–900px without the legacy placeholder. */
+
+/* The sticky site header has z-index:100. Keep this local stacking context below it. */
+.landing-constructor-info-tip,
+.landing-constructor-info-tip:hover {
+  position: relative;
+  z-index: 2;
+  isolation: isolate;
+}
+
+.landing-constructor-info-tooltip {
+  top: auto;
+  right: 0;
+  bottom: calc(100% + 4px);
+  left: auto;
+  width: min(520px, calc(100vw - 32px));
+  max-width: min(520px, calc(100vw - 32px));
+  padding: 5px 9px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+  z-index: 3;
+}
+
+@media (min-width: 449px) and (max-width: 900px) {
+  .landing-constructor-info-tip,
+  .landing-constructor-info-tip:hover {
+    display: none;
+  }
+
+  .landing-constructor-overview-panel {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-overview-open {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    min-width: 0;
+    min-height: 0;
+    aspect-ratio: 1364 / 924;
+    overflow: hidden;
+    border-radius: var(--artify-outer-radius, 10px);
+    line-height: 0;
+    cursor: default;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-overview-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: none;
+    aspect-ratio: 1364 / 924;
+    object-fit: cover;
+    object-position: center;
+    border-radius: inherit;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  .landing-constructor-overview-panel .landing-constructor-placeholder-overview {
+    display: none;
+  }
+}
+
+@media (min-width: 901px) {
+  /* Reserve enough top space for the 3-line information card above the marker.
+     The common 50px section rhythm is retained elsewhere; this section needs +18px for its tooltip. */
+  #app > #landing-constructor {
+    padding-top: 68px;
+  }
+}
+
+
+/* Original inline CSS layer 15/29: #artify-constructor-layout-trial-10 */
+
+/* Artify Factory · Unified Constructor Trial 10
+   Tooltip: open above and to the right of the info marker, with symmetric text insets.
+   1024px: replace the three device pills with the shared numbered text rows and keep
+   the lower explainer card at a stable height across all four selected stages. */
+
+@media (min-width: 901px) {
+  .landing-constructor-info-tip,
+  .landing-constructor-info-tip:hover {
+    position: relative;
+    z-index: 2;
+    isolation: isolate;
+  }
+
+  .landing-constructor-info-tooltip {
+    top: auto;
+    right: auto;
+    bottom: calc(100% + 4px);
+    left: 0;
+    box-sizing: border-box;
+    width: min(520px, calc(100vw - 32px));
+    max-width: min(520px, calc(100vw - 32px));
+    padding: 10px 14px;
+    line-height: 1.35;
+    text-align: left;
+    overflow-wrap: anywhere;
+    z-index: 3;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1100px) {
+  .landing-constructor-workflow-unified .landing-constructor-stage-explainer {
+    box-sizing: border-box;
+    height: 300px;
+    min-height: 300px;
+    max-height: 300px;
+    overflow: hidden;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-explainer-responsive .landing-constructor-responsive-feature-list {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 9px;
+    margin-top: 15px;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-responsive-feature-list .landing-constructor-stage-feature {
+    display: grid;
+    grid-template-columns: 22px minmax(0, 1fr);
+    align-items: start;
+    gap: 8px;
+    min-width: 0;
+  }
+}
+
+
+/* Original inline CSS layer 16/29: #artify-constructor-explainer-unified-trial-11 */
+
+/* Artify Factory · Trial 11 — unified explainer-card rhythm.
+   Keep the four stage cards on one typographic and spacing system at every desktop breakpoint.
+   The short note is anchored to the same bottom baseline in each state. */
+
+@media (min-width: 901px) {
+  .landing-constructor-workflow-unified .landing-constructor-stage-explainer {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 20px;
+    text-align: left;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-footnote {
+    flex: 0 0 auto;
+    margin: auto 0 0;
+    padding-top: 12px;
+    color: var(--text-muted);
+    font-size: var(--type-micro);
+    font-weight: 400;
+    line-height: 1.4;
+  }
+}
+
+/* Wide viewports: retain a readable information column instead of allowing it to become too narrow. */
+@media (min-width: 1101px) {
+  .landing-constructor-workflow-unified .landing-constructor-stage-composition-details {
+    grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+  }
+}
+
+/* Compact desktop: the card remains a fixed 300px high for every selected stage.
+   The note aligns to its lower edge; all other vertical rhythm remains shared with large desktop. */
+@media (min-width: 901px) and (max-width: 1100px) {
+  .landing-constructor-workflow-unified .landing-constructor-stage-explainer {
+    height: 300px;
+    min-height: 300px;
+    max-height: 300px;
+    overflow: hidden;
+  }
+}
+
+
+/* Original inline CSS layer 17/29: #artify-constructor-rhythm-trial-12 */
+
+/* Artify Factory · Unified Constructor Trial 12
+   Final geometry pass for information tooltip and right-side explainer cards.
+   Keeps the approved Trial 11 appearance, removes excess tooltip width,
+   equalizes the note/list rhythm, and preserves the compact-desktop inset. */
+
+@media (min-width: 901px) {
+  /* The popup is anchored above and to the right of the info marker.
+     A 400px box fits the full copy in three lines and removes the unused
+     120px-wide strip at the right seen in the Trial 11 review. */
+  .landing-constructor-info-tip,
+  .landing-constructor-info-tip:hover {
+    position: relative;
+    z-index: 2;
+    isolation: isolate;
+  }
+
+  .landing-constructor-info-tooltip {
+    top: auto;
+    right: auto;
+    bottom: calc(100% + 4px);
+    left: 0;
+    box-sizing: border-box;
+    width: 400px;
+    max-width: min(400px, calc(100vw - 32px));
+    min-width: 0;
+    padding: 10px 14px;
+    line-height: 1.5;
+    text-align: left;
+    white-space: normal;
+    overflow-wrap: break-word;
+    z-index: 3;
+  }
+
+  /* Keep every explainer card on exactly the same list and footnote rhythm. */
+  .landing-constructor-workflow-unified .landing-constructor-stage-explainer .landing-constructor-stage-feature-list {
+    margin-top: 15px;
+    gap: 9px;
+  }
+
+  .landing-constructor-workflow-unified .landing-constructor-stage-explainer .landing-constructor-stage-footnote {
+    padding-top: 12px;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1100px) {
+  /* 300px was too short for the approved 20px inset plus three rows and note.
+     314px is the smallest whole-pixel height that retains the full bottom inset. */
+  .landing-constructor-workflow-unified .landing-constructor-stage-explainer {
+    box-sizing: border-box;
+    height: 314px;
+    min-height: 314px;
+    max-height: 314px;
+    padding: 20px;
+    overflow: hidden;
+  }
+}
+
+
+/* Original inline CSS layer 18/29: #artify-constructor-tooltip-content-fit-trial-13 */
+
+/* Artify Factory · Unified Constructor Trial 13
+   Fit the tooltip to its four deliberately balanced text lines.
+   The copy is unchanged; line breaks avoid a short final line and excess blank area.
+   Keep identical horizontal insets and the existing top-right anchor. */
+@media (min-width: 901px) {
+  .landing-constructor-info-tooltip {
+    box-sizing: border-box;
+    width: max-content;
+    max-width: min(400px, calc(100vw - 32px));
+    min-width: 0;
+    padding: 10px 14px;
+    text-align: left;
+    white-space: normal;
+    overflow-wrap: normal;
+    line-height: 1.5;
+  }
+}
+
+
+/* Original inline CSS layer 19/29: #artify-constructor-copy-unified-trial-14 */
+
+/* Artify Factory · Unified Constructor Trial 14
+   Use exactly the approved large-breakpoint tooltip copy in the responsive usage note.
+   The dedicated mobile footer note is redundant while the usage card is visible. */
+@media (max-width: 767px) {
+  #app .landing-constructor-mobile-note {
+    display: none;
+  }
+}
+
