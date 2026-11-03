@@ -1,6 +1,0 @@
-index.html
-assets/css/
-assets/js/
-editor/index.html
-.nojekyll
-README.txt
