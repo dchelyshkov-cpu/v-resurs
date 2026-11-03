@@ -1,0 +1,17 @@
+/* ARTIFY Trial 42 — warm mineral surface for Hero Card 1.
+   This palette is reserved for a later matching transfer to the constructor's right preview card,
+   pending the user's approval of this Hero treatment. */
+:root {
+  --bento-main-card-surface: #E5D8C5;
+  --bento-main-card-copy-muted: #514B44;
+}
+:root[data-theme="dark"] {
+  --bento-main-card-surface: #3A3328;
+  --bento-main-card-copy-muted: #D8D0C3;
+}
+#app .af-bento-card.bento-main-v2 {
+  background: var(--bento-main-card-surface);
+}
+#app .af-bento-card.bento-main-v2 .bento-main-content > .bento-process-copy {
+  color: var(--bento-main-card-copy-muted);
+}

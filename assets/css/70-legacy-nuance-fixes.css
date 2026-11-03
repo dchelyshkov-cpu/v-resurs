@@ -1,0 +1,107 @@
+/* ARTIFY Trial 40 — legacy UX fixes. Scoped overrides only; approved layout tokens stay authoritative. */
+
+/* Compact enquiry modal: topic and comment are retained in the form payload, not shown as controls. */
+#projectDiscussionDialog .project-callback-field[hidden] { display: none; }
+#projectDiscussionDialog .project-callback-intro { margin: 0; }
+#projectDiscussionDialog .project-callback-form { gap: 11px; }
+#projectDiscussionDialog .project-callback-field { gap: 5px; }
+#projectDiscussionDialog .project-callback-optional {
+  color: var(--text-muted);
+  font-size: .92em;
+  font-weight: 400;
+}
+#projectDiscussionDialog .project-callback-feedback[data-state="hint"]:empty { display: none; }
+#projectDiscussionDialog .project-callback-consent { margin-top: 1px; }
+/* Trial 44: both helper messages share the same left edge and typography. */
+#projectDiscussionDialog .project-callback-email-help,
+#projectDiscussionDialog .project-callback-consent-hint {
+  display: block;
+  margin: 1px 0 0;
+  color: var(--text-muted);
+  font-size: var(--af-font-px-11);
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: left;
+}
+/* Use aria-disabled for the visual state. The native button remains in one layout state. */
+#projectDiscussionDialog .project-discussion-actions > .btn {
+  box-sizing: border-box;
+  min-height: var(--main-button-height, 44px);
+  height: auto;
+  align-self: stretch;
+  line-height: 1.25;
+}
+#projectDiscussionDialog .project-discussion-actions > .btn[aria-disabled="true"] {
+  opacity: 1;
+  cursor: not-allowed;
+}
+#projectDiscussionDialog .project-discussion-actions > .btn-accent[aria-disabled="true"],
+#projectDiscussionDialog .project-discussion-actions > .btn-accent[aria-disabled="true"]:hover {
+  background: #EEE9E0;
+  border-color: #DED8CF;
+  color: #817A70;
+}
+:root[data-theme="dark"] #projectDiscussionDialog .project-discussion-actions > .btn-accent[aria-disabled="true"],
+:root[data-theme="dark"] #projectDiscussionDialog .project-discussion-actions > .btn-accent[aria-disabled="true"]:hover {
+  background: #302B20;
+  border-color: #625744;
+  color: #B2AA9B;
+}
+#projectDiscussionDialog .project-discussion-actions { margin-top: 2px; }
+#projectDiscussionDialog .project-discussion-prototype-note { margin-top: 1px; }
+
+/* Touch browsers can keep :hover active after a tap. Restore each control's neutral state
+   for coarse/no-hover pointers while keeping a short native :active feedback during the press. */
+@media (hover: none), (pointer: coarse) {
+  .btn:hover {
+    border-color: var(--border-strong);
+    background: var(--surface);
+    color: var(--text);
+  }
+  .btn.btn-accent:hover {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+  .af-hero-actions .btn-secondary-hero:hover {
+    border-color: var(--border-strong);
+    background: transparent;
+    color: var(--text);
+  }
+  :root[data-theme="dark"] .af-hero-actions .btn-secondary-hero:hover {
+    border-color: rgba(242, 238, 230, .42);
+    background: transparent;
+    color: #F2EEE6;
+  }
+  #app .landing-constructor-pro-cta:hover {
+    border-color: var(--border-strong);
+    background: transparent;
+    color: var(--text);
+  }
+  :root[data-theme="dark"] #app .landing-constructor-pro-cta:hover {
+    border-color: rgba(242, 238, 230, .42);
+    background: transparent;
+    color: #F2EEE6;
+  }
+  #app a.product-category-card:hover,
+  #app a.landing-products-featured:hover {
+    border-color: var(--border);
+  }
+  #app a.product-category-card:hover .category-action,
+  #app a.landing-products-featured:hover .landing-products-text-link {
+    color: inherit;
+  }
+  #app .landing-development-path-card:hover {
+    border-color: var(--border);
+    background: var(--surface);
+  }
+  #app .landing-development-service-link:hover,
+  #app .landing-development-brief:hover {
+    color: var(--text);
+  }
+  .project-discussion-close:hover {
+    border-color: var(--border);
+    background: transparent;
+  }
+  .project-callback-consent a:hover { color: var(--accent); }
+}

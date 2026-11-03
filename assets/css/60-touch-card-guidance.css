@@ -1,0 +1,22 @@
+/* Trial 39 — touch-only guidance for full-card links.
+   Hints are outside the cards; desktop/mouse presentation remains unchanged.
+   Typography and colors use the shared Artify semantic tokens. */
+#app .landing-card-touch-hint {
+  display: none;
+  margin: 0;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: var(--type-small);
+  font-weight: var(--type-weight-body);
+  line-height: var(--type-line-small);
+  letter-spacing: var(--type-tracking-body);
+  text-wrap: pretty;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  #app .landing-card-touch-hint { display: block; }
+  #app .landing-products-categories-touch-hint { margin: 0 0 12px; }
+  #app .landing-products-featured-heading .landing-products-featured-touch-hint { margin: 7px 0 0; }
+  #app a.product-category-card:active,
+  #app a.landing-products-featured:active { border-color: var(--accent); }
+}

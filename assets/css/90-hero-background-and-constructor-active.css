@@ -1,0 +1,64 @@
+/* ARTIFY Trial 43 — responsive Hero Card 1 background + constructor selected-step palette.
+   The image has no focal subject, so the same cover treatment adapts across all card ratios. */
+:root {
+  --constructor-step-active-surface: #E5D8C5;
+}
+:root[data-theme="dark"] {
+  --constructor-step-active-surface: #3A3328;
+}
+
+/* Hero card 1: subtle warm abstract image; text remains above the image layer. */
+#app .af-bento-card.bento-main-v2 .bento-main-bg {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+  background: var(--bento-main-card-surface, #E5D8C5);
+}
+#app .af-bento-card.bento-main-v2 .bento-main-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  display: block;
+  background-image:
+    linear-gradient(100deg, rgba(247, 244, 239, .54) 0%, rgba(247, 244, 239, .42) 58%, rgba(247, 244, 239, .34) 100%),
+    url("../images/hero-card1-background.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center 52%;
+  transform: scale(1.005);
+}
+:root[data-theme="dark"] #app .af-bento-card.bento-main-v2 .bento-main-bg::before {
+  background-image:
+    linear-gradient(100deg, rgba(14, 13, 11, .72) 0%, rgba(14, 13, 11, .62) 58%, rgba(14, 13, 11, .52) 100%),
+    url("../images/hero-card1-background.webp");
+}
+
+/* On narrow, taller cards the overlay is slightly stronger and the background stays centered. */
+@media (max-width: 767px) {
+  #app .af-bento-card.bento-main-v2 .bento-main-bg::before {
+    background-image:
+      linear-gradient(100deg, rgba(247, 244, 239, .62) 0%, rgba(247, 244, 239, .56) 100%),
+      url("../images/hero-card1-background.webp");
+    background-position: center 50%;
+  }
+  :root[data-theme="dark"] #app .af-bento-card.bento-main-v2 .bento-main-bg::before {
+    background-image:
+      linear-gradient(100deg, rgba(14, 13, 11, .78) 0%, rgba(14, 13, 11, .70) 100%),
+      url("../images/hero-card1-background.webp");
+  }
+}
+
+/* Constructor left-side cards: use the approved Hero mineral palette only for the selected state. */
+#app .landing-constructor-workflow-unified .landing-constructor-step.is-active {
+  background: var(--constructor-step-active-surface);
+  color: var(--text);
+}
+
+
+/* Trial 44: selected left step uses neutral ink outline in light theme (not terracotta). */
+:root:not([data-theme="dark"]) #app .landing-constructor-workflow-unified .landing-constructor-step.is-active {
+  border-color: #1C1A17;
+}
