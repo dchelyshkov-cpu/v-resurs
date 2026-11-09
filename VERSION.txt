@@ -1,0 +1,4 @@
+Artify Factory — Trial 46.30.2 · Approved Category Covers + Mobile Alignment
+Base: Trial 46.30.1, derived from verified Trial 46.29 Development via Trial 46.30 core.
+Changes: four approved 768x512 category covers; mobile category visual-first stack through 767px; messenger glyphs 24x24px with header-aligned 34/40px hit targets.
+No Hero, catalogue copy, product routes, featured-product content, editor, backend, SEO, legal, or footer changes.
