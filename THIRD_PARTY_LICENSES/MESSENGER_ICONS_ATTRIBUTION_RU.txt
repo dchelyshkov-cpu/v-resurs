@@ -1,9 +1,0 @@
-Иконки мессенджеров в assets/images/messengers/
-
-Источник: Font Awesome Free Brands, версия 6.7.2, Fonticons, Inc.
-Использованы бренд-глифы Telegram, WhatsApp и Viber в SVG-формате.
-Лицензия на иконки: Creative Commons Attribution 4.0 International (CC BY 4.0).
-Полный текст лицензии: FONT_AWESOME_FREE_BRANDS_LICENSE.txt
-Источник проекта: https://fontawesome.com/
-
-Иконки используются только для обозначения соответствующих каналов связи; это не означает аффилированность, спонсорство или одобрение Artify со стороны соответствующих платформ.
