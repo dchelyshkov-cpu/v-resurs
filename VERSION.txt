@@ -1,3 +1,0 @@
-ARTIFY LANDING — TRIAL 46.30.14
-Base: Trial 46.30.13
-Status: local Hosting Preview review candidate; not production.
