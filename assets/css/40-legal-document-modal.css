@@ -1,0 +1,67 @@
+/* Trial 46.30.9 — suppress legal acknowledgement checkbox focus outline */
+.af-legal-modal[hidden] { display:none !important; }
+.af-legal-modal {
+  position:fixed; inset:0; z-index:9000; display:grid; place-items:center;
+  padding:24px; background:rgba(10,9,8,.64); overscroll-behavior:contain;
+}
+.af-legal-dialog {
+  box-sizing:border-box; display:grid; grid-template-rows:auto minmax(0,1fr) auto;
+  width:min(840px,100%); height:min(920px,100%); min-height:0; max-height:100%;
+  overflow:hidden; border:1px solid var(--border); border-radius:10px;
+  background:var(--surface); color:var(--text); box-shadow:0 24px 90px rgba(0,0,0,.3);
+  font-family:var(--font-body); outline:none;
+}
+.af-legal-header { padding:24px 28px 18px; border-bottom:1px solid var(--border); }
+.af-legal-eyebrow { display:block; margin-bottom:9px; color:var(--text-muted); font-size:var(--type-modal-micro); font-weight:600; letter-spacing:.06em; text-transform:uppercase; }
+.af-legal-header h2 { margin:0; color:var(--text); font:600 var(--type-modal-title, var(--af-font-px-26))/1.15 var(--font-display); letter-spacing:-.025em; }
+.af-legal-body { position:relative; min-height:0; overflow:auto; overscroll-behavior:contain; padding:22px 28px 28px; scrollbar-gutter:stable; }
+.af-legal-notice { margin:0 0 22px; padding:12px 14px; border:1px solid var(--gold); border-radius:8px; background:var(--surface-muted); color:var(--text-secondary); font-size:var(--type-modal-note); line-height:1.5; }
+.af-legal-content { max-width:720px; color:var(--text-secondary); font-size:var(--type-modal-body); line-height:1.72; }
+.af-legal-content h3 { margin:24px 0 8px; color:var(--text); font:600 var(--type-modal-section)/1.3 var(--font-display); }
+.af-legal-content h3:first-child { margin-top:0; }
+.af-legal-content p { margin:0 0 14px; }
+.af-legal-content ul { margin:0 0 16px; padding-left:22px; }
+.af-legal-content li { margin:0 0 7px; }
+.af-legal-footer { padding:16px 22px max(16px, env(safe-area-inset-bottom)); border-top:1px solid var(--border); background:var(--surface); }
+.af-legal-preview-actions { display:flex; align-items:center; justify-content:space-between; gap:14px; }
+.af-legal-full-actions { display:grid; gap:14px; }
+.af-legal-check { display:flex; align-items:flex-start; gap:10px; color:var(--text-secondary); font-size:var(--type-modal-label); line-height:1.45; cursor:pointer; }
+.af-legal-check input { flex:0 0 17px; width:17px; height:17px; margin:1px 0 0; accent-color:var(--accent); }
+.af-legal-action-row { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.af-legal-next,.af-legal-confirm {
+  box-sizing:border-box; display:inline-flex; align-items:center; justify-content:center;
+  flex:0 0 var(--cta-button-width); width:var(--cta-button-width); max-width:100%;
+  height:var(--cta-button-height); min-height:var(--cta-button-height);
+  padding:0 var(--cta-button-padding-x); border:1px solid var(--accent);
+  border-radius:var(--cta-button-radius); background:var(--accent); color:#fff;
+  font-family:var(--font-ui); font-size:var(--type-button); font-weight:var(--type-weight-cta);
+  line-height:1.2; text-align:center; cursor:pointer;
+}
+.af-legal-confirm:disabled { opacity:.42; cursor:not-allowed; }
+.af-legal-cancel { min-height:42px; padding:8px 10px; border:0; background:transparent; color:var(--text-muted); font:500 var(--type-modal-small)/1.3 var(--font-body); text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
+.af-legal-next:focus-visible,.af-legal-confirm:focus-visible,.af-legal-cancel:focus-visible,.af-legal-body:focus-visible { outline:2px solid var(--gold); outline-offset:3px; }
+/* Requested visual exception: keep the checkbox focused, but do not draw a focus ring around it. */
+.af-legal-check input:focus-visible { outline:none; box-shadow:none; }
+.af-legal-modal.is-escape-focus-suppressed #afLegalNext:focus-visible { outline:none; outline-offset:0; box-shadow:none; }
+.af-legal-dialog.is-preview .af-legal-body { overflow:hidden; }
+.af-legal-dialog.is-preview .af-legal-body::after { content:""; position:absolute; z-index:1; left:0; right:0; bottom:0; height:92px; pointer-events:none; background:linear-gradient(transparent,var(--surface)); }
+.af-legal-dialog.is-full .af-legal-preview-actions { display:none !important; }
+.af-legal-dialog.is-full .af-legal-full-actions { display:grid !important; }
+.af-legal-preview-actions[hidden],.af-legal-full-actions[hidden] { display:none !important; }
+@media (max-width:767px), (max-height:560px) and (orientation:landscape) {
+  .af-legal-modal { padding: max(12px, env(safe-area-inset-top)) 12px max(12px, env(safe-area-inset-bottom)); }
+  .af-legal-dialog { width:100%; height:100%; border-radius:10px; }
+  .af-legal-header { padding:18px 18px 14px; }
+  .af-legal-body { padding:18px 18px 24px; }
+  .af-legal-footer { padding:12px 14px max(12px, env(safe-area-inset-bottom)); }
+  .af-legal-preview-actions { flex-direction:column; align-items:stretch; gap:6px; }
+  .af-legal-next,.af-legal-confirm { flex:0 0 auto; width:100%; max-width:none; }
+  .af-legal-cancel { min-height:36px; }
+  .af-legal-action-row { flex-direction:column-reverse; align-items:stretch; gap:4px; }
+  .af-legal-confirm { width:100%; }
+  .af-legal-dialog.is-preview .af-legal-body::after { height:110px; }
+}
+@media (prefers-reduced-motion:no-preference) {
+  .af-legal-dialog { animation:afLegalEnter .16s ease-out both; }
+  @keyframes afLegalEnter { from { opacity:.7; transform:translateY(6px) scale(.995); } to { opacity:1; transform:none; } }
+}
